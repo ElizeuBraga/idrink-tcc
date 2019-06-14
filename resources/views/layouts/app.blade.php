@@ -22,6 +22,22 @@
         .navbar-brand > img{
             width: 60px;
         }
+
+        .mr-auto > li > .nav-link{
+            color: #39d128ff!important;
+            font-weight: bold;
+            font-size: 20px;
+            /* border-radius: 10%; */
+            margin-left: 4px; 
+        }
+
+        .active{
+            background: grey;
+        }
+
+        .mr-auto > li > a:hover{
+          background: grey;  
+        }
     </style>
 </head>
 <body>
@@ -39,7 +55,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="">Entregas</a>
+                            <a class="nav-link active" href="">Entregas</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="">Produtos</a>
