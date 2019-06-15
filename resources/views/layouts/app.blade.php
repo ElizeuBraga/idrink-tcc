@@ -53,6 +53,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    @if(Auth::check())
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link active" href="">Entregas</a>
@@ -64,7 +65,7 @@
                             <a class="nav-link" href="">Relatórios</a>
                         </li>
                     </ul>
-
+                    @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
