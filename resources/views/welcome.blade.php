@@ -8,6 +8,16 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 
         <!-- Styles -->
         <style>
@@ -40,7 +50,7 @@
                 top: 18px;
             }
 
-            .content {
+            .container {
                 text-align: center;
             }
 
@@ -50,16 +60,38 @@
 
             .links > a {
                 color: #636b6f;
-                padding: 0 25px;
+                padding: 10px;
                 font-size: 13px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+                /* margin: 0px 0px 0px 20px */
             }
 
             .m-b-md {
                 margin-bottom: 30px;
+            }
+
+            .btn-primary{
+                background: #39d128ff;
+                color: white!important;
+                font-family: Arial;
+                font-size: 15px!important;
+                border-radius: 50px;
+                font-weight: 600;
+                padding: 10px;
+                border: none;
+                /* margin: 0px 0px 0px 80px */
+            }
+
+            .btn-primary:hover{
+                background: green;
+            }
+
+            .col-md-6 > .btn{
+                margin: 0px 120px 0px 120px;
+                padding: 10px 50px 10px 50px;
             }
         </style>
     </head>
@@ -70,28 +102,32 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a class="btn btn-primary" href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a class="btn btn-primary" href="{{ route('register') }}">Cadastrar</a>
                         @endif
                     @endauth
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <h2>iDrink</h2>
+                    </div>
+                    <div class="col-md-12 col-xs-12">
+                        <img src="/imgs/logo.svg" alt="">
+                    </div>
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class="btn btn-primary" href="#">Perguntas frequentes</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-primary" href="#">Ajuda</a>
+                    </div>
                 </div>
             </div>
         </div>
