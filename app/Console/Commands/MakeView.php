@@ -4,21 +4,21 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class view extends Command
+class MakeView extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:view {nameView}.blade.php';
+    protected $signature = 'make:view';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new view';
+    protected $description = 'Create a view';
 
     /**
      * Create a new command instance.
