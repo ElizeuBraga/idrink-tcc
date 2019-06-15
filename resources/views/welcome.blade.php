@@ -90,8 +90,13 @@
             }
 
             .col-md-6 > .btn{
-                margin: 0px 120px 0px 120px;
+                margin: 0px 100px 0px 100px;
                 padding: 10px 50px 10px 50px;
+            }
+
+            h1{
+              font-weight: bold;
+              color: #39d128ff;  
             }
         </style>
     </head>
@@ -114,9 +119,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-xs-12">
-                        <h2>iDrink</h2>
+                            <b><h1>iDrink</h1></b>
                     </div>
-                    <div class="col-md-12 col-xs-12">
+                    <div class="col-md-12 col-xs-12" style="margin-bottom: 50px;">
                         <img src="/imgs/logo.svg" alt="">
                     </div>
                 </div>
