@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdressesTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateAdressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('adresses', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('adress')->nullable();
-
+            $table->string('name');
+            $table->double('price');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
             $table->timestamps();
         });
     }
@@ -30,10 +30,10 @@ class CreateAdressesTable extends Migration
      */
     public function down()
     {
-        Schema::table('adresses', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             $table->dropForeign('user_id');
         });
 
-        Schema::dropIfExists('adresses');
+        Schema::dropIfExists('products');
     }
 }
