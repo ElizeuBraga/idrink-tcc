@@ -17,8 +17,15 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    $arrayType = ['customer', 'store'];
+    $arrayCpfCnpj = ['123456789', '987654321'];
+
     return [
         'name' => $faker->name,
+        'type' => $arrayType[rand(0,1)],
+        'phone' => Str::random(8),
+        'cpf' => $arrayCpfCnpj[rand(0,1)],
+        'cnpj' => $arrayCpfCnpj[rand(0,1)],
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
