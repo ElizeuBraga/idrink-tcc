@@ -16,6 +16,7 @@ class CreateDeliveriesTable extends Migration
         Schema::create('deliveries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('status',['open','canceled','delivered']);
+            $table->enum('payment',['money','debit','credit']);
 
             $table->unsignedBigInteger('adress_id');
             $table->foreign('adress_id')->references('id')->on('adresses')->onDelete('cascade');
