@@ -16,12 +16,9 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('quantity');
-            
+
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->unsignedBigInteger('delivery_id');
             $table->foreign('delivery_id')->references('id')->on('deliveries')->onDelete('cascade');
@@ -37,7 +34,6 @@ class CreateItemsTable extends Migration
     public function down()
     {
         Schema::table('items', function (Blueprint $table) {
-            $table->dropForeign('user_id');
             $table->dropForeign('product_id');
             $table->dropForeign('delivery_id');
         });
