@@ -20,3 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'users'], function(){
     Route::post('', 'Auth\RegisterController@saveUser');
 });
+
+Route:: group(['midlleware' => 'auth:api'], function(){
+    Route::get('index', ['uses' => 'UserController@index']);
+});
