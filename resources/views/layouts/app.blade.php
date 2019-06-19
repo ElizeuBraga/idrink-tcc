@@ -56,13 +56,13 @@
                     @if(Auth::check())
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="">Entregas</a>
+                        <a class="nav-link active" href="{{route('delivery')}}">Entregas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Produtos</a>
+                            <a class="nav-link" href="{{route('product')}}">Produtos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Relatórios</a>
+                            <a class="nav-link" href="{{route('report')}}">Relatórios</a>
                         </li>
                     </ul>
                     @endif

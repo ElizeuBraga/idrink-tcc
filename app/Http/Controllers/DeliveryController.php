@@ -13,7 +13,8 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        return response()->json(['Response' => 'Ola deliveries']);
+        // return response()->json(['Response' => 'Ola deliveries']);
+        return view('deliveries');
     }
 
     /**
