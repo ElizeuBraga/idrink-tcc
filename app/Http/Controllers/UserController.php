@@ -8,6 +8,40 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    // ---------------------------------------------------------------------------------------------
+    public function login(Request $request){
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+            'type' => 'required|string'
+        ]);
+
+        $credencials = [
+            'email' => $request->email,
+            'type' => $request->type,
+            'password' => $request->password,
+        ];
+
+        if($request->type !== 'customer'){
+            return response()->json(['response' => 'Acesso negado'], 401);
+        }
+
+        if(!Auth::attempt($credencials)){
+            return response()->json(['response' => 'Acesso negado'], 401);
+        }
+
+        $user = $request->user();
+        $token = $user->createToken('Token de acesso')->accessToken;
+
+        return response()->json(['token' => $token], 200);
+    }
+
+    // ---------------------------------------------------------------------------------------------
+    public function logout(Request $request){
+        $request->user()->token()->revoke();
+        return response()->json(['response' => 'Deslogado com sucesso']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +49,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return response()->json(['name' => Auth::user()->name]);
+        // return response()->json(['name' => Auth::user()->name]);
+        return response()->json(["response" => "Olá index"]);
     }
 
     /**

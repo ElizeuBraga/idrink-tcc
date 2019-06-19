@@ -13,7 +13,7 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(['Response' => 'Ola deliveries']);
     }
 
     /**

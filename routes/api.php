@@ -21,6 +21,9 @@ Route::group(['prefix' => 'users'], function(){
     Route::post('', 'Auth\RegisterController@saveUser');
 });
 
-Route:: group(['midlleware' => 'auth:api'], function(){
+Route::group(['middleware' => 'auth:api'], function(){
     Route::get('index', ['uses' => 'UserController@index']);
 });
+Route::get('deliveries', ['uses' => 'DeliveryController@index'])->middleware('auth:api');
+Route::post('login', ['uses' => 'UserController@login']);
+Route::get('logout', ['uses' => 'UserController@logout'])->middleware('auth:api');
