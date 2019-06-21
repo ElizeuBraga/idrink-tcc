@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">{{ __('Cadastre-se') }}</div>
 
@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome da loja">
 
                                 @error('name')
@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="E-mail">
 
                                 @error('email')
@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="Telefone">
 
                                 @error('phone')
@@ -48,7 +48,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="cnpj" class="form-control @error('cnpj') is-invalid @enderror" name="cnpj" value="{{ old('cnpj') }}" required autocomplete="cnpj" placeholder="CNPJ" placeholder="CNPJ">
 
                                 @error('cnpj')
@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="cep" class="form-control @error('cep') is-invalid @enderror" name="cep" value="{{ old('cep') }}" required autocomplete="cep" placeholder="CEP" placeholder="CEP">
 
                                 @error('cep')
@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Senha">
 
                                 @error('password')
@@ -84,16 +84,21 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirme sua senha">
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                        <div class="form-group row">
+                            <div class="col-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Salvar') }}
                                 </button>
+                            </div>
+                            <div class="col-md-6">
+                                <a class="btn btn-primary">
+                                    {{ __('Ja sou cadastrado') }}
+                                </a>
                             </div>
                         </div>
                     </form>

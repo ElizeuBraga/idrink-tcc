@@ -75,3 +75,22 @@ h1{
   font-weight: bold;
   color: #39d128ff;  
 }
+
+input{
+    border-radius: 200px!important;
+    border-color: #39d128ff!important;
+    border-width: 3px!important;
+    text-align: center;
+    /* margin: 0px 400px 0px 20px; */
+}
+
+.col-md-4 > .btn{
+    margin: 0px 100px 0px 6px;
+    padding: 10px 50px 10px 50px;
+}
+
+.col-md-6 > .btn{
+    margin: 0px 100px 0px 60px;
+    padding: 10px 50px 10px 50px;
+    width: 250px;
+}
