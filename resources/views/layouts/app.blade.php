@@ -30,6 +30,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet">
     <style>
         .navbar-brand>img {
             width: 60px;
