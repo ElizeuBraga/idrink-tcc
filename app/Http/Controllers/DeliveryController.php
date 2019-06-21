@@ -3,9 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class DeliveryController extends Controller
 {
+
+    public function getDeliveries(){
+        $deliveries = DB::table('deliveries')->get();
+
+        if(count($deliveries) == 0 ){
+            return response()->json(['response' => 'Nenhum pedido encontrado']);
+        }
+        
+        return response()->json($deliveries);
+    }
+
+
+
+
+
+
+
     /**
      * Display a listing of the resource.
      *

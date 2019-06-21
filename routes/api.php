@@ -27,3 +27,5 @@ Route::group(['middleware' => 'auth:api'], function(){
 Route::get('deliveries', ['uses' => 'DeliveryController@index'])->middleware('auth:api');
 Route::post('login', ['uses' => 'UserController@login']);
 Route::get('logout', ['uses' => 'UserController@logout'])->middleware('auth:api');
+
+Route::get('deliveries', 'DeliveryController@getDeliveries');
