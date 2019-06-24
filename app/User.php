@@ -40,14 +40,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function saveUser(){
-        $input = Input::all();
-        $input['password'] = Hash::make($input['password']);
-        $input['api_token'] = Str::random(60);
-        $user = new User();
-        $user->fill($input);
-        $user->save();
-        return $user;
-    }
 }
