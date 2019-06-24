@@ -1,5 +1,5 @@
 <template>
     <div class="container">
-        <h3>All Products</h3>
+        <table-products></table-products>
     </div>
 </template>

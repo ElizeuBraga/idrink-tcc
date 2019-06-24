@@ -4,5 +4,4 @@
     <h1>Produtos</h1>
 </div>
 <all-products></all-products>
-@{{meunome}}
 @endsection

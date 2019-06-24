@@ -37010,18 +37010,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [_c("table-products")], 1)
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("h3", [_vm._v("Active Products")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -37043,18 +37034,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [_c("table-products")], 1)
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("h3", [_vm._v("All Products")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -37123,18 +37105,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [_c("table-products")], 1)
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("h3", [_vm._v("Inactive Products")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49312,11 +49285,12 @@ Vue.component('inactive-products', __webpack_require__(/*! ./components/Inactive
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('table-products', {
+  template: '<div>' + '<table class="table">' + '<thead>' + '<tr>' + '<th>#</th>' + '<th>Nome</th>' + '<th>Valor</th>' + '<th>Status</th>' + '<th>Opções</th>' + '</tr>' + '</thead>' + '<tbody>' + '<tr>' + '<th>1</th>' + '<th>Teste</th>' + '<th>3.00</th>' + '<th>Ativo</th>' + '<th><a href="#" class="btn btn-sm btn-secondary">Excluir</a></th>' + '</tr>' + '</tbody>' + '</table>' + '<a href="#" class="btn btn-primary" style="margin: 0px 10px 0px 0px">Novo</a>' + '<a href="#" class="btn btn-primary" style="margin: 0px 10px 0px 0px">Ativos</a>' + '<a href="#" class="btn btn-primary" style="margin: 0px 10px 0px 0px">Inativos</a>' + '</div>'
+});
 var app = new Vue({
   el: '#app',
-  data: {
-    meunome: "Elizeu Braga"
-  }
+  data: {}
 });
 
 /***/ }),
