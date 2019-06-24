@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -125,14 +125,21 @@
     </div>
 
     <script>
-        // const axios = require('axios');
+        // // const axios = require('axios');
+        // import AllProducts from './AllProducts.vue'
         // var app = new Vue({
-        //     el: '#entregas',
+        //     el: '#app',
         //     data () {
         //         return {
-        //             deliveries: null
+        //             deliveries: null,
+        //             meunome: "Elizeu Braga"
         //         }
         //      },
+
+        //      components:{
+        //          AllProducts
+        //      },
+
         //     mounted () {
         //         axios
         //             .get('http://localhost:8000/deliveries')
