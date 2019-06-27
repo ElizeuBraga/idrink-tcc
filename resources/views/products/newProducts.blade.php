@@ -1,22 +1,28 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
-<form method="POST" action="{{route('newProduct.submit')}}">
-        {{ csrf_field() }}
-<input type="text" value="{{Auth::user()->id}}" name="user_id" required>
-        <input type="text" name="name" required>
-        <input type="text" name="price" required>
-        <button type="submit">Salvar</button>
-    </form>
+<div class="container" style="align-content:center">
+    <div class="card" style="width: 400px; margin:0 auto">
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{session('success')}}
+            </div>
+            @endif
+            @if (session('error'))
+            <div class="alert alert-danger">
+                {{session('error')}}
+            </div>
+            @endif
+        <form method="POST" action="{{route('newProduct.submit')}}">
+                {{ csrf_field() }}
+            <label for="">Nome do produto</label>
+            <input class="form-control" type="hidden" value="{{Auth::user()->id}}" name="user_id" required>
+            <label for=""></label>
+            <input class="form-control" type="text" name="name" required>
+            <label for="">Valor</label>
+            <input class="form-control" type="text" name="price" required>
+            <br>
+            <button class="btn btn-primary" type="submit">Salvar</button>
+        </form>
+    </div>
 </div>
-@if (session('success'))
-    <div>
-        {{session('success')}}
-    </div>
-@endif
-@if (session('error'))
-    <div>
-        {{session('error')}}
-    </div>
-@endif
 @endsection
