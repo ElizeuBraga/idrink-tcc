@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class ProductController extends Controller
 {
@@ -13,6 +14,7 @@ class ProductController extends Controller
     }
 
     public function active(){
+        // $activeProducts = DB::table') 
         return view('products.active-products');
     }
 
@@ -27,7 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.newProducts');
     }
 
     /**
@@ -36,9 +38,11 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Product $product)
     {
-        //
+        // dd('Estou aqui em: CategoryController no método store()');
+         $product->create($request->all());
+         return view('products.newProducts');
     }
 
     /**

@@ -29,5 +29,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/', 'ProductController@index')->name('product');
         Route::get('/ativos', 'ProductController@active')->name('active');
         Route::get('/inativos', 'ProductController@inactive')->name('inactive');
+        Route::post('/', 'ProductController@store')->name('newProduct.submit');
+        Route::get('/novosprodutos', 'ProductController@create')->name('newProduct');
     });
 });
