@@ -37010,9 +37010,75 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [_c("table-products")], 1)
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c("h5", [_vm._v("Ativos")]),
+      _vm._v(" "),
+      _c("table", { staticClass: "table" }, [
+        _c("thead", [
+          _c("tr", [
+            _c("th", [_vm._v("#")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Nome")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Valor")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Status")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Opções")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tbody", [
+          _c("tr", [
+            _c("th", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Teste")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("3.00")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Ativo")]),
+            _vm._v(" "),
+            _c("th", [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-sm btn-secondary",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Excluir")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-sm btn-secondary",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Editar")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-sm btn-secondary",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Desativar")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -37034,9 +37100,75 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [_c("table-products")], 1)
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c("h5", [_vm._v("Ativos")]),
+      _vm._v(" "),
+      _c("table", { staticClass: "table" }, [
+        _c("thead", [
+          _c("tr", [
+            _c("th", [_vm._v("#")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Nome")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Valor")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Status")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Opções")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tbody", [
+          _c("tr", [
+            _c("th", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Teste")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("3.00")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Ativo")]),
+            _vm._v(" "),
+            _c("th", [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-sm btn-secondary",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Excluir")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-sm btn-secondary",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Editar")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-sm btn-secondary",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Desativar")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -37105,9 +37237,76 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [_c("table-products")], 1)
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c("h5", [_vm._v("Ativos")]),
+      _vm._v(" "),
+      _c("table", { staticClass: "table" }, [
+        _vm._v("\n        Inativos\n        "),
+        _c("thead", [
+          _c("tr", [
+            _c("th", [_vm._v("#")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Nome")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Valor")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Status")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Opções")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tbody", [
+          _c("tr", [
+            _c("th", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Teste")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("3.00")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Ativo")]),
+            _vm._v(" "),
+            _c("th", [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-sm btn-secondary",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Excluir")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-sm btn-secondary",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Editar")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-sm btn-secondary",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Desativar")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -49285,9 +49484,6 @@ Vue.component('inactive-products', __webpack_require__(/*! ./components/Inactive
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('table-products', {
-  template: '<div>' + '<table class="table">' + '<thead>' + '<tr>' + '<th>#</th>' + '<th>Nome</th>' + '<th>Valor</th>' + '<th>Status</th>' + '<th>Opções</th>' + '</tr>' + '</thead>' + '<tbody>' + '<tr>' + '<th>1</th>' + '<th>Teste</th>' + '<th>3.00</th>' + '<th>Ativo</th>' + '<th><a href="#" class="btn btn-sm btn-secondary">Excluir</a></th>' + '</tr>' + '</tbody>' + '</table>' + '<a href="#" class="btn btn-primary" style="margin: 0px 10px 0px 0px">Novo</a>' + '<a href="#" class="btn btn-primary" style="margin: 0px 10px 0px 0px">Ativos</a>' + '<a href="#" class="btn btn-primary" style="margin: 0px 10px 0px 0px">Inativos</a>' + '</div>'
-});
 var app = new Vue({
   el: '#app',
   data: {}
