@@ -13,18 +13,24 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th>1</th>
-                <th>Teste</th>
-                <th>3.00</th>
+            @foreach ($allProducts as $allProd)
+                <tr>
+                <th>{{$allProd->id}}</th>
+                <th>{{$allProd->name}}</th>
+                <th>{{$allProd->price}}</th>
+                @if($allProd->status == 'active')
                 <th>Ativo</th>
-                <th>
-                    <a href="#" class="btn btn-sm btn-secondary">Excluir</a>
-                    <a href="#" class="btn btn-sm btn-secondary">Editar</a>
-                    <a href="#" class="btn btn-sm btn-secondary">Desativar</a>
-                </th>
-            </tr>
-        </tbody>
+                @else
+                <th>Inativo</th>
+                @endif
+                    <th>
+                        <a href="#" class="btn btn-sm btn-secondary">Excluir</a>
+                        <a href="#" class="btn btn-sm btn-secondary">Editar</a>
+                        <a href="#" class="btn btn-sm btn-secondary">Desativar</a>
+                    </th>
+                </tr>
+                @endforeach
+            </tbody>
     </table>
     <a href="{{route('newProduct')}}" class="btn btn-sm btn-primary">Novo</a>
     <a href="{{route('active')}}" class="btn btn-sm btn-primary">Ativos</a>

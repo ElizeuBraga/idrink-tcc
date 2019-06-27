@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->double('price');
-            $table->enum('status',['active','anactive'])->default('active');
+            $table->enum('status',['active','inactive'])->default('active');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
             $table->timestamps();

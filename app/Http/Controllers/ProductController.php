@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use DB;
+use Auth;
 
 class ProductController extends Controller
 {
@@ -14,12 +16,26 @@ class ProductController extends Controller
     }
 
     public function active(){
-        // $activeProducts = DB::table') 
-        return view('products.active-products');
+        $activeProducts = DB::table('products')
+            ->where('status', '=', 'active')
+            ->where('user_id', '=', Auth::user()->id)->get();
+
+        return view('products.active-products', compact('activeProducts'));
+    }
+
+    public function allProducts(){
+        $allProducts = DB::table('products')
+            ->where('user_id', '=', Auth::user()->id)->get();
+
+        return view('products.products', compact('allProducts'));
     }
 
     public function inactive(){
-        return view('products.inactive-products');
+        $inactiveProducts = DB::table('products')
+            ->where('status', '=', 'inactive')
+            ->where('user_id', '=', Auth::user()->id)->get();
+
+        return view('products.inactive-products', compact('inactiveProducts'));
     }
 
     /**

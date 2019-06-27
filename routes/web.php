@@ -26,10 +26,11 @@ Route::get('deliveries', 'DeliveryController@getDeliveries');
 
 Route::middleware(['auth'])->group(function(){
     Route::prefix('produtos')->group(function(){
-        Route::get('/', 'ProductController@index')->name('product');
+        // Route::get('/', 'ProductController@index')->name('product');
+        Route::get('/', 'ProductController@allProducts')->name('allProducts');
         Route::get('/ativos', 'ProductController@active')->name('active');
         Route::get('/inativos', 'ProductController@inactive')->name('inactive');
+        Route::get('/novos', 'ProductController@create')->name('newProduct');
         Route::post('/', 'ProductController@store')->name('newProduct.submit');
-        Route::get('/novosprodutos', 'ProductController@create')->name('newProduct');
     });
 });

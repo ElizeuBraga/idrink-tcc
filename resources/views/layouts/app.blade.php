@@ -75,7 +75,7 @@
                             <a class="nav-link" href="{{route('delivery')}}">Entregas</a>
                         </li>
                         <li class="nav-item {{ Request::is(['produtos','produtos/ativos','produtos/inativos']) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{route('product')}}">Produtos</a>
+                            <a class="nav-link" href="{{route('allProducts')}}">Produtos</a>
                         </li>
                         <li class="nav-item {{ Request::is('relatorios') ? 'active' : '' }}">
                             <a class="nav-link" href="{{route('report')}}">Relatórios</a>
