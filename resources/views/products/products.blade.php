@@ -26,5 +26,8 @@
             </tr>
         </tbody>
     </table>
+    <a href="#" class="btn btn-sm btn-primary">Novo</a>
+    <a href="{{route('active')}}" class="btn btn-sm btn-primary">Ativos</a>
+    <a href="{{route('inactive')}}" class="btn btn-sm btn-primary">Inativos</a>
 </div>
 @endsection
