@@ -41,8 +41,16 @@ class ProductController extends Controller
     public function store(Request $request, Product $product)
     {
         // dd('Estou aqui em: CategoryController no método store()');
-         $product->create($request->all());
-         return view('products.newProducts');
+         $insert = $product->create($request->all());
+         if($insert){
+            return redirect()
+                ->back()
+                ->with('success', 'Inserido com sucesso');
+         }
+
+         return redirect()
+            ->back()
+            ->with('error', 'falha ao salvar o produto');
     }
 
     /**

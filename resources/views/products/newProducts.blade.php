@@ -9,4 +9,14 @@
         <button type="submit">Salvar</button>
     </form>
 </div>
+@if (session('success'))
+    <div>
+        {{session('success')}}
+    </div>
+@endif
+@if (session('error'))
+    <div>
+        {{session('error')}}
+    </div>
+@endif
 @endsection
