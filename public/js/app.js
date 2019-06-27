@@ -37108,7 +37108,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
-      _c("h5", [_vm._v("Ativos")]),
+      _c("h5", [_vm._v("Todos")]),
       _vm._v(" "),
       _c("table", { staticClass: "table" }, [
         _c("thead", [
@@ -37245,7 +37245,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
-      _c("h5", [_vm._v("Ativos")]),
+      _c("h5", [_vm._v("Inativos")]),
       _vm._v(" "),
       _c("table", { staticClass: "table" }, [
         _vm._v("\n        Inativos\n        "),

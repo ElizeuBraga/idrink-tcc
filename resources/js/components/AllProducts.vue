@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h5>Ativos</h5>
+        <h5>Todos</h5>
         <table class="table">
             <thead>
                 <tr>

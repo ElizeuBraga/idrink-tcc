@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h5>Ativos</h5>
+        <h5>Inativos</h5>
         <table class="table">
             Inativos
             <thead>

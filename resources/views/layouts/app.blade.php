@@ -123,30 +123,7 @@
             @yield('content')
         </main>
     </div>
-
-    <script>
-        // // const axios = require('axios');
-        // import AllProducts from './AllProducts.vue'
-        // var app = new Vue({
-        //     el: '#app',
-        //     data () {
-        //         return {
-        //             deliveries: null,
-        //             meunome: "Elizeu Braga"
-        //         }
-        //      },
-
-        //      components:{
-        //          AllProducts
-        //      },
-
-        //     mounted () {
-        //         axios
-        //             .get('http://localhost:8000/deliveries')
-        //             .then(response => (this.deliveries = response.data))
-        //     }
-        // });
-    </script>
+    @yield('scrip')
 </body>
 
 </html>
