@@ -19,7 +19,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/entregas', 'DeliveryController@index')->name('delivery')->middleware('auth');
-Route::get('/produtos', 'ProductController@index')->name('product')->middleware('auth');
+// Route::get('/produtos', 'ProductController@index')->name('product')->middleware('auth');
 Route::get('/relatorios', 'ReportController@index')->name('report')->middleware('auth');
 
 Route::get('deliveries', 'DeliveryController@getDeliveries');
+
+Route::middleware(['auth'])->group(function(){
+    Route::prefix('produtos')->group(function(){
+        Route::get('/', 'ProductController@index')->name('product');
+        Route::get('/ativos', 'ProductController@active')->name('active');
+        Route::get('/inativos', 'ProductController@inactive')->name('inactive');
+    });
+});

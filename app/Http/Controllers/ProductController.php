@@ -6,15 +6,18 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
         return view('products.products');
+    }
+
+    public function active(){
+        return view('products.active-products');
+    }
+
+    public function inactive(){
+        return view('products.inactive-products');
     }
 
     /**
