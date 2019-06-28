@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h5>Inativos</h5>
+    <h2>Inativos</h2>
     @if (session('success'))
     <div class="alert alert-success">
         {{session('success')}}
@@ -44,11 +44,14 @@
     </table>
     <div class="card-footer fixed-bottom" style="background:honeydew">
             <div class="row justify-content-center">
-                <a class="btn btn-sm btn-primary col-md-3" href="{{route('active')}}" >Ativos</a>
-                <a class="btn btn-sm btn-primary col-md-6" href="{{route('newProduct')}}" >Novo</a>
                 <a class="btn btn-sm btn-primary col-md-3" href="{{route('allProducts')}}" >Todos</a>
+                <a class="btn btn-sm btn-primary col-md-6" href="{{route('newProduct')}}" >Novo</a>
+                <a class="btn btn-sm btn-primary col-md-3" href="{{route('active')}}" >Ativos</a>
             </div>
         </div>
+        @if (count($inactiveProducts) == 0)
+        <h5>Nenhum produto encontrado</h5>
+        @endif
     </div>
 </div>
 @endsection

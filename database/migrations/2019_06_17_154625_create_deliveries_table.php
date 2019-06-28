@@ -18,8 +18,8 @@ class CreateDeliveriesTable extends Migration
             $table->enum('status',['open','canceled','delivered'])->default('open');
             $table->enum('payment',['money','debit','credit']);
 
-            $table->unsignedBigInteger('adress_id');
-            $table->foreign('adress_id')->references('id')->on('adresses')->onDelete('cascade');
+            $table->unsignedBigInteger('address_id');
+            $table->foreign('address_id')->references('id')->on('adresses')->onDelete('cascade');
             
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
@@ -36,7 +36,7 @@ class CreateDeliveriesTable extends Migration
     {
         Schema::table('deliveries', function (Blueprint $table) {
             $table->dropForeign('user_id');
-            $table->dropForeign('adress_id');
+            $table->dropForeign('address_id');
         });
 
         Schema::dropIfExists('deliveries');

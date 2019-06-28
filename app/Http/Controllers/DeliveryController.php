@@ -14,24 +14,22 @@ class DeliveryController extends Controller
         if(count($deliveries) == 0 ){
             return response()->json(['response' => 'Nenhum pedido encontrado']);
         }
-        
-        return response()->json($deliveries);
+        return view('deliveries', compact('deliveries'));
+        // return response()->json($deliveries);
     }
 
-
-
-
-
-
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         // return response()->json(['Response' => 'Ola deliveries']);
+        // $deliveries = DB::table('deliveries')
+        // ->join('users', 'user.id', '=', 'deliveries.user_id')
+        // ->join('deliveries', 'adress.id', '=', 'deliveries.adress_id')
+        // ->get();
+
+        // if(count($deliveries) == 0 ){
+        //     return response()->json(['response' => 'Nenhum pedido encontrado']);
+        // }
+        // return view('deliveries', compact('deliveries'));
         return view('deliveries');
     }
 
