@@ -26,15 +26,15 @@
                 @if($actives->status == 'active')
                 <th>Ativo</th>
                 @endif
-                <th class="row" style="">
+                <th class="row justify-content-center" style="">
                     <form action="../produtos/{{$actives->id}}" method="POST">
                         @csrf @method('PUT')
                         <input type="hidden" name="status" value="inactive">
-                        <button type="submit" class="btn btn-sm btn-secondary">Desativar</button>
+                        <button type="submit" class="btn btn-sm btn-dark">Desativar</button>
                     </form>
                     <form action="../produtos/{{$actives->id}}" method="POST">
                         @csrf @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-secondary">Excluir</button>
+                        <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
                     </form>
                 </th>
             </tr>

@@ -31,11 +31,11 @@
                         <form action="../produtos/ativar/{{$inactives->id}}" method="POST">
                             @csrf @method('PUT')
                                 <input type="hidden" name="status" value="active">
-                                <button type="submit" class="btn btn-sm btn-secondary">Ativar</button>
+                                <button type="submit" class="btn btn-sm btn-success">Ativar</button>
                         </form>
                         <form action="../produtos/{{$inactives->id}}" method="POST">
                             @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-secondary">Excluir</button>
+                                <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
                         </form>
                     </th>
                 </tr>
@@ -43,7 +43,7 @@
             </tbody>
     </table>
     <div class="card-footer fixed-bottom" style="background:honeydew">
-            <div class="row">
+            <div class="row justify-content-center">
                 <a class="btn btn-sm btn-primary col-md-3" href="{{route('active')}}" >Ativos</a>
                 <a class="btn btn-sm btn-primary col-md-6" href="{{route('newProduct')}}" >Novo</a>
                 <a class="btn btn-sm btn-primary col-md-3" href="{{route('allProducts')}}" >Todos</a>

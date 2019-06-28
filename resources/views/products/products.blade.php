@@ -2,8 +2,12 @@
 @section('content')
 <div class="container">
     <h5>Todos</h5>
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{session('success')}}
+    </div>
+    @endif
     <div class="card">
-
         <table class="table">
             <thead>
                 <tr>
@@ -25,10 +29,25 @@
                     @else
                     <th>Inativo</th>
                     @endif
-                    <th>
-                        <a href="#" class="btn btn-sm btn-secondary">Excluir</a>
-                        <a href="#" class="btn btn-sm btn-secondary">Editar</a>
-                        <a href="#" class="btn btn-sm btn-secondary">Desativar</a>
+                    <th class="row justify-content-center">
+                        <form action="../produtos/ativar/{{$allProd->id}}" method="POST">
+                            @csrf @method('PUT')
+                                <input type="hidden" name="status" value="active">
+                                @if ($allProd->status == 'inactive')
+                                <button type="submit" class="btn btn-sm btn-success">Ativar</button>
+                                @endif
+                        </form>
+                        <form action="../produtos/{{$allProd->id}}" method="POST">
+                            @csrf @method('PUT')
+                            <input type="hidden" name="status" value="inactive">
+                            @if ($allProd->status == 'active')
+                            <button type="submit" class="btn btn-sm btn-dark">Desativar</button>
+                            @endif
+                        </form>
+                        <form action="../produtos/{{$allProd->id}}" method="POST">
+                            @csrf @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                        </form>
                     </th>
                 </tr>
                 @endforeach
