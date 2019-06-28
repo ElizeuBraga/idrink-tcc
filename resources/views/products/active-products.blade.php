@@ -30,9 +30,13 @@
             @endforeach
         </tbody>
     </table>
-    <a href="{{route('newProduct')}}" class="btn btn-sm btn-primary">Novo</a>
-    <a href="{{route('allProducts')}}" class="btn btn-sm btn-primary">Todos</a>
-    <a href="{{route('active')}}" class="btn btn-sm btn-primary">Ativos</a>
-    <a href="{{route('inactive')}}" class="btn btn-sm btn-primary">Inativos</a>
+    <div class="card-footer fixed-bottom">
+            <div class="row">
+                <a class="btn btn-sm btn-primary col-md-3" href="{{route('inactive')}}" >Inativos</a>
+                <a class="btn btn-sm btn-primary col-md-6" href="{{route('newProduct')}}" >Novo</a>
+                <a class="btn btn-sm btn-primary col-md-3" href="{{route('allProducts')}}" >Todos</a>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
