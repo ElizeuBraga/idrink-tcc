@@ -22,7 +22,9 @@
             <th>Ativo</th>
             @endif
                 <th>
-                    <a href="#" class="btn btn-sm btn-secondary">Excluir</a>
+                    <form action="">
+                        <a href="#" class="btn btn-sm btn-secondary">Excluir</a>
+                    </form>
                     <a href="#" class="btn btn-sm btn-secondary">Editar</a>
                     <a href="#" class="btn btn-sm btn-secondary">Desativar</a>
                 </th>
@@ -30,7 +32,7 @@
             @endforeach
         </tbody>
     </table>
-    <div class="card-footer fixed-bottom">
+    <div class="card-footer fixed-bottom" style="background:honeydew">
             <div class="row">
                 <a class="btn btn-sm btn-primary col-md-3" href="{{route('inactive')}}" >Inativos</a>
                 <a class="btn btn-sm btn-primary col-md-6" href="{{route('newProduct')}}" >Novo</a>
