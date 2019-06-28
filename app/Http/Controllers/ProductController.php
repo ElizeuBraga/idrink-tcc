@@ -100,7 +100,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = \App\Product::find($id);
+        $product->status = $request['status'];
+        $product->save();
+
+        return redirect()->back()->with('success', 'Produto Desativado com sucesso');
     }
 
     /**

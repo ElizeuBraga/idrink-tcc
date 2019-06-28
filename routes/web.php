@@ -32,5 +32,6 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/inativos', 'ProductController@inactive')->name('inactive');
         Route::get('/novos', 'ProductController@create')->name('newProduct');
         Route::post('/', 'ProductController@store')->name('newProduct.submit');
+        Route::put('/{id}', 'ProductController@update')->name('updateProduct');
     });
 });

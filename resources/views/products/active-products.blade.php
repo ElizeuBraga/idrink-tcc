@@ -2,6 +2,11 @@
 @section('content')
 <div class="container">
     <h5>Ativos</h5>
+    @if (session('success'))
+                    <div class="alert alert-success">
+                        {{session('success')}}
+                    </div>
+                @endif
     <table class="table">
         <thead>
             <tr>
@@ -22,9 +27,12 @@
             <th>Ativo</th>
             @endif
                 <th>
-                    <form action="">
-                        <a href="#" class="btn btn-sm btn-secondary">Excluir</a>
-                    </form>
+                <form action="../produtos/{{$actives->id}}" method="POST">
+                    @csrf
+                    @method('PUT')
+                        <input type="hidden" name="status" value="inactive">
+                        <button type="submit" class="btn btn-sm btn-secondary">Desativar</button>
+                </form>
                     <a href="#" class="btn btn-sm btn-secondary">Editar</a>
                     <a href="#" class="btn btn-sm btn-secondary">Desativar</a>
                 </th>
