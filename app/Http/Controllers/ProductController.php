@@ -103,8 +103,15 @@ class ProductController extends Controller
         $product = \App\Product::find($id);
         $product->status = $request['status'];
         $product->save();
+        return redirect()->back()->with('success', 'Desativado com sucesso');
+    }
 
-        return redirect()->back()->with('success', 'Produto Desativado com sucesso');
+    public function toActiveProduct(Request $request, $id)
+    {
+        $product = \App\Product::find($id);
+        $product->status = $request['status'];
+        $product->save();
+        return redirect()->back()->with('success', 'Ativado com sucesso');
     }
 
     /**
@@ -116,5 +123,8 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+        $product = \App\Product::find($id);
+        $product->delete();
+        return redirect()->back()->with('success', 'Excluido com sucesso');
     }
 }

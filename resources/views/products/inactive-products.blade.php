@@ -2,6 +2,11 @@
 @section('content')
 <div class="container">
     <h5>Inativos</h5>
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{session('success')}}
+    </div>
+    @endif
     <div class="card">
     <table class="table">
         <thead>
@@ -22,10 +27,16 @@
                 @if($inactives->status == 'inactive')
                 <th>Inativo</th>
                 @endif
-                    <th>
-                        <a href="#" class="btn btn-sm btn-secondary">Excluir</a>
-                        <a href="#" class="btn btn-sm btn-secondary">Editar</a>
-                        <a href="#" class="btn btn-sm btn-secondary">Desativar</a>
+                    <th class="row">
+                        <form action="../produtos/ativar/{{$inactives->id}}" method="POST">
+                            @csrf @method('PUT')
+                                <input type="hidden" name="status" value="active">
+                                <button type="submit" class="btn btn-sm btn-secondary">Ativar</button>
+                        </form>
+                        <form action="../produtos/{{$inactives->id}}" method="POST">
+                            @csrf @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-secondary">Excluir</button>
+                        </form>
                     </th>
                 </tr>
                 @endforeach
