@@ -13,9 +13,9 @@
 
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome da loja">
+                                <input id="storename" type="text" class="form-control @error('storename') is-invalid @enderror" name="storename" value="{{ old('storename') }}" required autocomplete="storename" autofocus placeholder="Nome da loja">
 
-                                @error('name')
+                                @error('storename')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

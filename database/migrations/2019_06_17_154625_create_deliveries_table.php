@@ -21,8 +21,10 @@ class CreateDeliveriesTable extends Migration
             $table->unsignedBigInteger('address_id');
             $table->foreign('address_id')->references('id')->on('adresses')->onDelete('cascade');
             
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('store_id');
+            $table->foreign('store_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

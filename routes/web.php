@@ -22,7 +22,7 @@ Route::get('/entregas', 'DeliveryController@index')->name('delivery')->middlewar
 // Route::get('/produtos', 'ProductController@index')->name('product')->middleware('auth');
 Route::get('/relatorios', 'ReportController@index')->name('report')->middleware('auth');
 
-Route::get('deliveries', 'DeliveryController@getDeliveries');
+// Route::get('deliveries', 'DeliveryController@index');
 
 Route::middleware(['auth'])->group(function(){
     Route::prefix('produtos')->group(function(){

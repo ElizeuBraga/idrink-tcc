@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 
 class DeliveryController extends Controller
 {
@@ -20,17 +21,16 @@ class DeliveryController extends Controller
 
     public function index()
     {
-        // return response()->json(['Response' => 'Ola deliveries']);
-        // $deliveries = DB::table('deliveries')
-        // ->join('users', 'user.id', '=', 'deliveries.user_id')
-        // ->join('deliveries', 'adress.id', '=', 'deliveries.adress_id')
-        // ->get();
+        $deliveries = DB::table('deliveries')
+        ->join('users', 'users.id', '=', 'deliveries.customer_id')
+        ->select('deliveries.id', 'deliveries.store_id', 'deliveries.customer_id', 'users.customername',  'users.storename', 'deliveries.status', 'deliveries.payment')
+        // ->join('adresses', 'users.id', '=', 'adresses.customer_id')
+        ->where('users.type', '=', 'customer')
+        ->where('deliveries.store_id', '=', Auth::user()->id)
+        ->get();
 
-        // if(count($deliveries) == 0 ){
-        //     return response()->json(['response' => 'Nenhum pedido encontrado']);
-        // }
-        // return view('deliveries', compact('deliveries'));
-        return view('deliveries');
+        // return response()->json($deliveries);
+        return view('deliveries', compact('deliveries'));
     }
 
     /**

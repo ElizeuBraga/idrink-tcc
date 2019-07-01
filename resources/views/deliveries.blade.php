@@ -2,7 +2,7 @@
 @section('content')
 @section('content')
 <div class="container">
-    <h5>Ativos</h5>
+    <h2>Pedidos de hoje</h2>
     @if (session('success'))
     <div class="alert alert-success">
         {{session('success')}}
@@ -13,22 +13,21 @@
             <tr>
                 <th>#</th>
                 <th>Cliente</th>
-                <th>Valor</th>
-                <th>Status</th>
+                <th>Pagamento</th>
                 <th>Status</th>
                 <th>Opções</th>
             </tr>
         </thead>
         <tbody>
-            {{-- @foreach ($deliveries as $delivery)
+            @foreach ($deliveries as $delivery)
             <tr>
                 <th>{{$delivery->id}}</th>
-                <th>{{$delivery->status}}</th>
-                <th>{{$delivery->adress_id}}</th>
+                <th>{{$delivery->customername}}</th>
+                {{-- <th>{{$delivery->adress_id}}</th> --}}
                 <th>{{$delivery->payment}}</th>
                 @if($delivery->status == 'open')
                 <th>Em aberto</th>
-                @endif --}}
+                @endif
                 {{-- <th class="row justify-content-center" style="">
                     <form action="../produtos/{{$actives->id}}" method="POST">
                         @csrf @method('PUT')
@@ -40,8 +39,8 @@
                         <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
                     </form>
                 </th> --}}
-            {{-- </tr>
-            @endforeach --}}
+            </tr>
+            @endforeach
         </tbody>
     </table>
     <div class="card-footer fixed-bottom" style="background:honeydew">
