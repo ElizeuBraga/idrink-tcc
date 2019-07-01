@@ -18,10 +18,10 @@ class CreateItemsTable extends Migration
             $table->bigInteger('quantity');
 
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products');
 
             $table->unsignedBigInteger('delivery_id');
-            $table->foreign('delivery_id')->references('id')->on('deliveries')->onDelete('cascade');
+            $table->foreign('delivery_id')->references('id')->on('deliveries');
             $table->timestamps();
         });
     }
@@ -33,10 +33,6 @@ class CreateItemsTable extends Migration
      */
     public function down()
     {
-        Schema::table('items', function (Blueprint $table) {
-            $table->dropForeign('product_id');
-            $table->dropForeign('delivery_id');
-        });
         Schema::dropIfExists('items');
     }
 }

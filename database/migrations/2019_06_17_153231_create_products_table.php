@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->double('price');
             $table->enum('status',['active','inactive'])->default('active');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -31,10 +31,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign('user_id');
-        });
-
         Schema::dropIfExists('products');
     }
 }

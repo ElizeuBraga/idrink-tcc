@@ -18,9 +18,9 @@ class CreateAdressesTable extends Migration
             $table->string('address')->nullable();
 
             $table->unsignedBigInteger('store_id')->nullable();
-            $table->foreign('store_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('store_id')->references('id')->on('users');
             $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -32,10 +32,6 @@ class CreateAdressesTable extends Migration
      */
     public function down()
     {
-        Schema::table('adresses', function (Blueprint $table) {
-            $table->dropForeign('user_id');
-        });
-
         Schema::dropIfExists('adresses');
     }
 }
