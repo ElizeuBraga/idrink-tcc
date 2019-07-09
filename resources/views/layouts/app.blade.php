@@ -12,6 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery-3.4.1.js') }}"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> --}}
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
@@ -53,6 +54,15 @@
             background: grey;
         }
     </style>
+
+    <script>
+        $(document).ready(function(){
+            var largura = window.innerWidth;
+            if(largura < 750){
+                $(".ml-auto li a").removeClass('btn btn-primary').addClass('nav-link');
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -87,11 +97,11 @@
                     <!-- Authentication Links -->
                     @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="btn btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     @if (Route::has('register'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="btn btn-primary" href="{{ route('register') }}">{{ __('Cadastre-se') }}</a>
                     </li>
                     @endif
                     @else
