@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use DB;
+use App\Provider;
 use Auth;
 
 class ProductController extends Controller
@@ -57,7 +58,15 @@ class ProductController extends Controller
     public function store(Request $request, Product $product)
     {
         // dd('Estou aqui em: CategoryController no método store()');
-         $insert = $product->create($request->all());
+         $request->price = str_replace(',', '.', $request->price);
+         $prod = [
+             'user_id' => Auth::user()->id,
+             'name' => $request->name,
+             'price' => $request->price
+         ];
+
+         $insert = $product->create($prod);
+
          if($insert){
             return redirect()
                 ->back()
@@ -66,7 +75,7 @@ class ProductController extends Controller
 
          return redirect()
             ->back()
-            ->with('error', 'falha ao salvar o produto');
+            ->with('error', 'Falha ao salvar o produto');
     }
 
     /**
@@ -122,9 +131,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
         $product = \App\Product::find($id);
-        $product->delete();
+        $product->providers()->delete();
         return redirect()->back()->with('success', 'Excluido com sucesso');
     }
 }

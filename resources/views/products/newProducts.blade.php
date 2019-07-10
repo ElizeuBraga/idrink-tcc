@@ -19,7 +19,7 @@
             <label for=""></label>
             <input class="form-control" type="text" name="name" required>
             <label for="">Valor</label>
-            <input class="form-control" type="text" name="price" required>
+            <input class="dinheiro form-control" type="text" name="price" required>
             <br>
             <button class="btn btn-primary" type="submit">Salvar</button>
         </form>
