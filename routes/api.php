@@ -19,14 +19,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'users'], function(){
     Route::post('', 'UserController@store');
+    Route::group(['middleware' => 'auth:api'], function(){
+        Route::get('index', ['uses' => 'UserController@index']);
+        Route::get('logout', ['uses' => 'UserController@logout']);
+    });
 });
 
-Route::group(['middleware' => 'auth:api'], function(){
-    Route::get('index', ['uses' => 'UserController@index']);
-});
 
 Route::get('deliveries', ['uses' => 'DeliveryController@index'])->middleware('auth:api');
 Route::post('login', ['uses' => 'UserController@login']);
-Route::get('logout', ['uses' => 'UserController@logout'])->middleware('auth:api');
 
 Route::get('deliveries', 'DeliveryController@getDeliveries');
