@@ -8,6 +8,21 @@ use Auth;
 
 class DeliveryController extends Controller
 {
+    //Metodos para api
+    public function getDeliveriesCustomer(){
+        $deliveries = DB::table('products')
+        ->join('users as u', 'u.id', '=', 'products.user_id')
+        ->join('items', 'products.id', '=', 'items.product_id')
+        ->join('deliveries', 'deliveries.id', '=', 'items.delivery_id')
+        ->join('users as u2', 'u2.id', '=', 'deliveries.customer_id')
+        ->select('u.name as store_name', 'products.name as product_name',
+         'items.quantity', 'deliveries.payment', 'products.price as unit_price',
+         DB::raw('price * quantity as total_price'))
+        ->where('u2.id', '=', Auth::user()->id)
+        ->get();
+
+        return response()->json($deliveries, 200);
+    }
 
     public function getDeliveries(){
         $deliveries = DB::table('deliveries')->get();

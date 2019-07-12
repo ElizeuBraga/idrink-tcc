@@ -27,7 +27,8 @@ Route::group(['prefix' => 'users'], function(){
     });
 });
 
-
-Route::get('deliveries', ['uses' => 'DeliveryController@index'])->middleware('auth:api');
-
-Route::get('deliveries', 'DeliveryController@getDeliveries');
+Route::group(['prefix' => 'deliveries'], function(){
+    Route::group(['middleware' => 'auth:api'], function(){
+        Route::get('all', ['uses' => 'DeliveryController@getDeliveriesCustomer']);
+    });
+});

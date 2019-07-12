@@ -21,6 +21,13 @@ class UserController extends Controller
             'password' => 'required|string',
             'type' => 'required|string'
         ]);
+        
+        $input = $request->all();
+        // dd(count($input));
+
+        // if(count($input) < 3){
+        //     return response()->json(['response' => 'Acesso negado']);
+        // }
 
         $credencials = [
             'email' => $request->email,
@@ -50,7 +57,8 @@ class UserController extends Controller
 
     public function index()
     {
-        return response()->json(["response" => "Olá index"]);
+        // return response()->json(["response" => "Ola index"]);
+        return response()->json(["Usuario logado" => Auth::user()->id]);
     }
 
     public function create()
