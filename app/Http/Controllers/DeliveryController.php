@@ -54,7 +54,7 @@ class DeliveryController extends Controller
     {
         $deliveries = DB::table('deliveries')
         ->join('users', 'users.id', '=', 'deliveries.customer_id')
-        ->select('deliveries.id', 'deliveries.store_id', 'deliveries.customer_id', 'users.customername',  'users.storename', 'deliveries.status', 'deliveries.payment')
+        ->select('deliveries.id', 'deliveries.store_id', 'deliveries.customer_id', 'users.name',  'users.name', 'deliveries.status', 'deliveries.payment')
         // ->join('adresses', 'users.id', '=', 'adresses.customer_id')
         ->where('users.type', '=', 'customer')
         ->where('deliveries.store_id', '=', Auth::user()->id)

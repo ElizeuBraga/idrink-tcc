@@ -22,7 +22,7 @@
             @foreach ($deliveries as $delivery)
             <tr>
                 <th>{{$delivery->id}}</th>
-                <th>{{$delivery->customername}}</th>
+                <th>{{$delivery->name}}</th>
                 {{-- <th>{{$delivery->adress_id}}</th> --}}
                 <th>{{$delivery->payment}}</th>
                 @if($delivery->status == 'open')
