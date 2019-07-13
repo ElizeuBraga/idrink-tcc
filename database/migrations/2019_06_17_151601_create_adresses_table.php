@@ -17,10 +17,8 @@ class CreateAdressesTable extends Migration
             $table->bigIncrements('id');
             $table->string('address')->nullable();
 
-            $table->unsignedBigInteger('store_id')->nullable();
-            $table->foreign('store_id')->references('id')->on('users');
-            $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('users');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
