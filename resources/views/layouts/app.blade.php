@@ -134,7 +134,7 @@
     <main class="py-4 container" style="margin-top:70px; margin-bottom:60px;">
         @yield('content')
     </main>
-    @yield('scrip')
+    @yield('script')
 </body>
 
 </html>

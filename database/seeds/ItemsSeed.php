@@ -11,6 +11,7 @@ class ItemsSeed extends Seeder
      */
     public function run()
     {
+        //para delivery 1 
         DB::table('items')->insert([
             'quantity' => 5, 
             'product_id' => 1, 
@@ -18,21 +19,29 @@ class ItemsSeed extends Seeder
         ]);
 
         DB::table('items')->insert([
-            'quantity' => 5, 
+            'quantity' => 3, 
             'product_id' => 2, 
+            'delivery_id' => 1
+        ]);
+
+        //para delivery 2
+        DB::table('items')->insert([
+            'quantity' => 5, 
+            'product_id' => 3, 
             'delivery_id' => 2
         ]);
 
+        //para delivery 3
         DB::table('items')->insert([
-            'quantity' => 2, 
+            'quantity' => 5, 
             'product_id' => 3, 
             'delivery_id' => 3
         ]);
 
         DB::table('items')->insert([
-            'quantity' => 5, 
+            'quantity' => 1, 
             'product_id' => 4, 
-            'delivery_id' => 4
+            'delivery_id' => 3
         ]);
     }
 }

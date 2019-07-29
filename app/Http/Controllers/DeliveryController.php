@@ -50,25 +50,36 @@ class DeliveryController extends Controller
         // return response()->json($deliveries);
     }
 
-    public function index()
+    public function return_items_delivery($delivery_id)
     {
-        $deliveries = DB::table('deliveries')
-        ->join('users', 'users.id', '=', 'deliveries.customer_id')
-        ->select('deliveries.id', 'deliveries.store_id', 'deliveries.customer_id', 'users.name',  'users.name', 'deliveries.status', 'deliveries.payment')
-        // ->join('adresses', 'users.id', '=', 'adresses.customer_id')
-        ->where('users.type', '=', 'customer')
-        ->where('deliveries.store_id', '=', Auth::user()->id)
+        $item = DB::table('deliveries')
+        ->select('items.quantity', 'products.name as product_name')
+        ->join('users as u', 'u.id', '=', 'deliveries.store_id')
+        ->join('users as u2', 'u2.id', '=', 'deliveries.customer_id')
+        ->join('items', 'items.delivery_id', '=', 'deliveries.id')
+        ->join('products', 'products.id', '=', 'items.product_id')
+        ->where('deliveries.id', '=', $delivery_id)
         ->get();
-
-        // return response()->json($deliveries);
-        return view('deliveries', compact('deliveries'));
+        
+        return $item;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index()
+    {
+        $delivery = DB::table('deliveries')
+        ->select('deliveries.id as delivery_id','u.name as store_name', 'u2.name as customer_name',
+         'deliveries.payment', 'deliveries.status')
+        ->join('users as u', 'u.id', '=', 'deliveries.store_id')
+        ->join('users as u2', 'u2.id', '=', 'deliveries.customer_id')
+        ->where('u.id', '=', Auth::user()->id)
+        ->get();
+
+        // dd($deliveries);
+        return view('deliveries', compact('delivery'));
+    }
+
+    
+    
     public function create()
     {
         //

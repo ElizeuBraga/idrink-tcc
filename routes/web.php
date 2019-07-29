@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/entregas', 'DeliveryController@index')->name('delivery')->middleware('auth');
+// Route::get('/entregas', 'DeliveryController@index')->name('delivery')->middleware('auth');
 // Route::get('/produtos', 'ProductController@index')->name('product')->middleware('auth');
 Route::get('/relatorios', 'ReportController@index')->name('report')->middleware('auth');
 
@@ -35,5 +35,12 @@ Route::middleware(['auth'])->group(function(){
         Route::put('/{id}', 'ProductController@update')->name('updateProduct');
         Route::put('/ativar/{id}', 'ProductController@toActiveProduct')->name('toActiveProduct');
         Route::delete('/{id}', 'ProductController@destroy')->name('deleteProduct');
+    });
+});
+
+Route::middleware(['auth'])->group(function(){
+    Route::prefix('entregas')->group(function(){
+        Route::get('/', 'DeliveryController@index')->name('delivery');
+        Route::get('items/{delivery_id}', 'DeliveryController@return_items_delivery');
     });
 });
