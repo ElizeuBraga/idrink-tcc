@@ -20,9 +20,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/entregas', 'DeliveryController@index')->name('delivery')->middleware('auth');
 // Route::get('/produtos', 'ProductController@index')->name('product')->middleware('auth');
-Route::get('/relatorios', 'ReportController@index')->name('report')->middleware('auth');
 
 // Route::get('deliveries', 'DeliveryController@index');
+
+Route::middleware(['auth'])->group(function(){
+    Route::prefix('relatorios')->group(function(){
+        Route::get('/', 'ReportController@index')->name('report');
+    });
+});
 
 Route::middleware(['auth'])->group(function(){
     Route::prefix('produtos')->group(function(){

@@ -10,131 +10,82 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> --}}
-
-    {{-- Scripts bootstrap --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/loginscreen.css') }}" rel="stylesheet">
-    <style>
-        .navbar-brand>img {
-            width: 60px;
-        }
-
-        .mr-auto>li>.nav-link {
-            color: #39d128ff !important;
-            font-weight: bold;
-            font-size: 20px;
-            /* border-radius: 10%; */
-            margin-left: 4px;
-        }
-
-        .active {
-            background: grey;
-        }
-
-        .mr-auto>li>a:hover {
-            background: grey;
-        }
-    </style>
-
-    <script>
-        $(document).ready(function($){
-            var largura = window.innerWidth;
-            if(largura < 750){
-                $(".ml-auto li a").removeClass('btn btn-primary').addClass('nav-link');
-            }
-
-            $('.dinheiro').mask('#.##0,00', {reverse: true});
-        });
-    </script>
+    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/simple-sidebar.css')}}" rel="stylesheet">
 </head>
 
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background:honeydew">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="/imgs/logo.svg" alt="">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        @auth('web')
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading">iDrink</div>
+            <div class="list-group list-group-flush">
+                <a href="{{route('home')}}" class="list-group-item list-group-item-action bg-light">Home</a>
+                <a href="{{route('delivery')}}" class="list-group-item list-group-item-action bg-light">Entregas</a>
+                <a href="{{route('report')}}" class="list-group-item list-group-item-action bg-light">Relatorios</a>
+                <a href="{{route('allProducts')}}" class="list-group-item list-group-item-action bg-light">Produtos</a>
+                {{-- <a href="{{route('profile')}}" class="list-group-item list-group-item-action bg-light">Perfil</a>
+                --}}
+                <a class="list-group-item list-group-item-action bg-light" href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    {{ __('Sair') }}
+                </a>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                @if(Auth::check())
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item {{ Request::is('entregas') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{route('delivery')}}">Entregas</a>
-                    </li>
-                    <li
-                        class="nav-item {{ Request::is(['produtos','produtos/ativos','produtos/inativos']) ? 'active' : '' }}">
-                        <a class="nav-link" href="{{route('allProducts')}}">Produtos</a>
-                    </li>
-                    <li class="nav-item {{ Request::is('relatorios') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{route('report')}}">Relatórios</a>
-                    </li>
-                </ul>
-                @endif
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    <!-- Authentication Links -->
-                    @guest
-                    <li class="nav-item">
-                        <a class="btn btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                    @if (Route::has('register'))
-                    <li class="nav-item">
-                        <a class="btn btn-primary" href="{{ route('register') }}">{{ __('Cadastre-se') }}</a>
-                    </li>
-                    @endif
-                    @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->storename }} <span class="caret"></span>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                    @endguest
-                </ul>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
+        </div>
+        @endauth
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                @auth('web')
+                <img src="imgs/icons/menu.png" id="menu-toggle" alt="" style="width: 20px; height: 20px">
+                @endauth
+                @guest
+                <a href="{{route('login')}}">Acesse ao sistema</a>
+                @endguest
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Ajuda<span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                @yield('content')
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
     </div>
-    </nav>
-    <main class="py-4 container" style="margin-top:70px; margin-bottom:60px;">
-        @yield('content')
-    </main>
-    @yield('script')
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ asset('vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function(e) {
+                              e.preventDefault();
+                              $("#wrapper").toggleClass("toggled");
+                            });
+    </script>
 </body>
 
 </html>
