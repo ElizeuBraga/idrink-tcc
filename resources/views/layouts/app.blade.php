@@ -12,6 +12,35 @@
 
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ asset('css/simple-sidebar.css')}}" rel="stylesheet">
+    <style>
+        body {
+            color: #000000 !important;
+        }
+
+        .bg-light {
+            background-color: #ffffff !important;
+            color: #3BFF62;
+            font-size: 20px;
+        }
+
+        .sidebar-heading {
+            background-color: #3BFF62 !important;
+            color: #000000;
+        }
+
+        a.bg-light:focus,
+        a.bg-light:hover,
+        button.bg-light:focus,
+        button.bg-light:hover {
+            background-color: #3BFF62 !important;
+            color: #000000;
+        }
+
+        .sair.bg-light:hover{
+            background-color: #F22E2E !important;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -19,7 +48,7 @@
         <!-- Sidebar -->
         @auth('web')
         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">iDrink</div>
+            <div class="sidebar-heading" style="background-color: #3BFF62;">iDrink</div>
             <div class="list-group list-group-flush">
                 <a href="{{route('home')}}" class="list-group-item list-group-item-action bg-light">Home</a>
                 <a href="{{route('delivery')}}" class="list-group-item list-group-item-action bg-light">Entregas</a>
@@ -27,7 +56,7 @@
                 <a href="{{route('allProducts')}}" class="list-group-item list-group-item-action bg-light">Produtos</a>
                 {{-- <a href="{{route('profile')}}" class="list-group-item list-group-item-action bg-light">Perfil</a>
                 --}}
-                <a class="list-group-item list-group-item-action bg-light" href="{{ route('logout') }}"
+                <a class="list-group-item list-group-item-action bg-light sair" href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     {{ __('Sair') }}
                 </a>

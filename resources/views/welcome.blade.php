@@ -13,8 +13,13 @@
 
     <!-- Styles -->
     <style>
+        body{
+            color: #000000 !important;
+        }
+
         .bg-light {
-            background-color: #f0fff0 !important;
+            background-color: #3BFF62 !important;
+            font-weight: bold!important;
         }
     </style>
 </head>
