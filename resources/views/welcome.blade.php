@@ -18,7 +18,7 @@
         }
 
         .bg-light {
-            background-color: #3BFF62 !important;
+            background-color: # !important;
             font-weight: bold !important;
         }
     </style>
@@ -26,41 +26,11 @@
 
 <body>
     <div class="d-flex" id="wrapper">
-        <!-- Sidebar -->
-        @auth('web')
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">iDrink</div>
-            <div class="list-group list-group-flush">
-                <a href="{{route('home')}}" class="list-group-item list-group-item-action bg-light">Home</a>
-                <a href="{{route('delivery')}}" class="list-group-item list-group-item-action bg-light">Entregas</a>
-                <a href="{{route('report')}}" class="list-group-item list-group-item-action bg-light">Relatorios</a>
-                <a href="{{route('allProducts')}}" class="list-group-item list-group-item-action bg-light">Produtos</a>
-                {{-- <a href="{{route('profile')}}" class="list-group-item list-group-item-action bg-light">Perfil</a>
-                --}}
-                <a class="list-group-item list-group-item-action bg-light" href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    {{ __('Sair') }}
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
-        </div>
-        @endauth
-        <!-- /#sidebar-wrapper -->
-
         <!-- Page Content -->
         <div id="page-content-wrapper">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                @auth('web')
-                <button class="btn btn-primary" id="menu-toggle">Menu</button>
-                @endauth
-                @guest
                 <a href="{{url('/')}}">iDrink</a>
-                @endguest
-
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -70,14 +40,34 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Cadastre-se<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{route('help')}}">Ajuda<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{{route('login')}}">Login<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{route('login')}}">Login<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{{route('help')}}">Ajuda<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{route('register')}}">Register<span class="sr-only">(current)</span></a>
                         </li>
+                        @auth
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="">Perfil</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                    {{ __('Sair') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        @endauth
                     </ul>
                 </div>
             </nav>
