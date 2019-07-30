@@ -77,7 +77,7 @@
                 <img src="imgs/icons/menu.png" id="menu-toggle" alt="" style="width: 20px; height: 20px">
                 @endauth
                 @guest
-                <a href="{{route('login')}}">Acesse ao sistema</a>
+                <a href="{{url('/')}}">iDrink</a>
                 @endguest
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -88,11 +88,31 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="#">Ajuda<span class="sr-only">(current)</span></a>
                         </li>
-                    </ul>
-                </div>
+                        @auth
+                            
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="">Perfil</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Sair') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                                @endauth
+                            </ul>
+                        </div>
             </nav>
 
             <div class="container-fluid">

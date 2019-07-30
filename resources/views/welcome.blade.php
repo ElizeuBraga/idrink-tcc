@@ -13,13 +13,13 @@
 
     <!-- Styles -->
     <style>
-        body{
+        body {
             color: #000000 !important;
         }
 
         .bg-light {
             background-color: #3BFF62 !important;
-            font-weight: bold!important;
+            font-weight: bold !important;
         }
     </style>
 </head>
@@ -58,7 +58,7 @@
                 <button class="btn btn-primary" id="menu-toggle">Menu</button>
                 @endauth
                 @guest
-                <a href="{{route('login')}}">Acesse ao sistema</a>
+                <a href="{{url('/')}}">iDrink</a>
                 @endguest
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -69,7 +69,13 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Cadastre-se<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#">Ajuda<span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
