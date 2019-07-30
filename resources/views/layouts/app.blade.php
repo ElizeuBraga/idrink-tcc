@@ -10,6 +10,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ asset('css/simple-sidebar.css')}}" rel="stylesheet">
     <style>
@@ -36,7 +37,7 @@
             color: #000000;
         }
 
-        .sair.bg-light:hover{
+        .sair.bg-light:hover {
             background-color: #F22E2E !important;
         }
     </style>
@@ -47,6 +48,8 @@
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         @auth('web')
+        @if(Request::path() == '/')
+        @else
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading" style="background-color: #3BFF62;">iDrink</div>
             <div class="list-group list-group-flush">
@@ -66,15 +69,21 @@
                 </form>
             </div>
         </div>
+        @endif
         @endauth
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 @auth('web')
+                @if (Request::path() == '/')
+                <a href="{{url('/')}}">iDrink</a>
+
+                @else
                 <img src="imgs/icons/menu.png" id="menu-toggle" alt="" style="width: 20px; height: 20px">
+
+                @endif
                 @endauth
                 @guest
                 <a href="{{url('/')}}">iDrink</a>
@@ -88,31 +97,17 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{route('help')}}">Ajuda<span class="sr-only">(current)</span></a>
+                        <li class="w3-dropdown-hover" style="margin-right: 10px">
+                            <button class="w3-button" >Ajuda</button>
+                            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                                <a href="{{route('help')}}" class="w3-bar-item w3-button">Perguntas frequentes</a>
+                            </div>
                         </li>
-                        @auth
-                            
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-                            
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="">Perfil</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Sair') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                                @endauth
-                            </ul>
-                        </div>
+                        <li class="w3-bar">
+                            <a class="w3-bar-item w3-button" href="">Sobre o iDrink</a>
+                        </li>
+                    </ul>
+                </div>
             </nav>
 
             <div class="container-fluid">

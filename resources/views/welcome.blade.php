@@ -8,24 +8,26 @@
     <title>Laravel</title>
 
     <!-- Fonts -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/simple-sidebar.css" rel="stylesheet">
 
     <!-- Styles -->
     <style>
-        body {
-            color: #000000 !important;
-        }
-
-        .bg-light {
-            background-color: # !important;
-            font-weight: bold !important;
+        /* Centered text */
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 300px;
+            color: #1fbf15;
         }
     </style>
 </head>
 
 <body>
-    <div class="d-flex" id="wrapper">
+    {{-- <div class="d-flex" id="wrapper">
         <!-- Page Content -->
         <div id="page-content-wrapper">
 
@@ -39,14 +41,20 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+                        <li class="w3-dropdown-hover">
+                            <button class="w3-button">Ajuda</button>
+                            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                            <a href="{{route('help')}}" class="w3-bar-item w3-button">Perguntas frequentes</a>
+                        </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('help')}}">Ajuda<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{route('login')}}">Login<span
+                                    class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('login')}}">Login<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('register')}}">Register<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{route('register')}}">Register<span
+                                    class="sr-only">(current)</span></a>
                         </li>
                         @auth
                         <li class="nav-item dropdown">
@@ -73,7 +81,12 @@
             </nav>
 
             <div class="container-fluid">
-                <h1 class="mt-4">iDrink</h1>
+                <img src="/imgs/welcome/beer2.jpg" alt="Beer" style="width: 100%; height: 600px">
+                <div class="centered">iDrink</div>
+                <div class="">
+                    <hr>
+                </div>
+                <img class="w3-opacity-min" src="/imgs/welcome/beer.jpg" alt="Beer" style="width: 100%; height: 600px">
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -88,10 +101,25 @@
     <!-- Menu Toggle Script -->
     <script>
         $("#menu-toggle").click(function(e) {
-                      e.preventDefault();
-                      $("#wrapper").toggleClass("toggled");
-                    });
-    </script>
-</body>
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
 
+        var pathname = window.location.pathname; 
+        console.log(pathname);
+
+        switch (pathname) {
+            case value: '/'
+                $('')
+                break;
+        
+            default:
+                break;
+        }
+    </script> --}}
+    @extends('layouts.app')
+    @section('content')
+        <h1>Welcome</h1>
+    @endsection
+</body>
 </html>
