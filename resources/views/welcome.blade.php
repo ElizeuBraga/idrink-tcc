@@ -76,7 +76,7 @@
                             <a class="nav-link" href="#">Login<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Ajuda<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{route('help')}}">Ajuda<span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
                 </div>
