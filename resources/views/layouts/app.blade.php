@@ -57,6 +57,10 @@
         .w3-button:hover{
             background: lawngreen!important;
         }
+
+        .w3-dropdown-content>a:hover{
+            background: white!important;
+        }
     </style>
 </head>
 
@@ -120,7 +124,7 @@
                             </div>
                         </li>
                         <li class="w3-bar">
-                            <a class="w3-bar-item w3-button  " href="">Sobre o iDrink</a>
+                            <a class="w3-bar-item w3-button  " href="">Sobre o {{config('app.name')}}</a>
                         </li>
                         <li class="w3-dropdown-hover">
                             <button class="w3-button" style="background:white;" >Area do usuario</button>
