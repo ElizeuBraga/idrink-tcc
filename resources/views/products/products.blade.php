@@ -9,9 +9,9 @@
     @endif
     <div class="card">
 
-        <table class="table">
+        <table class="w3-table-all w3-hoverable">
             <thead>
-                <tr>
+                <tr class="w3-hover-green">
                     <th>#</th>
                     <th>Nome</th>
                     <th>Valor</th>
@@ -30,7 +30,11 @@
                     @else
                     <th>Inativo</th>
                     @endif
-                    <th class="row justify-content-center">
+                    <th class="row">
+                        <form action="../produtos/{{$allProd->id}}" method="POST">
+                            @csrf @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                        </form>
                         <form action="../produtos/ativar/{{$allProd->id}}" method="POST">
                             @csrf @method('PUT')
                             <input type="hidden" name="status" value="active">
@@ -44,10 +48,6 @@
                             @if ($allProd->status == 'active')
                             <button type="submit" class="btn btn-sm btn-dark">Desativar</button>
                             @endif
-                        </form>
-                        <form action="../produtos/{{$allProd->id}}" method="POST">
-                            @csrf @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
                         </form>
                     </th>
                 </tr>

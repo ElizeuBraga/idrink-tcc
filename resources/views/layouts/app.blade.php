@@ -61,6 +61,10 @@
         .w3-dropdown-content>a:hover{
             background: white!important;
         }
+
+        .btn-float-right{
+            float: right;
+        }
     </style>
 </head>
 
