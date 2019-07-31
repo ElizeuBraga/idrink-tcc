@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name') }}</title>
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -67,7 +67,7 @@
         @if(Request::path() == '/')
         @else
         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading" style="background-color: #3BFF62;">iDrink</div>
+        <div class="sidebar-heading" style="background-color: #3BFF62;">{{config('app.name')}}</div>
             <div class="list-group list-group-flush">
                 <a href="{{route('home')}}" class="list-group-item list-group-item-action bg-light">Home</a>
                 <a href="{{route('delivery')}}" class="list-group-item list-group-item-action bg-light">Entregas</a>
@@ -94,14 +94,14 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 @auth('web')
                 @if (Request::path() == '/')
-                <a href="{{url('/')}}" class="idrink">iDrink</a>
+            <a href="{{url('/')}}" class="idrink">{{config('app.name')}}</a>
                 @else
                 <img src="imgs/icons/menu.png" id="menu-toggle" alt="" style="width: 20px; height: 20px">
 
                 @endif
                 @endauth
                 @guest
-                <a href="{{url('/')}}" class="idrink">iDrink</a>
+            <a href="{{url('/')}}" class="idrink">{{config('app.name')}}</a>
                 @endguest
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
