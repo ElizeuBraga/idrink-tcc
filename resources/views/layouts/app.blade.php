@@ -114,7 +114,7 @@
                 @if (Request::path() == '/')
             <a href="{{url('/')}}" class="idrink">{{config('app.name')}}</a>
                 @else
-                <img src="imgs/icons/menu.png" id="menu-toggle" alt="" style="width: 20px; height: 20px">
+                <a href=""><img src="imgs/icons/menu.png" id="menu-toggle" alt="" style="width: 20px; height: 20px"></a>
 
                 @endif
                 @endauth
