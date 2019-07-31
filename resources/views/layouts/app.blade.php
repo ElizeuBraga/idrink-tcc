@@ -65,6 +65,16 @@
         .btn-float-right{
             float: right;
         }
+
+        .active{
+            background: lawngreen!important;
+            border: none;
+            color: #000000!important;
+        }
+
+        .sidebar-heading{
+            border-bottom-style: solid;
+        }
     </style>
 </head>
 
@@ -77,10 +87,10 @@
         <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading" style="background-color: #3BFF62;">{{config('app.name')}}</div>
             <div class="list-group list-group-flush">
-                <a href="{{route('home')}}" class="list-group-item list-group-item-action bg-light">Home</a>
-                <a href="{{route('delivery')}}" class="list-group-item list-group-item-action bg-light">Entregas</a>
-                <a href="{{route('report')}}" class="list-group-item list-group-item-action bg-light">Relatorios</a>
-                <a href="{{route('allProducts')}}" class="list-group-item list-group-item-action bg-light">Produtos</a>
+                <a href="{{route('home')}}" class="{{ Request::path() == 'home' ? 'active' : '' }} list-group-item list-group-item-action bg-light">Home</a>
+                <a href="{{route('delivery')}}" class="{{ Request::path() == 'entregas' ? 'active' : '' }} list-group-item list-group-item-action bg-light">Entregas</a>
+                <a href="{{route('report')}}" class="{{ Request::path() == 'relatorios' ? 'active' : '' }} list-group-item list-group-item-action bg-light">Relatorios</a>
+                <a href="{{route('allProducts')}}" class="{{ Request::path() == 'produtos' ? 'active' : '' }} list-group-item list-group-item-action bg-light">Produtos</a>
                 {{-- <a href="{{route('profile')}}" class="list-group-item list-group-item-action bg-light">Perfil</a>
                 --}}
                 <a class="list-group-item list-group-item-action bg-light sair" href="{{ route('logout') }}"
