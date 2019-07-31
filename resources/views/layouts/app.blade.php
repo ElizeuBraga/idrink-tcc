@@ -20,12 +20,12 @@
 
         .bg-light {
             background-color: #ffffff !important;
-            color: #3BFF62;
+            /* color: #3BFF62; */
             font-size: 20px;
         }
 
         .sidebar-heading {
-            background-color: #3BFF62 !important;
+            background-color: lawngreen !important;
             color: #000000;
         }
 
@@ -33,15 +33,31 @@
         a.bg-light:hover,
         button.bg-light:focus,
         button.bg-light:hover {
-            background-color: #3BFF62 !important;
+            background-color: lawngreen !important;
             color: #000000;
         }
 
         .sair.bg-light:hover {
             background-color: #F22E2E !important;
         }
-    </style>
 
+        .idrink{
+            color: lime;
+            font-size: 40px;
+        }
+
+        .idrink:hover{
+            color: lawngreen;
+        }
+
+        .w3-button{
+            color: lime;
+        }
+
+        .w3-button:hover{
+            background: lawngreen!important;
+        }
+    </style>
 </head>
 
 <body>
@@ -78,15 +94,14 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 @auth('web')
                 @if (Request::path() == '/')
-                <a href="{{url('/')}}">iDrink</a>
-
+                <a href="{{url('/')}}" class="idrink">iDrink</a>
                 @else
                 <img src="imgs/icons/menu.png" id="menu-toggle" alt="" style="width: 20px; height: 20px">
 
                 @endif
                 @endauth
                 @guest
-                <a href="{{url('/')}}">iDrink</a>
+                <a href="{{url('/')}}" class="idrink">iDrink</a>
                 @endguest
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -97,14 +112,22 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="w3-dropdown-hover" style="margin-right: 10px">
-                            <button class="w3-button" >Ajuda</button>
-                            <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                                <a href="{{route('help')}}" class="w3-bar-item w3-button">Perguntas frequentes</a>
+                        <li class="w3-dropdown-hover">
+                            <button class="w3-button" style="background:white;" >Ajuda</button>
+                            <div class="w3-dropdown-content w3-card-4">
+                                <a href="{{route('help')}}" class="w3-bar-item w3-button ">Perguntas frequentes</a>
+                                <a href="{{route('help')}}" class="w3-bar-item w3-button ">Outras</a>
                             </div>
                         </li>
                         <li class="w3-bar">
-                            <a class="w3-bar-item w3-button" href="">Sobre o iDrink</a>
+                            <a class="w3-bar-item w3-button  " href="">Sobre o iDrink</a>
+                        </li>
+                        <li class="w3-dropdown-hover">
+                            <button class="w3-button" style="background:white;" >Area do usuario</button>
+                            <div class="w3-dropdown-content w3-card-4">
+                                <a href="{{route('login')}}" class="w3-bar-item w3-button ">Login</a>
+                                <a href="{{route('register')}}" class="w3-bar-item w3-button ">Cadstre-se</a>
+                            </div>
                         </li>
                     </ul>
                 </div>

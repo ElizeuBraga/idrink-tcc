@@ -21,7 +21,8 @@
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 300px;
-            color: #1fbf15;
+            /* color: #1fbf15; */
+            color: lime;
         }
     </style>
 </head>
@@ -119,7 +120,10 @@
     </script> --}}
     @extends('layouts.app')
     @section('content')
-        <h1>Welcome</h1>
+                <img src="/imgs/welcome/beer2.jpg" alt="Beer" style="width: 100%; height: 600px">
+                <div class="centered">iDrink</div>
+
+        <p></p>
     @endsection
 </body>
 </html>
