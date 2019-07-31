@@ -72,8 +72,19 @@
             color: #000000!important;
         }
 
+        .active-prod{
+            background: cyan!important;
+            border: none;
+            color: #000000!important;
+        }
+
         .sidebar-heading{
             border-bottom-style: solid;
+        }
+
+        .colapse-menu>a{
+            font-size: 14px;
+            text-align: center;
         }
     </style>
 </head>
@@ -90,9 +101,16 @@
                 <a href="{{route('home')}}" class="{{ Request::path() == 'home' ? 'active' : '' }} list-group-item list-group-item-action bg-light">Home</a>
                 <a href="{{route('delivery')}}" class="{{ Request::path() == 'entregas' ? 'active' : '' }} list-group-item list-group-item-action bg-light">Entregas</a>
                 <a href="{{route('report')}}" class="{{ Request::path() == 'relatorios' ? 'active' : '' }} list-group-item list-group-item-action bg-light">Relatorios</a>
-                <a href="{{route('allProducts')}}" class="{{ Request::path() == 'produtos' ? 'active' : '' }} list-group-item list-group-item-action bg-light">Produtos</a>
-                {{-- <a href="{{route('profile')}}" class="list-group-item list-group-item-action bg-light">Perfil</a>
-                --}}
+                <a class="{{ Request::path() == 'produtos' ? 'active' : '' }} list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#colapse-menu" role="button"
+                        aria-expanded="false" aria-controls="collapseExample">
+                        Produtos
+                </a>
+                <div class="collapse colapse-menu" id="colapse-menu">
+                    <a class="{{ Request::path() == 'produtos/novos' ? 'active-prod' : '' }} list-group-item list-group-item-action bg-light" href="{{route('newProduct')}}">Novo produto</a>
+                    <a class="{{ Request::path() == 'produtos' ? 'active-prod' : '' }} list-group-item list-group-item-action bg-light" href="{{route('allProducts')}}">Todos</a>
+                    <a class="{{ Request::path() == 'produtos/ativos' ? 'active-prod' : '' }} list-group-item list-group-item-action bg-light" href="{{route('active')}}">Ativos</a>
+                    <a class="{{ Request::path() == 'produtos/inativos' ? 'active-prod' : '' }} list-group-item list-group-item-action bg-light" href="{{route('inactive')}}">Inativos</a>
+                </div>
                 <a class="list-group-item list-group-item-action bg-light sair" href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     {{ __('Sair') }}
@@ -114,7 +132,7 @@
                 @if (Request::path() == '/')
             <a href="{{url('/')}}" class="idrink">{{config('app.name')}}</a>
                 @else
-                <a href=""><img src="imgs/icons/menu.png" id="menu-toggle" alt="" style="width: 20px; height: 20px"></a>
+                <a href=""><img class="" src="imgs/icons/menu.png" id="menu-toggle" alt="" style="width: 20px; height: auto"></a>
 
                 @endif
                 @endauth

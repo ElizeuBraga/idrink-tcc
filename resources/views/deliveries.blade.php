@@ -40,7 +40,7 @@
                         <div class="">
                             Itens aqui
                         </div>
-                    </div>
+                </div>
                 </tr>
             </th>
             @endforeach
