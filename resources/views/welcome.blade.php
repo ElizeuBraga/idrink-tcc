@@ -121,7 +121,7 @@
     @extends('layouts.app')
     @section('content')
                 <img src="/imgs/welcome/beer2.jpg" alt="Beer" style="width: 100%; height: 600px">
-                <div class="centered">iDrink</div>
+                <div class="centered"><div class="w3-animate-zoom">iDrink</div></div>
 
         <p></p>
     @endsection
