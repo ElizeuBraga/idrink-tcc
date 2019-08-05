@@ -96,9 +96,9 @@
                                 </button>
                             </div>
                             <div class="col-md-6">
-                                <a class="btn btn-primary">
+                                <button class="btn btn-primary">
                                     {{ __('Ja sou cadastrado') }}
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </form>
