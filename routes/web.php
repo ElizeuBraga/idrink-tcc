@@ -11,31 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/ajuda', function () {
-    return view('help');
-})->name('help');
-
 Auth::routes();
-
+Route::get('/', function () { return view('welcome');});
 Route::get('/home', 'HomeController@index')->name('home');
-// Route::get('/entregas', 'DeliveryController@index')->name('delivery')->middleware('auth');
-// Route::get('/produtos', 'ProductController@index')->name('product')->middleware('auth');
-
-// Route::get('deliveries', 'DeliveryController@index');
+Route::get('/ajuda', function () { return view('help'); })->name('help');
 
 Route::middleware(['auth'])->group(function(){
-    Route::prefix('relatorios')->group(function(){
-        Route::get('/', 'ReportController@index')->name('report');
-    });
-});
 
-Route::middleware(['auth'])->group(function(){
+    // Routes for PRODUCTS ----------------------------------------------------------------------
     Route::prefix('produtos')->group(function(){
-        // Route::get('/', 'ProductController@index')->name('product');
         Route::get('/', 'ProductController@allProducts')->name('allProducts');
         Route::get('/ativos', 'ProductController@active')->name('active');
         Route::get('/inativos', 'ProductController@inactive')->name('inactive');
@@ -45,11 +29,15 @@ Route::middleware(['auth'])->group(function(){
         Route::put('/ativar/{id}', 'ProductController@toActiveProduct')->name('toActiveProduct');
         Route::delete('/{id}', 'ProductController@destroy')->name('deleteProduct');
     });
-});
 
-Route::middleware(['auth'])->group(function(){
+    // Routes for DELIVERIES ----------------------------------------------------------------------
     Route::prefix('entregas')->group(function(){
         Route::get('/', 'DeliveryController@index')->name('delivery');
         Route::get('items/{delivery_id}', 'DeliveryController@return_items_delivery');
+    });
+
+    // Routes for REPORTS ----------------------------------------------------------------------
+    Route::prefix('relatorios')->group(function(){
+        Route::get('/', 'ReportController@index')->name('report');
     });
 });
