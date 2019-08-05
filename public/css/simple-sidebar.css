@@ -98,6 +98,11 @@ button.bg-light:hover {
   background-color: #F22E2E !important;
 }
 
+.sair.w3-button:hover {
+  /* background-color: #F22E2E !important; */
+  color: red!important;
+}
+
 .idrink{
   color: lime;
   font-size: 40px;

@@ -22,20 +22,28 @@
         @if(Request::path() == '/')
         @else
         <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading" style="background-color: #3BFF62;">{{config('app.name')}}</div>
+            <a href="/"><div class="sidebar-heading" style="background-color: #3BFF62;">{{config('app.name')}}</div></a>
             <div class="list-group list-group-flush">
-                <a href="{{route('home')}}" class="{{ Request::path() == 'home' ? 'active' : '' }} list-group-item list-group-item-action bg-light">Home</a>
-                <a href="{{route('delivery')}}" class="{{ Request::path() == 'entregas' ? 'active' : '' }} list-group-item list-group-item-action bg-light">Entregas</a>
-                <a href="{{route('report')}}" class="{{ Request::path() == 'relatorios' ? 'active' : '' }} list-group-item list-group-item-action bg-light">Relatorios</a>
-                <a class="{{ Request::path() == 'produtos' ? 'active' : '' }} list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#colapse-menu" role="button"
-                        aria-expanded="false" aria-controls="collapseExample">
-                        Produtos
+                <a href="{{route('home')}}"
+                    class="{{ Request::path() == 'home' ? 'active' : '' }} list-group-item list-group-item-action bg-light">Home</a>
+                <a href="{{route('delivery')}}"
+                    class="{{ Request::path() == 'entregas' ? 'active' : '' }} list-group-item list-group-item-action bg-light">Entregas</a>
+                <a href="{{route('report')}}"
+                    class="{{ Request::path() == 'relatorios' ? 'active' : '' }} list-group-item list-group-item-action bg-light">Relatorios</a>
+                <a class="{{ Request::path() == 'produtos' ? 'active' : '' }} list-group-item list-group-item-action bg-light"
+                    data-toggle="collapse" href="#colapse-menu" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    Produtos
                 </a>
                 <div class="collapse colapse-menu" id="colapse-menu">
-                    <a class="{{ Request::path() == 'produtos/novos' ? 'active-prod' : '' }} list-group-item list-group-item-action bg-light" href="{{route('newProduct')}}">Novo produto</a>
-                    <a class="{{ Request::path() == 'produtos' ? 'active-prod' : '' }} list-group-item list-group-item-action bg-light" href="{{route('allProducts')}}">Todos</a>
-                    <a class="{{ Request::path() == 'produtos/ativos' ? 'active-prod' : '' }} list-group-item list-group-item-action bg-light" href="{{route('active')}}">Ativos</a>
-                    <a class="{{ Request::path() == 'produtos/inativos' ? 'active-prod' : '' }} list-group-item list-group-item-action bg-light" href="{{route('inactive')}}">Inativos</a>
+                    <a class="{{ Request::path() == 'produtos/novos' ? 'active-prod' : '' }} list-group-item list-group-item-action bg-light"
+                        href="{{route('newProduct')}}">Novo produto</a>
+                    <a class="{{ Request::path() == 'produtos' ? 'active-prod' : '' }} list-group-item list-group-item-action bg-light"
+                        href="{{route('allProducts')}}">Todos</a>
+                    <a class="{{ Request::path() == 'produtos/ativos' ? 'active-prod' : '' }} list-group-item list-group-item-action bg-light"
+                        href="{{route('active')}}">Ativos</a>
+                    <a class="{{ Request::path() == 'produtos/inativos' ? 'active-prod' : '' }} list-group-item list-group-item-action bg-light"
+                        href="{{route('inactive')}}">Inativos</a>
                 </div>
                 <a class="list-group-item list-group-item-action bg-light sair" href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -56,14 +64,15 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 @auth('web')
                 @if (Request::path() == '/')
-            <a href="{{url('/')}}" class="idrink">{{config('app.name')}}</a>
+                <a href="{{url('/')}}" class="idrink">{{config('app.name')}}</a>
                 @else
-                <a href=""><img class="" src="imgs/icons/menu.png" id="menu-toggle" alt="" style="width: 20px; height: auto"></a>
+                <a href=""><img class="" src="imgs/icons/menu.png" id="menu-toggle" alt=""
+                        style="width: 20px; height: auto"></a>
 
                 @endif
                 @endauth
                 @guest
-            <a href="{{url('/')}}" class="idrink">{{config('app.name')}}</a>
+                <a href="{{url('/')}}" class="idrink">{{config('app.name')}}</a>
                 @endguest
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -75,7 +84,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="w3-dropdown-hover">
-                            <button class="w3-button" style="background:white;" >Ajuda</button>
+                            <button class="w3-button" style="background:white;">Ajuda</button>
                             <div class="w3-dropdown-content w3-card-4">
                                 <a href="{{route('help')}}" class="w3-bar-item w3-button ">Perguntas frequentes</a>
                                 <a href="{{route('help')}}" class="w3-bar-item w3-button ">Outras</a>
@@ -85,10 +94,20 @@
                             <a class="w3-bar-item w3-button  " href="">Sobre o {{config('app.name')}}</a>
                         </li>
                         <li class="w3-dropdown-hover">
-                            <button class="w3-button" style="background:white;" >Area do usuario</button>
+                            <button class="w3-button" style="background:white;">Area do usuario</button>
                             <div class="w3-dropdown-content w3-card-4">
+                                @auth
+                                <a href="{{route('home')}}" class="w3-bar-item w3-button">Home</a><br>
+                                <a class="w3-bar-item w3-button sair"
+                                    href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __('Sair') }}
+                                </a>
+                                @endauth
+                                @guest
                                 <a href="{{route('login')}}" class="w3-bar-item w3-button ">Login</a>
                                 <a href="{{route('register')}}" class="w3-bar-item w3-button ">Cadstre-se</a>
+                                @endguest
                             </div>
                         </li>
                     </ul>
