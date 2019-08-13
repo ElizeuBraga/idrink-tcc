@@ -8,7 +8,73 @@ use Auth;
 
 class DeliveryController extends Controller
 {
-    //Metodos para api
+    /**
+     * Rotas para web
+     * 
+     * 
+     */
+    public function index()
+    {
+        $delivery = DB::table('deliveries')
+        ->select('deliveries.id as delivery_id','u.name as store_name', 'u2.name as customer_name',
+         'deliveries.payment', 'deliveries.status')
+        ->join('users as u', 'u.id', '=', 'deliveries.store_id')
+        ->join('users as u2', 'u2.id', '=', 'deliveries.customer_id')
+        ->where('u.id', '=', Auth::user()->id)
+        ->get();
+
+        $items = DB::table('deliveries')
+        ->select('deliveries.id as delivery_id', 'items.id as item_id', 'products.name as name_product')
+        ->join('users as u', 'u.id', '=', 'deliveries.store_id')
+        ->join('users as u2', 'u2.id', '=', 'deliveries.customer_id')
+        ->join('items', 'items.delivery_id', '=', 'deliveries.id')
+        ->join('products', 'products.id', '=', 'items.product_id')
+        ->where('u.id', '=', Auth::user()->id)
+        ->get();
+
+        
+        $deliveries = [$delivery,$items];
+        $i = 0;
+        // dd($deliveries);
+        return view('deliveries', compact('deliveries', 'items', 'i'));
+    }
+    
+    public function create()
+    {
+        //
+    }
+
+    public function store(Request $request)
+    {
+        //
+    }
+
+    public function show($id)
+    {
+        //
+    }
+
+    public function edit($id)
+    {
+        //
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    
+    public function destroy($id)
+    {
+        //
+    }
+
+    /**
+     * Rotas para api
+     * 
+     * 
+     */
     public function getDeliveriesCustomer(){
         $deliveries = DB::table('products')
         ->join('users as u', 'u.id', '=', 'products.user_id')
@@ -38,106 +104,5 @@ class DeliveryController extends Controller
         ->get();
 
         return response()->json($deliveries, 200);
-    }
-
-    public function getDeliveries(){
-        $deliveries = DB::table('deliveries')->get();
-
-        if(count($deliveries) == 0 ){
-            return response()->json(['response' => 'Nenhum pedido encontrado']);
-        }
-        return view('deliveries', compact('deliveries'));
-        // return response()->json($deliveries);
-    }
-
-    public function return_items_delivery($delivery_id)
-    {
-        $item = DB::table('deliveries')
-        ->select('items.quantity', 'products.name as product_name')
-        ->join('users as u', 'u.id', '=', 'deliveries.store_id')
-        ->join('users as u2', 'u2.id', '=', 'deliveries.customer_id')
-        ->join('items', 'items.delivery_id', '=', 'deliveries.id')
-        ->join('products', 'products.id', '=', 'items.product_id')
-        ->where('deliveries.id', '=', $delivery_id)
-        ->get();
-        
-        return $item;
-    }
-
-    public function index()
-    {
-        $delivery = DB::table('deliveries')
-        ->select('deliveries.id as delivery_id','u.name as store_name', 'u2.name as customer_name',
-         'deliveries.payment', 'deliveries.status')
-        ->join('users as u', 'u.id', '=', 'deliveries.store_id')
-        ->join('users as u2', 'u2.id', '=', 'deliveries.customer_id')
-        ->where('u.id', '=', Auth::user()->id)
-        ->get();
-
-        // dd($deliveries);
-        return view('deliveries', compact('delivery'));
-    }
-
-    
-    
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
