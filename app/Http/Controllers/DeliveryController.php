@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
-
+use App\Delivery;
 class DeliveryController extends Controller
 {
     /**
@@ -15,28 +15,12 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        $delivery = DB::table('deliveries')
-        ->select('deliveries.id as delivery_id','u.name as store_name', 'u2.name as customer_name',
-         'deliveries.payment', 'deliveries.status')
-        ->join('users as u', 'u.id', '=', 'deliveries.store_id')
-        ->join('users as u2', 'u2.id', '=', 'deliveries.customer_id')
-        ->where('u.id', '=', Auth::user()->id)
+        $deliveries = Delivery::where('store_id', Auth::user()->id)
+        ->orderBy('status')
         ->get();
 
-        $items = DB::table('deliveries')
-        ->select('deliveries.id as delivery_id', 'items.id as item_id', 'products.name as name_product')
-        ->join('users as u', 'u.id', '=', 'deliveries.store_id')
-        ->join('users as u2', 'u2.id', '=', 'deliveries.customer_id')
-        ->join('items', 'items.delivery_id', '=', 'deliveries.id')
-        ->join('products', 'products.id', '=', 'items.product_id')
-        ->where('u.id', '=', Auth::user()->id)
-        ->get();
-
-        
-        $deliveries = [$delivery,$items];
-        $i = 0;
         // dd($deliveries);
-        return view('deliveries', compact('deliveries', 'items', 'i'));
+        return view('deliveries', compact('deliveries'));
     }
     
     public function create()
