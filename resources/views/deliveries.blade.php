@@ -16,6 +16,7 @@
     </div>
     @endif    
 
+    {{-- --------------Table deliveries-------------- --}}
     <table class="w3-table-all w3-hoverable w3-centered">
         <thead>
             <tr  style="font-size: 20px;">
@@ -29,6 +30,22 @@
         <tbody>
         @foreach ($deliveries as $delivery)
             <tr>
+
+                {{-- ----------------Modal-------------------- --}}
+            <div id="chat{{$delivery->delivery_id}}" class="w3-modal">
+                    <div class="w3-modal-content w3-animate-top">
+                    <span onclick="document.getElementById('chat{{$delivery->delivery_id}}').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                    <center>
+                        <div class="">
+                            <h2>Chat</h2>
+                            <p>Id do pedido{{$delivery->delivery_id}}</p>
+                            <textarea name="chat" id="" cols="60" rows="2"></textarea>
+                        </div>
+                        <button class="btn btn-primary">Enviar</button>
+                    </center>
+                    </div>
+                </div>
+
             <td>{{$delivery->delivery_id}}</td>
                 <td>{{$delivery->customer_name}}</td>
 
@@ -67,13 +84,14 @@
                         <button class="btn btn-sm btn-danger @if($delivery->status == 'delivered') disabled @endif" type="submit">Cancelar</button>
                     </form>
                     @endif
-                    <a class="btn btn-sm btn-primary @if($delivery->status == 'delivered') disabled @endif" href="#">Chat</a>                    
+                <a class="btn btn-sm btn-primary @if($delivery->status == 'delivered') disabled @endif" onclick="document.getElementById('chat{{$delivery->delivery_id}}').style.display='block'">Chat</a>                    
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-</div>
+
+    
 </div>
 @endsection
 @section('script')
