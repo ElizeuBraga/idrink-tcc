@@ -30,9 +30,14 @@ class DeliveryController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $delivery_id)
     {
-        //
+        $delivery = Delivery::find($delivery_id);
+        if(isset($delivery)){
+            $delivery->status = $request->input('status');
+            $delivery->save();
+        }
+        return redirect('/entregas');
     }
 
     public function show($id)

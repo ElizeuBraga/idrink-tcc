@@ -45,9 +45,17 @@
                 @endif
                 <td>
                     @if ($delivery->status == 'canceled')
-                    <a class="btn btn-sm btn-primary" href="#">Reativar</a>
+                    <form action="../entregas/editar/{{$delivery->delivery_id}}" method="POST">
+                        {{csrf_field()}}
+                        <input type="hidden" value="open" name="status">
+                        <button class="btn btn-sm btn-primary" type="submit">Reativar</button>
+                    </form>
                     @else
-                    <a class="btn btn-sm btn-danger @if($delivery->status == 'delivered') disabled @endif" href="#">Cancelar</a>
+                    <form action="../entregas/editar/{{$delivery->delivery_id}}" method="POST">
+                        {{csrf_field()}}
+                        <input type="hidden" value="canceled" name="status">
+                        <button class="btn btn-sm btn-danger @if($delivery->status == 'delivered') disabled @endif" type="submit">Cancelar</button>
+                    </form>
                     @endif
                     <a class="btn btn-sm btn-primary @if($delivery->status == 'delivered') disabled @endif" href="#">Chat</a>                    
                 </td>

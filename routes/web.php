@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function(){
     // Routes for DELIVERIES ----------------------------------------------------------------------
     Route::prefix('entregas')->group(function(){
         Route::get('/', 'DeliveryController@index')->name('delivery');
+        Route::post('/editar/{delivery_id}', 'DeliveryController@store')->name('cancel');
     });
 
     // Routes for REPORTS ----------------------------------------------------------------------
