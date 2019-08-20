@@ -1,11 +1,21 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    @if (session('success'))
-    <div class="alert alert-success">
-        {{session('success')}}
+    
+    @if ($message = Session::get('canceled'))
+    <div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>	
+        <center><strong>{{ $message }}</strong><center>
     </div>
     @endif
+
+    @if ($message = Session::get('actived'))
+    <div class="alert alert-primary alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>	
+        <center><strong>{{ $message }}</strong><center>
+    </div>
+    @endif    
+
     <table class="w3-table-all w3-hoverable w3-centered">
         <thead>
             <tr  style="font-size: 20px;">

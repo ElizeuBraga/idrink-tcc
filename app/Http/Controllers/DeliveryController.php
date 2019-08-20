@@ -37,7 +37,13 @@ class DeliveryController extends Controller
             $delivery->status = $request->input('status');
             $delivery->save();
         }
-        return redirect('/entregas');
+        if ($delivery->status == 'canceled') {
+            return redirect('/entregas')->with('canceled', 'Cancelado com sucesso!');
+        }
+
+        if ($delivery->status == 'open') {
+            return redirect('/entregas')->with('actived', 'Reativado com sucesso!');            
+        }
     }
 
     public function show($id)
