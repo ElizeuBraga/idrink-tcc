@@ -15,14 +15,28 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        $deliveries = Delivery::join('users','users.id', '=', 'deliveries.customer_id')
-        ->select('deliveries.id as delivery_id', 'deliveries.payment', 'deliveries.status', 'users.name as customer_name')
+        DB::enableQueryLog();
+
+        $deliveries = Delivery::join('users as u','u.id', '=', 'deliveries.customer_id')
+        ->join('users as u2', 'u2.id', '=', 'deliveries.store_id')
+        ->select('deliveries.id as delivery_id', 'deliveries.payment', 'deliveries.status', 'u.name as customer_name', 'u2.id as store_id')
         ->where('store_id', Auth::user()->id)
         ->orderBy('status')
         ->get();
 
-        // dd($deliveries);
-        return view('deliveries', compact('deliveries'));
+        $items = Delivery::join('users as u','u.id', '=', 'deliveries.customer_id')
+        ->join('users as u2', 'u2.id', '=', 'deliveries.store_id')
+        ->join('items', 'items.delivery_id', '=', 'deliveries.id')
+        ->join('products', 'products.id', '=', 'items.product_id')
+        ->select('deliveries.id as delivery_id', 'products.id as product_id', 'products.name as product_name')
+        ->where('store_id', Auth::user()->id)
+        ->get();
+
+        // $queries = DB::getQueryLog();
+
+        // dd($items);
+
+        return view('deliveries', compact('deliveries', 'items'));
     }
     
     public function create()
