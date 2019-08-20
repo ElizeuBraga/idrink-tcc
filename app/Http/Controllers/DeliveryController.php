@@ -15,7 +15,9 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        $deliveries = Delivery::where('store_id', Auth::user()->id)
+        $deliveries = Delivery::join('users','users.id', '=', 'deliveries.customer_id')
+        ->select('deliveries.id as delivery_id', 'deliveries.payment', 'deliveries.status', 'users.name as customer_name')
+        ->where('store_id', Auth::user()->id)
         ->orderBy('status')
         ->get();
 

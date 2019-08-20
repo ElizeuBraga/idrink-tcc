@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h2>Pedidos de hoje</h2>
     @if (session('success'))
     <div class="alert alert-success">
         {{session('success')}}
@@ -9,7 +8,7 @@
     @endif
     <table class="w3-table-all w3-hoverable w3-centered">
         <thead>
-            <tr>
+            <tr  style="font-size: 20px;">
                 <th>#</th>
                 <th>Cliente</th>
                 <th>Pagamento</th>
@@ -20,8 +19,8 @@
         <tbody>
         @foreach ($deliveries as $delivery)
             <tr>
-            <td>{{$delivery->id}}</td>
-                <td>Id do cliente{{$delivery->customer_id}}</td>
+            <td>{{$delivery->delivery_id}}</td>
+                <td>{{$delivery->customer_name}}</td>
 
                 {{-- Forma de Pagamento --}}
                 @if ($delivery->payment == 'money')
@@ -50,6 +49,7 @@
                     @else
                     <a class="btn btn-sm btn-danger @if($delivery->status == 'delivered') disabled @endif" href="#">Cancelar</a>
                     @endif
+                    <a class="btn btn-sm btn-primary @if($delivery->status == 'delivered') disabled @endif" href="#">Chat</a>                    
                 </td>
             </tr>
             @endforeach
