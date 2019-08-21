@@ -57,7 +57,7 @@
                             @if ($item->delivery_id == $delivery->delivery_id)
                             <p>{{$item->product_id}}-{{$item->product_name}}</p>
                             @endif
-                            @endforeach
+                        @endforeach
                     <p>---------------------------------------------------------------------------------</p>
                     </div>
                 </center>
