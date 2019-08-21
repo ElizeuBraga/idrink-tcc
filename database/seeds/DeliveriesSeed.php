@@ -14,19 +14,13 @@ class DeliveriesSeed extends Seeder
         DB::table('deliveries')->insert([
             'address_id' => 1, 
             'store_id' => 2, 
-            'customer_id' => 3
-        ]);
-
-        DB::table('deliveries')->insert([
-            'address_id' => 1, 
-            'store_id' => 2, 
-            'customer_id' => 4
+            'customer_id' =>4
         ]);
 
         DB::table('deliveries')->insert([
             'address_id' => 1, 
             'store_id' => 1, 
-            'customer_id' => 4
+            'customer_id' => 3
         ]);
     }
 }

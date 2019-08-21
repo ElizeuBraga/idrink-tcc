@@ -15,23 +15,13 @@ class AdressSeed extends Seeder
         // factory('App\Product', 5)->create();
 
         DB::table('adresses')->insert([
-            'address' => 'Rua das palmeiras',
-            'user_id' => 1,
-        ]);
-
-        DB::table('adresses')->insert([
-            'address' => 'Quadra central',
-            'user_id' => 2,
-        ]);
-
-        DB::table('adresses')->insert([
-            'address' => 'Lote 12',
+            'address' => 'Q 15 Area reservada 04',
             'user_id' => 3,
         ]);
 
         DB::table('adresses')->insert([
-            'address' => 'São bento',
-            'user_id' => 4,
+            'address' => 'Q5 conj A casa 11',
+            'user_id' => 2,
         ]);
     }
 }

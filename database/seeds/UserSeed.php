@@ -14,9 +14,9 @@ class UserSeed extends Seeder
     {
         // factory('App\User', 20)->create();
         DB::table('users')->insert([
-            'name' => 'Store1',
+            'name' => 'Skiltys',
             'type' => 'store',
-            'email' => 'store1@gmail.com',
+            'email' => 'skyltis@gmail.com',
             'phone' => '12345678',
             'cnpj' => '12345678',
             'password' => bcrypt('12345678'),
@@ -24,9 +24,9 @@ class UserSeed extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Store2',
+            'name' => 'La casita',
             'type' => 'store',
-            'email' => 'store2@gmail.com',
+            'email' => 'lacasita@gmail.com',
             'phone' => '12345678',
             'cnpj' => '12345678',
             'password' => bcrypt('12345678'),
@@ -34,9 +34,9 @@ class UserSeed extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Customer1',
+            'name' => 'Elizeu',
             'type' => 'customer',
-            'email' => 'customer1@gmail.com',
+            'email' => 'elizeu@gmail.com',
             'phone' => '12345678',
             'cnpj' => '12345678',
             'password' => bcrypt('12345678'),
@@ -44,9 +44,9 @@ class UserSeed extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Customer2',
+            'name' => 'Sara',
             'type' => 'customer',
-            'email' => 'customer2@gmail.com',
+            'email' => 'sara@gmail.com',
             'phone' => '12345678',
             'cnpj' => '12345678',
             'password' => bcrypt('12345678'),

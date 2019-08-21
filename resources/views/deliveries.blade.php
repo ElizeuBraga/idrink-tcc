@@ -31,20 +31,38 @@
         @foreach ($deliveries as $delivery)
             <tr>
 
-                {{-- ----------------Modal-------------------- --}}
+                {{-- ----------------Modal chat-------------------- --}}
             <div id="chat{{$delivery->delivery_id}}" class="w3-modal">
-                    <div class="w3-modal-content w3-animate-top">
-                    <span onclick="document.getElementById('chat{{$delivery->delivery_id}}').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                    <center>
-                        <div class="">
-                            <h2>Chat</h2>
-                            <p>Id do pedido{{$delivery->delivery_id}}</p>
-                            <textarea name="chat" id="" cols="60" rows="2"></textarea>
-                        </div>
-                        <button class="btn btn-primary">Enviar</button>
-                    </center>
+                <div class="w3-modal-content w3-animate-top">
+                <span onclick="document.getElementById('chat{{$delivery->delivery_id}}').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <center>
+                    <div class="">
+                        <h2>Chat</h2>
+                        
+                        <textarea name="chat" id="" cols="60" rows="2"></textarea>
                     </div>
+                    <button class="btn btn-primary">Enviar</button>
+                </center>
                 </div>
+            </div>
+
+            {{-- ----------------Modal pedidos-------------------- --}}
+            <div id="deliv{{$delivery->delivery_id}}" class="w3-modal">
+                <div class="w3-modal-content w3-animate-top">
+                <span onclick="document.getElementById('deliv{{$delivery->delivery_id}}').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <center>
+                    <div class="">
+                    <h2>Items do pedido do(a) {{$delivery->customer_name}}</h2>
+                        @foreach ($items as $item)
+                            @if ($item->delivery_id == $delivery->delivery_id)
+                            <p>{{$item->product_id}}-{{$item->product_name}}</p>
+                            @endif
+                            @endforeach
+                    <p>---------------------------------------------------------------------------------</p>
+                    </div>
+                </center>
+                </div>
+            </div>
 
             <td>{{$delivery->delivery_id}}</td>
                 <td>{{$delivery->customer_name}}</td>
@@ -85,6 +103,7 @@
                     </form>
                     @endif
                 <a class="btn btn-sm btn-primary @if($delivery->status == 'delivered') disabled @endif" onclick="document.getElementById('chat{{$delivery->delivery_id}}').style.display='block'">Chat</a>                    
+                <a class="btn btn-sm btn-primary @if($delivery->status == 'delivered') disabled @endif" onclick="document.getElementById('deliv{{$delivery->delivery_id}}').style.display='block'">Pedido</a>                    
                 </td>
             </tr>
             @endforeach
