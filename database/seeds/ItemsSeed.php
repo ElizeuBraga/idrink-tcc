@@ -36,5 +36,11 @@ class ItemsSeed extends Seeder
             'product_id' => 4, 
             'delivery_id' => 2
         ]);
+
+        DB::table('items')->insert([
+            'quantity' => 2, 
+            'product_id' => 2, 
+            'delivery_id' => 3
+        ]);
     }
 }

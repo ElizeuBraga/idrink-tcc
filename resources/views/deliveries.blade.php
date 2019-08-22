@@ -37,7 +37,7 @@
                 <span onclick="document.getElementById('chat{{$delivery->delivery_id}}').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                 <center>
                     <div class="">
-                        <h2>Chat</h2>
+                    <h2>Converse com {{$delivery->customer_name}}</h2>
                         
                         <textarea name="chat" id="" cols="60" rows="2"></textarea>
                     </div>
