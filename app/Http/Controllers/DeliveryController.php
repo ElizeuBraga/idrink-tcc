@@ -28,10 +28,9 @@ class DeliveryController extends Controller
         ->join('users as u2', 'u2.id', '=', 'deliveries.store_id')
         ->join('items', 'items.delivery_id', '=', 'deliveries.id')
         ->join('products', 'products.id', '=', 'items.product_id')
-        ->select('deliveries.id as delivery_id', 'products.id as product_id', 'products.name as product_name')
+        ->select('deliveries.id as delivery_id', 'products.id as product_id', 'products.name as product_name', 'products.price', 'items.quantity', DB::raw('price * quantity as total'))
         ->where('store_id', Auth::user()->id)
         ->get();
-
         // $queries = DB::getQueryLog();
 
         // dd($items);
