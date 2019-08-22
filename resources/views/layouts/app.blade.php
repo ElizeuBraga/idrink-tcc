@@ -106,7 +106,7 @@
                                 @endauth
                                 @guest
                                 <a href="{{route('login')}}" class="w3-bar-item w3-button ">Login</a>
-                                <a href="{{route('register')}}" class="w3-bar-item w3-button ">Cadstre-se</a>
+                                <a href="{{route('register')}}" class="w3-bar-item w3-button ">Cadastre-se</a>
                                 @endguest
                             </div>
                         </li>

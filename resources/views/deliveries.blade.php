@@ -28,13 +28,14 @@
             </tr>
         </thead>
         <tbody>
+        
         @foreach ($deliveries as $delivery)
             <tr>
 
                 {{-- ----------------Modal chat-------------------- --}}
             <div id="chat{{$delivery->delivery_id}}" class="w3-modal">
                 <div class="w3-modal-content w3-animate-top">
-                <span onclick="document.getElementById('chat{{$delivery->delivery_id}}').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <span onclick="document.getElementById('chat{{$delivery->delivery_id}}').style.display='none'" class="btn btn-danger w3-display-topright">&times;</span>
                 <center>
                     <div class="">
                     <h2>Converse com {{$delivery->customer_name}}</h2>
@@ -47,18 +48,47 @@
             </div>
 
             {{-- ----------------Modal pedidos-------------------- --}}
+            @php
+                $delivery_total = 0;
+            @endphp
             <div id="deliv{{$delivery->delivery_id}}" class="w3-modal">
                 <div class="w3-modal-content w3-animate-top">
                 <span onclick="document.getElementById('deliv{{$delivery->delivery_id}}').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                 <center>
                     <div class="">
                     <h2>Items do pedido do(a) {{$delivery->customer_name}}</h2>
+                    <div class="row" style="font-weight: bold; font-size: 18px">
+                            <span class="col-md-1">Id</span>
+                            <span class="col-md-4">Produto</span>
+                            <span class="col-md-2">Valor</span>
+                            <span class="col-md-2">Quantidade</span>    
+                            <span class="col-md-3">Total</span>    
+                    </div>
                         @foreach ($items as $item)
                             @if ($item->delivery_id == $delivery->delivery_id)
-                            <p>{{$item->product_id}}-{{$item->product_name}}</p>
+                            
+                            <div class="row">
+                                <span class="col-md-1">{{$item->product_id}}</span>
+                                <span class="col-md-4">{{$item->product_name}}</span>
+                                <span class="col-md-2">{{number_format($item->price, 2)}}</span>
+                                <span class="col-md-2">{{$item->quantity}}</span>
+                                <span class="col-md-3">{{number_format($item->total, 2)}}</span>
+                            </div>
+                            @php
+                                $delivery_total += $item->total;
+                            @endphp
                             @endif
                         @endforeach
-                    <p>---------------------------------------------------------------------------------</p>
+                    <div class="row">
+                        <span class="col-md-12">-----------------------------------------------------------------------------------------------------------------------------------------------------</span>
+                    </div>
+                    <div class="row">
+                        <span class="col-md-4 text-left"><strong>Cobrar do cliente</strong></span>
+                        <span class="col-md"></span>
+                        <span class="col-md"></span>
+                        <span class="col-md"></span>
+                    <span class="col-md-3">R$ - {{number_format($delivery_total, 2)}}</span>
+                    </div>
                     </div>
                 </center>
                 </div>
@@ -88,28 +118,31 @@
                 @if ($delivery->status == 'canceled')
                 <td><img style="width: 20px" src="imgs/icons/canceled.png" alt="Cancelado" title="Cancelado"></td>
                 @endif
-                <td>
-                    @if ($delivery->status == 'canceled')
+                <div class="row">
+
+                    <td>
+                        @if ($delivery->status == 'canceled')
                     <form action="../entregas/editar/{{$delivery->delivery_id}}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" value="open" name="status">
-                        <button class="btn btn-sm btn-primary" type="submit">Reativar</button>
+                        <button class="btn btn-sm btn-primary col-md-3" type="submit">Reativar</button>
                     </form>
                     @else
                     <form action="../entregas/editar/{{$delivery->delivery_id}}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" value="canceled" name="status">
-                        <button class="btn btn-sm btn-danger @if($delivery->status == 'delivered') disabled @endif" type="submit">Cancelar</button>
+                        <button class="btn btn-sm btn-danger col-md-3 @if($delivery->status == 'delivered') disabled @endif" type="submit">Cancelar</button>
                     </form>
                     @endif
-                <a class="btn btn-sm btn-primary @if($delivery->status == 'delivered') disabled @endif" onclick="document.getElementById('chat{{$delivery->delivery_id}}').style.display='block'">Chat</a>                    
-                <a class="btn btn-sm btn-primary @if($delivery->status == 'delivered') disabled @endif" onclick="document.getElementById('deliv{{$delivery->delivery_id}}').style.display='block'">Pedido</a>                    
+                    <a class="btn btn-sm btn-primary col-md-3 @if($delivery->status == 'delivered') disabled @endif" onclick="document.getElementById('chat{{$delivery->delivery_id}}').style.display='block'">Chat</a>                    
+                    <a class="btn btn-sm btn-primary col-md-3 @if($delivery->status == 'delivered') disabled @endif" onclick="document.getElementById('deliv{{$delivery->delivery_id}}').style.display='block'">Pedido</a>                    
                 </td>
+            </div>
             </tr>
             @endforeach
         </tbody>
     </table>
-
+    
     
 </div>
 @endsection
