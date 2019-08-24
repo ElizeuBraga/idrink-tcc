@@ -61,7 +61,7 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom navbar-fixed-top">
                 @auth('web')
                 @if (Request::path() == '/')
                 <a href="{{url('/')}}" class="idrink">{{config('app.name')}}</a>
@@ -91,7 +91,7 @@
                             </div>
                         </li>
                         <li class="w3-bar">
-                            <a class="w3-bar-item w3-button  " href="">Sobre o {{config('app.name')}}</a>
+                            <a class="w3-bar-item w3-button  " href="#about">Sobre o {{config('app.name')}}</a>
                         </li>
                         <li class="w3-dropdown-hover">
                             <button class="w3-button" style="background:white;">Area do usuario</button>
