@@ -28,6 +28,10 @@
         #others{
 
         }
+
+        .link-foot{
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -51,8 +55,31 @@
     <!-- Footer -->
     <footer class="page-footer font-small blue">
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2019 Copyright: iDrink
-
+    <div class="footer row">
+        <div class="col-md-4 row">
+            <h2>Contato</h2>
+            <a href="" class="link-foot col-md-12">Link 1</a>            
+            <a href="" class="link-foot col-md-12">Link 2</a>            
+            <a href="" class="link-foot col-md-12">Link 3</a>            
+            <a href="" class="link-foot col-md-12">Link 4</a>
+        </div>
+        <div class="col-md-4 row">
+            <h2>iDrink</h2>
+            <a href="" class="link-foot col-md-12">Link 1</a>            
+            <a href="" class="link-foot col-md-12">Link 2</a>            
+            <a href="" class="link-foot col-md-12">Link 3</a>            
+            <a href="" class="link-foot col-md-12">Link 4</a>            
+        </div>
+        <div class="col-md-4 row">
+            <h2>Expectativas</h2>
+            <a href="" class="link-foot col-md-12">Link 1</a>            
+            <a href="" class="link-foot col-md-12">Link 2</a>            
+            <a href="" class="link-foot col-md-12">Link 3</a>            
+            <a href="" class="link-foot col-md-12">Link 4</a>
+        </div>
+    </div>
+    <div class="footer-copyright text-center py-3">
+        © 2019 Copyright: iDrink
     </div>
     <!-- Copyright -->
     </footer>
