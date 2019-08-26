@@ -2,11 +2,16 @@
 @section('content')
 <div class="container">
     <h2>Ativos</h2>
+
+    {{-- Alerts --}}
     @if (session('success'))
     <div class="alert alert-success">
         {{session('success')}}
     </div>
     @endif
+    {{-- end alerts --}}
+
+    {{-- Table --}}
     <table class="table">
         <thead>
             <tr>
@@ -41,16 +46,10 @@
             @endforeach
         </tbody>
     </table>
-    <div class="card-footer fixed-bottom" style="background:honeydew">
-        <div class="row">
-            <a class="btn btn-sm btn-primary col-md-3" href="{{route('allProducts')}}">Todos</a>
-            <a class="btn btn-sm btn-primary col-md-6" href="{{route('newProduct')}}">Novo</a>
-            <a class="btn btn-sm btn-primary col-md-3" href="{{route('inactive')}}">Inativos</a>
-        </div>
-    </div>
+    {{-- end table --}}
+
     @if (count($activeProducts) == 0)
     <h5>Nenhum produto encontrado</h5>
     @endif
-</div>
 </div>
 @endsection

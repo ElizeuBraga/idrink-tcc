@@ -2,12 +2,16 @@
 @section('content')
 <div class="container">
     <h2>Inativos</h2>
+
+    {{-- alerts --}}
     @if (session('success'))
     <div class="alert alert-success">
         {{session('success')}}
     </div>
     @endif
-    <div class="card">
+    {{-- end alerts --}}
+
+    {{-- Table --}}
     <table class="table">
         <thead>
             <tr>
@@ -20,7 +24,7 @@
         </thead>
         <tbody>
             @foreach ($inactiveProducts as $inactives)
-                <tr>
+            <tr>
                 <th>{{$inactives->id}}</th>
                 <th>{{$inactives->name}}</th>
                 <th>{{$inactives->price}}</th>
@@ -38,20 +42,13 @@
                                 <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
                         </form>
                     </th>
-                </tr>
+            </tr>
                 @endforeach
-            </tbody>
+        </tbody>
     </table>
-    <div class="card-footer fixed-bottom" style="background:honeydew">
-            <div class="row justify-content-center">
-                <a class="btn btn-sm btn-primary col-md-3" href="{{route('allProducts')}}" >Todos</a>
-                <a class="btn btn-sm btn-primary col-md-6" href="{{route('newProduct')}}" >Novo</a>
-                <a class="btn btn-sm btn-primary col-md-3" href="{{route('active')}}" >Ativos</a>
-            </div>
-        </div>
-        @if (count($inactiveProducts) == 0)
-        <h5>Nenhum produto encontrado</h5>
-        @endif
+
+    @if (count($inactiveProducts) == 0)
+    <h5>Nenhum produto encontrado</h5>
+    @endif
     </div>
-</div>
 @endsection

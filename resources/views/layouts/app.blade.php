@@ -16,8 +16,9 @@
 </head>
 
 <body>
+    {{-- wrapper --}}
     <div class="d-flex" id="wrapper">
-        <!-- Sidebar -->
+        {{-- Sidebar --}}
         @auth('web')
         @if(Request::path() == '/')
         @else
@@ -57,9 +58,9 @@
         </div>
         @endif
         @endauth
-        <!-- /#sidebar-wrapper -->
+        {{-- end sidebar --}}
 
-        <!-- Page Content -->
+        <!-- Page Content wrapper-->
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom navbar-fixed-top">
                 @auth('web')
@@ -114,25 +115,27 @@
                 </div>
             </nav>
 
+            {{-- content-views --}}
             <div class="container-fluid">
                 @yield('content')
             </div>
+            {{-- end content-views --}}
         </div>
-        <!-- /#page-content-wrapper -->
+        {{-- end page-content-wrapper --}}
 
     </div>
-    <!-- /#wrapper -->
+    {{-- end wrapper --}}
 
-    <!-- Bootstrap core JavaScript -->
+    {{-- Bootstrap core JavaScript --}}
     <script src="{{ asset('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
-    <!-- Menu Toggle Script -->
+    {{-- Menu Toggle Script --}}
     <script>
         $("#menu-toggle").click(function(e) {
-                              e.preventDefault();
-                              $("#wrapper").toggleClass("toggled");
-                            });
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
     </script>
 </body>
 
