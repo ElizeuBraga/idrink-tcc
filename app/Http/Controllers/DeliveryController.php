@@ -31,6 +31,7 @@ class DeliveryController extends Controller
         ->select('deliveries.id as delivery_id', 'products.id as product_id', 'products.name as product_name', 'products.price', 'items.quantity', DB::raw('price * quantity as total'))
         ->where('store_id', Auth::user()->id)
         ->get();
+        
         // $queries = DB::getQueryLog();
 
         // dd($items);
@@ -43,6 +44,9 @@ class DeliveryController extends Controller
         //
     }
 
+    /**
+     * Cancel and reopen a delivery 
+     */
     public function store(Request $request, $delivery_id)
     {
         $delivery = Delivery::find($delivery_id);
@@ -81,7 +85,7 @@ class DeliveryController extends Controller
     }
 
     /**
-     * Rotas para api
+     * Methods for api
      * 
      * 
      */
