@@ -14,7 +14,12 @@ use DB;
 
 class UserController extends Controller
 {
-    // ---------------------------------------------------------------------------------------------
+    /**
+     * Methods for api
+     * 
+     * 
+     * Sing in the user to the sistem
+     */
     public function login(Request $request){
         $request->validate([
             'email' => 'required|string|email',
@@ -23,11 +28,6 @@ class UserController extends Controller
         ]);
         
         $input = $request->all();
-        // dd(count($input));
-
-        // if(count($input) < 3){
-        //     return response()->json(['response' => 'Acesso negado']);
-        // }
 
         $credencials = [
             'email' => $request->email,
@@ -49,15 +49,19 @@ class UserController extends Controller
         return response()->json(['token' => $token], 200);
     }
 
-    // ---------------------------------------------------------------------------------------------
+    /**
+     * Logout a user to the sistem
+     */
     public function logout(Request $request){
         $request->user()->token()->revoke();
         return response()->json(['response' => 'Deslogado com sucesso']);
     }
 
+    /**
+     * 
+     */
     public function index()
     {
-        // return response()->json(["response" => "Ola index"]);
         return response()->json(["Usuario logado" => Auth::user()->id]);
     }
 
@@ -66,6 +70,9 @@ class UserController extends Controller
         //
     }
 
+    /**
+     * Stores a new user in the sistem
+     */
     public function store(Request $request)
     {
         $input = Input::all();
@@ -77,6 +84,9 @@ class UserController extends Controller
         return $user;
     }
 
+    /**
+     * Find a user in the sistem
+     */
     public function show($id)
     {
         $users = DB::table('users')->get();
