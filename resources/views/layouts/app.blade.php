@@ -95,7 +95,14 @@
                             <a class="w3-bar-item w3-button  " href="#about">Sobre o {{config('app.name')}}</a>
                         </li>
                         <li class="w3-dropdown-hover">
-                            <button class="w3-button" style="background:white;">Area do usuario</button>
+                        <button class="w3-button" style="background:white;">
+                            @auth
+                            {{Auth::user()->name}}
+                            @endauth
+                            @guest
+                                Area do usuario
+                            @endguest
+                        </button>
                             <div class="w3-dropdown-content w3-card-4">
                                 @auth
                                 <a href="{{route('home')}}" class="w3-bar-item w3-button">Home</a><br>
