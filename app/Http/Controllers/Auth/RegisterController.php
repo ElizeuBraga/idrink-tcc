@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
-    protected $fillable = ['name','email','phone','cnpj','cep','api_token', 'password'];
+    protected $fillable = ['name','email', 'type','phone','cnpj','cep','api_token', 'password'];
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -67,6 +67,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'type' => 'store',
             'email' => $data['email'],
             'phone' => $data['phone'],
             'cnpj' => $data['cnpj'],
