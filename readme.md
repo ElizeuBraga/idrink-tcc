@@ -2,5 +2,7 @@
 * Comando para criar views
 * Make:auth
 
+heroku run php artisan migrate --path=database/migrations --app idrinktcc
+
 imagens gratis
 https://unsplash.com/photos/UErWoQEoMrc
