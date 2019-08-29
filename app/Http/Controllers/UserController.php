@@ -24,25 +24,25 @@ class UserController extends Controller
      */
     public function login(Request $request){
         $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-            'type' => 'required|string'
+            'customer_email' => 'required|string|email',
+            'customer_password' => 'required|string',
+            // 'customer_type' => 'required|string'
         ]);
-        
-        $input = $request->all();
+            
+        // $input = $request->all();
 
         $credencials = [
-            'email' => $request->email,
-            'type' => $request->type,
-            'password' => $request->password,
+            'email' => $request->customer_email,
+            'type' => 'customer',
+            'password' => $request->customer_password,
         ];
 
-        if($request->type !== 'customer'){
-            return response()->json(['response' => 'Acesso negado'], 401);
+        if($credencials['type'] !== 'customer'){
+            return response()->json(['response' => 'Tipo de usuario não permitido'], 401);
         }
 
         if(!Auth::attempt($credencials)){
-            return response()->json(['response' => 'Acesso negado'], 401);
+            return response()->json(['response' => 'Acesso negado!'], 401);
         }
 
         $user = $request->user();
