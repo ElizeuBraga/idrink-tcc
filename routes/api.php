@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 // });
 
 Route::group(['prefix' => 'users'], function(){
-    Route::post('', 'UserController@store');
+    Route::post('/new', 'UserController@store');
     Route::post('login', ['uses' => 'UserController@login']);
     
     Route::group(['middleware' => 'auth:api'], function(){

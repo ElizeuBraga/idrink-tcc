@@ -23,6 +23,8 @@ class User extends Authenticatable
         'name', 'type', 'email', 'phone' ,'cpf', 'cnpj', 'password', 'api_token'
     ];
 
+    // protected $fillable = ["name","email","phone","cpf","cep","api_token","password"];
+
     /**
      * The attributes that should be hidden for arrays.
      *

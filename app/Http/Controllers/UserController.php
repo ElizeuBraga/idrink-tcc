@@ -14,6 +14,8 @@ use DB;
 
 class UserController extends Controller
 {
+    
+
     /**
      * Methods for api
      * 
@@ -75,13 +77,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $input = Input::all();
-        $input['password'] = Hash::make($input['password']);
-        $input['api_token'] = Str::random(60);
-        $user = new User();
-        $user->fill($input);
+        $user = new User([
+
+            'name' => $request->get('customer_name'),
+            'type' => 'customer',
+            'email' => $request->get('customer_email'),
+            'phone' => $request->get('customer_phone'),
+            'cpf' => $request->get('customer_cpf'),
+            'cep' => $request->get('customer_cep'),
+            'api_token' => Str::random(60),
+            'password' => Hash::make($request->get('customer_password')),
+        ]);
+
         $user->save();
-        return $user;
+
+        return response()->json(['response' => 'Cadastrado com sucesso!']);
     }
 
     /**
