@@ -60,11 +60,11 @@
                         <div class="">
                             <h2>Items do pedido do(a) {{$delivery->customer_name}}</h2>
                             <div class="row" style="font-weight: bold; font-size: 18px">
-                                    <span class="col-md-1">Id</span>
-                                    <span class="col-md-4">Produto</span>
-                                    <span class="col-md-2">Valor</span>
-                                    <span class="col-md-2">Quantidade</span>    
-                                    <span class="col-md-3">Total</span>    
+                                <span class="col-md-1">Id</span>
+                                <span class="col-md-4">Produto</span>
+                                <span class="col-md-2">Valor</span>
+                                <span class="col-md-2">Quantidade</span>    
+                                <span class="col-md-3">Total</span>    
                             </div>
                             @foreach ($items as $item)
                             @if ($item->delivery_id == $delivery->delivery_id)
@@ -163,6 +163,6 @@
 
 @section('script')
 <script>
-    
+
 </script>
 @endsection
