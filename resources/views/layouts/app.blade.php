@@ -142,10 +142,10 @@
         $("#menu-toggle").click(function(e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
-        });
-
-        
+        });        
     </script>
+
     @yield('script')
+    
 </body>
 </html>
