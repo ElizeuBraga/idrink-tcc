@@ -143,7 +143,9 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
-    </script>
-</body>
 
+        
+    </script>
+    @yield('script')
+</body>
 </html>
