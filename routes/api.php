@@ -33,3 +33,5 @@ Route::group(['prefix' => 'deliveries'], function(){
         Route::get('/store/{id}', ['uses' => 'DeliveryController@getDeliveriesCustomerStoreId']);
     });
 });
+
+Route::get('deliveries', ['uses' => 'DeliveryController@deliveries'])->middleware('auth:api');;

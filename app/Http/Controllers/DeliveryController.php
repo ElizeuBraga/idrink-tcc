@@ -89,6 +89,14 @@ class DeliveryController extends Controller
      * 
      * 
      */
+    public function deliveries(){
+        $deliveries = [Auth::user()->email, Delivery::all()];
+
+        // dd($deliveries);
+
+        return response()->json($deliveries, 200);
+    }
+
     public function getDeliveriesCustomer(){
         $deliveries = DB::table('products')
         ->join('users as u', 'u.id', '=', 'products.user_id')
