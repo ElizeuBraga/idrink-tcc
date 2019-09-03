@@ -34,4 +34,5 @@ Route::group(['prefix' => 'deliveries'], function(){
     });
 });
 
+//Deploy para testar autenticação depois do debug
 Route::get('deliveries', ['uses' => 'DeliveryController@deliveries'])->middleware('auth:api');;
