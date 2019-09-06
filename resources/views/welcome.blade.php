@@ -1,90 +1,179 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE HTML>
+<!--
+	Retrospect by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>iDrink</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body class="landing">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Header -->
+			<header id="header" class="alt">
+				<h1><a href="/">iDrink</a></h1>
+				<a href="#nav">Menu</a>
+			</header>
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<!-- Nav -->
+			<nav id="nav">
+				<ul class="links">
+					@auth
+					<li><a href="/home">Home</a></li>
+					@endauth
+					@guest
+					<li><a href="/login">Login</a></li>
+					<li><a href="/register">Cadastre-se</a></li>
+					@endguest
+				</ul>
+			</nav>
 
-    <!-- Styles -->
-    <style>
-        /* Centered text */
-        nav{
-            position: fixed !important;
-            width: 100%;
-        }
-        .centered {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 300px;
-            /* color: #1fbf15; */
-            color: lime;
-        }
+		<!-- Banner -->
+			<section id="banner">
+				{{-- <i class="icon fa-diamond"></i> --}}
+				<h2>Comercialize bebidas online</h2>
+				<p>Cadastre-se e seja mais uma loja moderna</p>
+				<ul class="actions">
+					<li><a href="/register" class="button big special">Cadastre-se</a></li>
+				</ul>
+			</section>
 
-        #others{
+		<!-- One -->
+			<section id="one" class="wrapper style1">
+				<div class="inner">
+					<article class="feature left">
+						<span class="image"><img src="images/pic01.jpg" alt="" /></span>
+						<div class="content">
+							<h2>Mais vendas para seu negócio</h2>
+							<p>Ao se tornar um parceiro do iDrink você se torna um comerciante moderno, e com isso terá ainda mais vendas no seu comércio.</p>
+							<ul class="actions">
+								<li>
+									<a href="#two" class="button alt">Saiba mais</a>
+								</li>
+							</ul>
+						</div>
+					</article>
+					<article class="feature right">
+						<span class="image"><img src="images/pic02.jpg" alt="" /></span>
+						<div class="content">
+							<h2>Deliveries</h2>
+							<p>Seus clientes não precisarão estar na sua loja para que você possa atendelos</p>
+							<p>Nosso aplicativo tem milhares de clientes todos os dias para você.</p>
+							<ul class="actions">
+								<li>
+									<a href="#" class="button alt">More</a>
+								</li>
+							</ul>
+						</div>
+					</article>
+				</div>
+			</section>
 
-        }
+		<!-- Two -->
+			<section id="two" class="wrapper special">
+				<div class="inner">
+					<header class="major narrow">
+						<h2>Seja um parceiro</h2>
+						<p>Você não precisa ter uma loja física, precisa estar apenas disposto a vender.</p>
+					</header>
+					<h3>O que preciso para ser um parceiro?</h3>
+					<p>Ter um cnpj e entender de vender bebidas.</p>
+					<h3>Como meus clientes me encontrarão?</h3>
+					<p>Ao se cadastrar sua loja estará disponivel para milhares de clientes que estão presentes no nosso aplicativo.</p>
+					{{-- <div class="image-grid">
+						<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
+						<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
+						<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
+						<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
+						<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+						<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+						<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+						<a href="#" class="image"><img src="images/pic10.jpg" alt="" /></a>
+					</div> --}}
+					<ul class="actions">
+						<li><a href="#" class="button big alt">Tempus Aliquam</a></li>
+					</ul>
+				</div>
+			</section>
 
-        .link-foot{
-            font-size: 18px;
-        }
-    </style>
-</head>
-<body>
-    @extends('layouts.app')
-    @section('content')
-    <section id="welcome" class="main">
-        <img src="/imgs/welcome/welcome.png" alt="Beer" style="width: 100%; height: 600px">
-        {{-- <div class="centered"><div class="w3-animate-zoom">iDrink</div></div> --}}
-        
-            <h1 class="display-4 u-fw-600 text-white u-mb-40">
-                Com o iDrink<br>
-                <span class="text-yellow" data-type="Desenvolvedores, Iniciantes, Profissionais, Sonhadores, Você!">Desenvol</span>
-                <span class="typed-curcor text-yellow">|</span>
-            </h1>
-    </section>
-    <section id="about" class="main">
-            <img src="/imgs/welcome/about.png" alt="Beer" style="width: 100%; height: 600px">
-    </section>
-    <section id="others" class="main">
+		<!-- Three -->
+			<section id="three" class="wrapper style3 special">
+				<div class="inner">
+					<header class="major narrow	">
+						<h2>Magna sed consequat tempus</h2>
+						<p>Ipsum dolor tempus commodo turpis adipiscing Tempor placerat sed amet accumsan</p>
+					</header>
+					<ul class="actions">
+						<li><a href="#" class="button big alt">Magna feugiat</a></li>
+					</ul>
+				</div>
+			</section>
 
-    <!-- Footer -->
-    <footer class="page-footer font-small blue">
-    <!-- Copyright -->
-    <div class="footer row">
-        <div class="col-md-4 row">
-            <h2>Contato</h2>
-            <a href="" class="link-foot col-md-12">Link 1</a>            
-            <a href="" class="link-foot col-md-12">Link 2</a>            
-            <a href="" class="link-foot col-md-12">Link 3</a>            
-            <a href="" class="link-foot col-md-12">Link 4</a>
-        </div>
-        <div class="col-md-4 row">
-            <h2>iDrink</h2>
-            <a href="" class="link-foot col-md-12">Link 1</a>            
-            <a href="" class="link-foot col-md-12">Link 2</a>            
-            <a href="" class="link-foot col-md-12">Link 3</a>            
-            <a href="" class="link-foot col-md-12">Link 4</a>            
-        </div>
-        <div class="col-md-4 row">
-            <h2>Expectativas</h2>
-            <a href="" class="link-foot col-md-12">Link 1</a>            
-            <a href="" class="link-foot col-md-12">Link 2</a>            
-            <a href="" class="link-foot col-md-12">Link 3</a>            
-            <a href="" class="link-foot col-md-12">Link 4</a>
-        </div>
-    </div>
-    <div class="footer-copyright text-center py-3">
-        © 2019 Copyright: iDrink
-    </div>
-    <!-- Copyright -->
-    </footer>
-    <!-- Footer -->
-    </section>
-    @endsection
-</body>
+		<!-- Four -->
+			<section id="four" class="wrapper style2 special">
+				<div class="inner">
+					<header class="major narrow">
+						<h2>Get in touch</h2>
+						<p>Ipsum dolor tempus commodo adipiscing</p>
+					</header>
+					<form action="#" method="POST">
+						<div class="container 75%">
+							<div class="row uniform 50%">
+								<div class="6u 12u$(xsmall)">
+									<input name="name" placeholder="Name" type="text" />
+								</div>
+								<div class="6u$ 12u$(xsmall)">
+									<input name="email" placeholder="Email" type="email" />
+								</div>
+								<div class="12u$">
+									<textarea name="message" placeholder="Message" rows="4"></textarea>
+								</div>
+							</div>
+						</div>
+						<ul class="actions">
+							<li><input type="submit" class="special" value="Submit" /></li>
+							<li><input type="reset" class="alt" value="Reset" /></li>
+						</ul>
+					</form>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-facebook">
+							<span class="label">Facebook</span>
+						</a></li>
+						<li><a href="#" class="icon fa-twitter">
+							<span class="label">Twitter</span>
+						</a></li>
+						<li><a href="#" class="icon fa-instagram">
+							<span class="label">Instagram</span>
+						</a></li>
+						<li><a href="#" class="icon fa-linkedin">
+							<span class="label">LinkedIn</span>
+						</a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; iDrink.</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="js/jquery.min.js"></script>
+			<script src="js/skel.min.js"></script>
+			<script src="js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="js/main.js"></script>
+
+	</body>
 </html>
