@@ -54,6 +54,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone' => ['required'],
+            'cnpj' => ['required']
         ]);
     }
 
@@ -71,7 +73,6 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone' => $data['phone'],
             'cnpj' => $data['cnpj'],
-            'cep' => $data['cep'],
             'api_token' => $input['api_token'] = Str::random(60),
             'password' => Hash::make($data['password']),
         ]);
