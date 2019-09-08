@@ -19,9 +19,12 @@
                             <i class="fas fa-user-edit"></i>
                         </span>
                     </div>
-                    <div class="wrap-input100 validate-input" data-validate = "Digite um email válido">
+                    <div id="email" class="wrap-input100 validate-input" data-validate = "Digite um email válido">
                         <input class="input100" type="text" name="email" placeholder="Email" value="{{ old('email') }}">
                         <span class="focus-input100"></span>
+                        @if ($errors->has('email'))
+                        <p hidden id="erremail" value="">{{$errors->first('email')}}</p>
+                        @endif
                         <span class="symbol-input100">
                             <i class="fas fa-map-marked-alt"></i>
                         </span>
@@ -77,8 +80,33 @@
                         <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                     </a>
                 </div>
+
+                @if ($errors->has('name'))
+                <span>{{$errors->first('name')}}</span>
+                @endif
+                
+                @if ($errors->has('cnpj'))
+                <span>{{$errors->first('cnpj')}}</span>
+                @endif
+                @if ($errors->has('password'))
+                <span value="{{$errors->first('passwprd')}}"></span>
+                @endif
+                @if ($errors->has('phone'))
+                <span>{{$errors->first('phone')}}</span>
+                @endif
             </form>
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+    <script>
+            var erremail = document.getElementById('erremail').innerHTML;
+            var element = document.getElementById('email');
+            element.dataset.validate = erremail;
+            element.classList.add('alert-validate')
+
+            console.log(element);
+            
+    </script>
 @endsection

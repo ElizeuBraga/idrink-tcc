@@ -132,6 +132,10 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        
+        'email' =>[
+            'unique' => 'Esse :attribute já existe'
+        ]
     ],
 
     /*
