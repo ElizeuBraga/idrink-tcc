@@ -135,6 +135,11 @@ return [
         
         'email' =>[
             'unique' => 'Esse :attribute já existe'
+        ],
+
+        'password' =>[
+            'min' => 'A senha deve ter no mínimo 8 caracteres',
+            'confirmed' => 'Senhas não conferem'
         ]
     ],
 

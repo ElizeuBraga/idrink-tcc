@@ -10,7 +10,7 @@
         <form class="login100-form validate-form" action="{{route('login')}}" method="POST">
             @csrf
                 <span class="login100-form-title">
-                    Login de usuario
+                    Login de usuario 
                 </span>
 
                 <div class="wrap-input100 validate-input" data-validate = "Digite um email valido: ex@abc.xyz">

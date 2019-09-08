@@ -36,24 +36,33 @@
                             <i class="fas fa-phone"></i>
                         </span>
                     </div>
-                    <div class="wrap-input100 validate-input" data-validate = "CNPJ válido">
+                    <div id="cnpj" class="wrap-input100 validate-input" data-validate = "CNPJ válido">
                         <input class="input100" type="text" name="cnpj" placeholder="CNPJ" value="{{ old('cnpj') }}">
                     <span class="focus-input100"></span>
+                    @if ($errors->has('cnpj'))
+                    <p hidden id="errcnpj" value="">{{$errors->first('cnpj')}}</p>
+                    @endif
                     <span class="symbol-input100">
                         <i class="fas fa-user-edit"></i>
                     </span>
                 </div>
-                <div class="wrap-input100 validate-input" data-validate = "Digite uma senha">
+                <div id="password" class="wrap-input100 validate-input" data-validate = "Digite uma senha">
                     <input class="input100" type="password" name="password" placeholder="Senha">
                     <span class="focus-input100"></span>
+                    @if ($errors->has('password'))
+                    <p hidden id="errpassword" value="">{{$errors->first('password')}}</p>
+                    @endif
                     <span class="symbol-input100">
                         <i class="fas fa-unlock-alt"></i>
                     </span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Confirme a senha">
-                    <input class="input100" type="password" name="password_confirm" placeholder="Confirme a senha">
+                <div id="password_confirm" class="wrap-input100 validate-input" data-validate = "Confirme a senha">
+                    <input class="input100" type="password" name="password_confirmation" placeholder="Confirme a senha">
                     <span class="focus-input100"></span>
+                    @if ($errors->has('password_confirm'))
+                    <p hidden id="errpassword" value="">{{$errors->first('password_confirmation')}}</p>
+                    @endif
                     <span class="symbol-input100">
                         <i class="fas fa-unlock-alt"></i>
                     </span>
@@ -80,20 +89,6 @@
                         <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                     </a>
                 </div>
-
-                @if ($errors->has('name'))
-                <span>{{$errors->first('name')}}</span>
-                @endif
-                
-                @if ($errors->has('cnpj'))
-                <span>{{$errors->first('cnpj')}}</span>
-                @endif
-                @if ($errors->has('password'))
-                <span value="{{$errors->first('passwprd')}}"></span>
-                @endif
-                @if ($errors->has('phone'))
-                <span>{{$errors->first('phone')}}</span>
-                @endif
             </form>
         </div>
     </div>
@@ -101,12 +96,29 @@
 @endsection
 @section('script')
     <script>
-            var erremail = document.getElementById('erremail').innerHTML;
-            var element = document.getElementById('email');
-            element.dataset.validate = erremail;
-            element.classList.add('alert-validate')
+            if($("#erremail").length != 0 ){
+                let erremail = document.getElementById('erremail').innerHTML;
+                let element = document.getElementById('email');                
+                element.dataset.validate = erremail;
+                element.classList.add('alert-validate');
+            }
 
-            console.log(element);
-            
+            else if($("#errpassword").length != 0 ){
+                let errpassword = document.getElementById('errpassword').innerHTML;
+                let element = document.getElementById('password');                
+                element.dataset.validate = errpassword;
+                element.classList.add('alert-validate');
+            }
+            // var errcnpj = document.getElementById('errcnpj').innerHTML;
+            // var errpassword = document.getElementById('errpassword').innerHTML;
+            // var errpasswordconfirm = document.getElementById('errpasswordconfirm').innerHTML;
+            // var element1 = document.getElementById('password');
+            // var element2 = document.getElementById('cnpj');
+            // var element3 = document.getElementById('password_confirm');
+            // element2.dataset.validate = errcnpj;
+            // element1.dataset.validate = errpassword;
+            // element1.classList.add('alert-validate');
+            // element2.classList.add('alert-validate');
+            // element3.classList.add('alert-validate');
     </script>
 @endsection
