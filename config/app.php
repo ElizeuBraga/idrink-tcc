@@ -177,6 +177,7 @@ return [
 
         Barryvdh\Cors\ServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
+        LaravelLegends\PtBrValidator\ValidatorProvider::class,
     ],
 
     /*

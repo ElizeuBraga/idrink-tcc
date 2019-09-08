@@ -29,15 +29,18 @@
                             <i class="fas fa-map-marked-alt"></i>
                         </span>
                     </div>
-                    <div class="wrap-input100 validate-input" data-validate = "Telefone para contato">
-                        <input class="input100" type="text" name="phone" placeholder="Telefone" value="{{ old('phone') }}">
+                    <div id="phone" class="wrap-input100 validate-input" data-validate = "Telefone para contato">
+                        <input id="fieldphone" class="input100" type="text" name="phone" placeholder="Telefone" value="{{ old('phone') }}">
                         <span class="focus-input100"></span>
+                        @if ($errors->has('phone'))
+                        <p hidden id="errphone" value="">{{$errors->first('phone')}}</p>
+                        @endif
                         <span class="symbol-input100">
                             <i class="fas fa-phone"></i>
                         </span>
                     </div>
                     <div id="cnpj" class="wrap-input100 validate-input" data-validate = "CNPJ válido">
-                        <input class="input100" type="text" name="cnpj" placeholder="CNPJ" value="{{ old('cnpj') }}">
+                        <input id="fieldcnpj" class="input100" type="text" name="cnpj" placeholder="CNPJ" value="{{ old('cnpj') }}">
                     <span class="focus-input100"></span>
                     @if ($errors->has('cnpj'))
                     <p hidden id="errcnpj" value="">{{$errors->first('cnpj')}}</p>
@@ -95,7 +98,10 @@
 </div>
 @endsection
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" type="text/javascript"></script>
     <script>
+            $("#fieldcnpj").mask("99.999.999/9999-99");
+            $("#fieldphone").mask("(99)9999-9999");
             if($("#erremail").length != 0 ){
                 let erremail = document.getElementById('erremail').innerHTML;
                 let element = document.getElementById('email');                
@@ -107,6 +113,21 @@
                 let errpassword = document.getElementById('errpassword').innerHTML;
                 let element = document.getElementById('password');                
                 element.dataset.validate = errpassword;
+                element.classList.add('alert-validate');
+            }
+
+            else if($("#errcnpj").length != 0 ){
+                let errcnpj = document.getElementById('errcnpj').innerHTML;
+                let element = document.getElementById('cnpj');                
+                element.dataset.validate = errcnpj;
+                element.classList.add('alert-validate');
+            }
+
+            else if($("#errphone").length != 0 ){
+                alert('Oi');
+                let errphone = document.getElementById('errphone').innerHTML;
+                let element = document.getElementById('phone');                
+                element.dataset.validate = errphone;
                 element.classList.add('alert-validate');
             }
             // var errcnpj = document.getElementById('errcnpj').innerHTML;

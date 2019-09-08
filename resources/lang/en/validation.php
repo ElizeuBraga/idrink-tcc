@@ -140,7 +140,11 @@ return [
         'password' =>[
             'min' => 'A senha deve ter no mínimo 8 caracteres',
             'confirmed' => 'Senhas não conferem'
-        ]
+        ],
+
+        'cnpj' =>[
+            'cnpj' => 'Cnpj inválido'
+        ],
     ],
 
     /*

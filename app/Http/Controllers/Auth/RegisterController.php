@@ -50,13 +50,18 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $customMessages = [
+            'cnpj' => 'CNPJ inválido',
+            'celular_com_ddd' => 'Numero inválido'
+        ];
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone' => ['required'],
-            'cnpj' => ['required'],
-        ]);
+            'phone' => ['required', 'celular_com_ddd'],
+            'cnpj' => ['required', 'cnpj'],
+        ], $customMessages);
     }
 
     /**
