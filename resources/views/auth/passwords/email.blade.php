@@ -1,4 +1,5 @@
 @extends('layouts.formsReset')
+@section('pageTitle', 'Recuperar senha')
 @section('content')
 <div class="limiter">
     <div class="container-login100">

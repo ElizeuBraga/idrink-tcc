@@ -49,7 +49,7 @@
 			<section id="one" class="wrapper style1">
 				<div class="inner">
 					<article class="feature left">
-						<span class="image"><img src="images/pic01.jpg" alt="" /></span>
+						{{-- <span class="image"><img src="images/pic01.jpg" alt="" /></span> --}}
 						<div class="content">
 							<h2>Mais vendas para seu negócio</h2>
 							<p>Ao se tornar um parceiro do iDrink você se torna um comerciante moderno, e com isso terá ainda mais vendas no seu comércio.</p>

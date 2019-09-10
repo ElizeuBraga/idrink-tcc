@@ -1,4 +1,5 @@
 @extends('layouts.forms')
+@section('pageTitle', 'Login')
 @section('content')
 <div class="limiter">
     <div class="container-login100">

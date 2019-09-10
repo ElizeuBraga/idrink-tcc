@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title></title>
+<title>@yield('pageTitle')</title>
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/e9e7f80931.js"></script>
 <!--===============================================================================================-->	
