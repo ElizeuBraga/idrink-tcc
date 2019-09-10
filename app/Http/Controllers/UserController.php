@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 // use Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
@@ -75,17 +76,36 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User([
+        $data = $request->all();
+        $rules = [
+            'name' => 'required',
+            'email' => 'required|unique:users|email'
+        ];
 
-            'name' => $request->get('customer_name'),
+        $messages = [
+            'email.email' => 'Email inválido',
+            'email.required' => 'Preencha o campo email',
+            'unique' => 'Esse email já existe'
+        ];
+        
+        $validator = Validator::make($data, $rules, $messages);
+        // dd($validator->errors());
+
+        if ($validator->fails()) {
+            return response()->json(['errors'=>$validator->errors()]);
+        }
+
+        $user = new User([
+            'name' => $request->get('name'),
             'type' => 'customer',
-            'email' => $request->get('customer_email'),
-            'phone' => $request->get('customer_phone'),
-            'cpf' => $request->get('customer_cpf'),
-            'cep' => $request->get('customer_cep'),
+            'email' => $request->get('email'),
+            'phone' => $request->get('phone'),
+            'cpf' => $request->get('cpf'),
+            'cep' => $request->get('cep'),
             'api_token' => Str::random(60),
             'password' => Hash::make($request->get('customer_password')),
         ]);
+
 
         $user->save();
         
