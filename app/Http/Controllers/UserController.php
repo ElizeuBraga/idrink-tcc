@@ -14,8 +14,6 @@ use DB;
 
 class UserController extends Controller
 {
-    
-
     /**
      * Methods for api
      * 
@@ -90,8 +88,9 @@ class UserController extends Controller
         ]);
 
         $user->save();
-
-        return response()->json(['response' => 'Cadastrado com sucesso!']);
+        
+        $token = $user->createToken('Token de acesso')->accessToken;
+        return response()->json(['token' => $token], 200);
     }
 
     /**
@@ -116,5 +115,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function allStores(){
+        $stores = User::where('type', 'store')->get();
+
+        return response()->json($stores, 200);
     }
 }

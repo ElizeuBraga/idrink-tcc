@@ -24,6 +24,8 @@ Route::group(['prefix' => 'users'], function(){
     Route::group(['middleware' => 'auth:api'], function(){
         Route::get('index', ['uses' => 'UserController@index']);
         Route::get('logout', ['uses' => 'UserController@logout']);
+
+        Route::get('allStores', ['uses' => 'UserController@allStores']);
     });
 });
 
