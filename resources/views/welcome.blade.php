@@ -68,7 +68,7 @@
 							<p>Nosso aplicativo tem milhares de clientes todos os dias para você.</p>
 							<ul class="actions">
 								<li>
-									<a href="#" class="button alt">More</a>
+									<a href="#" class="button alt">Saiba mais</a>
 								</li>
 							</ul>
 						</div>
@@ -98,7 +98,7 @@
 						<a href="#" class="image"><img src="images/pic10.jpg" alt="" /></a>
 					</div> --}}
 					<ul class="actions">
-						<li><a href="#" class="button big alt">Tempus Aliquam</a></li>
+						{{-- <li><a href="#" class="button big alt">Tempus Aliquam</a></li> --}}
 					</ul>
 				</div>
 			</section>
@@ -111,7 +111,7 @@
 						<p>Ipsum dolor tempus commodo turpis adipiscing Tempor placerat sed amet accumsan</p>
 					</header>
 					<ul class="actions">
-						<li><a href="#" class="button big alt">Magna feugiat</a></li>
+						{{-- <li><a href="#" class="button big alt">Magna feugiat</a></li> --}}
 					</ul>
 				</div>
 			</section>
