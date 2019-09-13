@@ -17,8 +17,8 @@ class UserController extends Controller
 {
     /**
      * Methods for api
-     * 
-     * 
+     *
+     *
      * Sing in the user to the sistem
      */
     public function login(Request $request){
@@ -27,7 +27,7 @@ class UserController extends Controller
             'customer_password' => 'required|string',
             // 'customer_type' => 'required|string'
         ]);
-            
+
         // $input = $request->all();
 
         $credencials = [
@@ -47,7 +47,7 @@ class UserController extends Controller
         $user = $request->user();
         $token = $user->createToken('Token de acesso')->accessToken;
 
-        return response()->json(['token' => $token], 200);
+        return response()->json([$user,'token' => $token], 200);
     }
 
     /**
@@ -59,7 +59,7 @@ class UserController extends Controller
     }
 
     /**
-     * 
+     *
      */
     public function index()
     {
@@ -87,7 +87,7 @@ class UserController extends Controller
             'email.required' => 'Preencha o campo email',
             'unique' => 'Esse email já existe'
         ];
-        
+
         $validator = Validator::make($data, $rules, $messages);
         // dd($validator->errors());
 
@@ -108,7 +108,7 @@ class UserController extends Controller
 
 
         $user->save();
-        
+
         $token = $user->createToken('Token de acesso')->accessToken;
         return response()->json(['token' => $token], 200);
     }
@@ -122,14 +122,29 @@ class UserController extends Controller
         return response()->json($users);
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $user = Auth::user();
+        return response()->json($user, 200);
     }
 
-    public function update(Request $request, $id)
+    public function update(User $user)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:6|confirmed'
+        ]);
+
+        $user->name = request('name');
+        $user->cpf = request('cpf');
+        $user->phone = request('phone');
+        $user->email = request('email');
+        $user->password = bcrypt(request('password'));
+
+        $user->save();
+
+        return response()->json($user, 200);
     }
 
     public function destroy($id)

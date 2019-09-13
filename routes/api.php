@@ -20,10 +20,12 @@ use Illuminate\Http\Request;
 Route::group(['prefix' => 'users'], function(){
     Route::post('/new', 'UserController@store');
     Route::post('/login', ['uses' => 'UserController@login']);
-    
+
     Route::group(['middleware' => 'auth:api'], function(){
         Route::get('index', ['uses' => 'UserController@index']);
         Route::get('logout', ['uses' => 'UserController@logout']);
+        Route::get('{user}', ['uses' => 'UserController@edit']);
+        Route::patch('{user}/update', ['uses' => 'UserController@update']);
 
         Route::get('allStores', ['uses' => 'UserController@allStores']);
     });
