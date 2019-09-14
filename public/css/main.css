@@ -3759,9 +3759,9 @@
 		-ms-transition: -ms-transform 0.5s ease, box-shadow 0.5s ease, visibility 0.5s;
 		transition: transform 0.5s ease, box-shadow 0.5s ease, visibility 0.5s;
 		-webkit-overflow-scrolling: touch;
-		background: #07090c;
+		background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 		box-shadow: none;
-		color: #fff;
+        color: black;
 		height: 100%;
 		max-width: 80%;
 		overflow-y: auto;
@@ -3773,11 +3773,15 @@
 		visibility: hidden;
 		width: 20em;
 		z-index: 10002;
-	}
+        font-weight: bold;
+    }
 
 		#nav > ul {
-			margin: 0 0 1em 0;
+            margin: 0 0 1em 0;
 		}
+		#nav > ul > li:hover {
+            color: grey;
+        }
 
 			#nav > ul.links {
 				list-style: none;

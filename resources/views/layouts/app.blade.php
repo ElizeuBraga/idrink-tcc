@@ -17,16 +17,21 @@
             header > a{
                 color: #ffffff;
             }
+
+            #nav{
+                background-image: 
+                color: black;
+            }
         </style>
 	</head>
 	<body class="landing">
         <!-- Header -->
         <header id="header" class="alt" style="">
-            <h1><a href="/" style="color:red">iDrink</a></h1>
-            <a href="#nav">Menu</a>
+            <h1><a href="/" style="color:black">iDrink</a></h1>
+            <a href="#nav" style="color:black">Menu</a>
         </header>
                 <!-- Nav -->
-        <nav id="nav">
+        <nav id="nav" style="">
             <ul class="links">
             @auth
                 <li><a href="/home">Home</a></li>
@@ -49,14 +54,14 @@
         </nav>
 
         <style>
-            
+
         </style>
         <div id="container">
-            
+
 		</div>
 
 		<!-- One -->
-		
+
 		<!-- Scripts -->
 			<script src="js/jquery.min.js"></script>
 			<script src="js/skel.min.js"></script>
