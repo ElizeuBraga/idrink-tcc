@@ -19,10 +19,23 @@
             }
 
             #nav{
-                background-image: 
+                background-image:
                 color: black;
             }
+            @media only screen and (max-width: 600px){
+                .container{
+                    margin-top: 15%;
+                }
+            }
+
+            @media only screen and (min-width: 992px) {
+                .container{
+                    margin-top: 5%;
+                }
+            }
+
         </style>
+        @yield('style')
 	</head>
 	<body class="landing">
         <!-- Header -->
@@ -35,7 +48,7 @@
             <ul class="links">
             @auth
                 <li><a href="/home">Home</a></li>
-                <li><a href="/reports">Relatórios</a></li>
+                <li><a href="/relatorios">Relatórios</a></li>
                 <li>
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -52,12 +65,8 @@
             @endguest
             </ul>
         </nav>
-
-        <style>
-
-        </style>
-        <div id="container">
-
+        <div class="container">
+            @yield('content')
 		</div>
 
 		<!-- One -->
