@@ -157,4 +157,12 @@ class UserController extends Controller
 
         return response()->json($stores, 200);
     }
+
+    public function getStoreName($nome){
+        $loja = User::where('type', 'store')
+        ->where('name', 'like', '%'.$nome.'%')
+        ->get();
+
+        return response()->json($loja, 200);
+    }
 }

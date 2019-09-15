@@ -27,7 +27,8 @@ Route::group(['prefix' => 'users'], function(){
         Route::get('{user}', ['uses' => 'UserController@edit']);
         Route::patch('{user}/update', ['uses' => 'UserController@update']);
 
-        Route::get('allStores', ['uses' => 'UserController@allStores']);
+        Route::get('/all/stores', ['uses' => 'UserController@allStores']);
+        Route::get('getstore/{name}', ['uses' => 'UserController@getStoreName']);
     });
 });
 
