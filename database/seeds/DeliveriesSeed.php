@@ -12,21 +12,29 @@ class DeliveriesSeed extends Seeder
     public function run()
     {
         DB::table('deliveries')->insert([
-            'address_id' => 1, 
-            'store_id' => 2, 
-            'customer_id' =>4
-        ]);
+            [
+                'status' => 'open',
+                'payment' => 'money',
+                'address_id' => null,
+                'store_id' => 1,
+                'customer_id' => 3
+            ],
 
-        DB::table('deliveries')->insert([
-            'address_id' => 1, 
-            'store_id' => 1, 
-            'customer_id' => 3
-        ]);
+            [
+                'status' => 'open',
+                'payment' => 'money',
+                'address_id' => null,
+                'store_id' => 1,
+                'customer_id' => 4
+            ],
 
-        DB::table('deliveries')->insert([
-            'address_id' => 1, 
-            'store_id' => 2, 
-            'customer_id' => 3
+            [
+                'status' => 'open',
+                'payment' => 'money',
+                'address_id' => null,
+                'store_id' => 1,
+                'customer_id' => 4
+            ],
         ]);
     }
 }

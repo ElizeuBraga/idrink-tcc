@@ -12,30 +12,33 @@ class ProductSeed extends Seeder
      */
     public function run()
     {
-        // factory('App\Product', 5)->create();
 
         DB::table('products')->insert([
-            'name' => 'Recoleta 180',
-            'price' => 23.00,
-            'user_id' => 2
-        ]);
+            //La casita
+            [
+                'name' => 'Recoleta 180',
+                'price' => 23.00,
+                'user_id' => 2
+            ],
 
-        DB::table('products')->insert([
-            'name' => 'Belgrano',
-            'price' => 12.00,
-            'user_id' => 2
-        ]);
+            [
+                'name' => 'Belgrano',
+                'price' => 12.00,
+                'user_id' => 2
+            ],
 
-        DB::table('products')->insert([
-            'name' => 'X tudo',
-            'price' => 10.00,
-            'user_id' => 1
-        ]);
+            //Skiltys
+            [
+                'name' => 'X tudo',
+                'price' => 10.00,
+                'user_id' => 1
+            ],
 
-        DB::table('products')->insert([
-            'name' => 'Bomba atomica',
-            'price' => 7.00,
-            'user_id' => 1
+            [
+                'name' => 'Bomba atomica',
+                'price' => 7.00,
+                'user_id' => 1
+            ]
         ]);
     }
 }
