@@ -23,17 +23,17 @@ class UserController extends Controller
      */
     public function login(Request $request){
         $request->validate([
-            'customer_email' => 'required|string|email',
-            'customer_password' => 'required|string',
+            'email' => 'required|string|email',
+            'password' => 'required|string',
             // 'customer_type' => 'required|string'
         ]);
 
         // $input = $request->all();
 
         $credencials = [
-            'email' => $request->customer_email,
+            'email' => $request->email,
             'type' => 'customer',
-            'password' => $request->customer_password,
+            'password' => $request->password,
         ];
 
         if($credencials['type'] !== 'customer'){

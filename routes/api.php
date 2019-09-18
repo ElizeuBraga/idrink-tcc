@@ -34,8 +34,8 @@ Route::group(['prefix' => 'users'], function(){
 
 Route::group(['prefix' => 'deliveries'], function(){
     Route::group(['middleware' => 'auth:api'], function(){
-        Route::get('all', ['uses' => 'DeliveryController@getDeliveriesCustomer']);
-        Route::get('/store/{id}', ['uses' => 'DeliveryController@getDeliveriesCustomerStoreId']);
+        Route::get('all', ['uses' => 'DeliveryController@getDeliveriesCustomer']); //Return all deliveries of a usr login
+        Route::get('/store/{id}', ['uses' => 'DeliveryController@getDeliveriesCustomerStoreId']); //return deliveries of a user log in group by store_id
     });
 });
 
