@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\User;
+use App\Delivery;
 
 use DB;
 
@@ -23,17 +24,17 @@ class UserController extends Controller
      */
     public function login(Request $request){
         $request->validate([
-            'customer_email' => 'required|string|email',
-            'customer_password' => 'required|string',
+            'email' => 'required|string|email',
+            'password' => 'required|string',
             // 'customer_type' => 'required|string'
         ]);
 
         // $input = $request->all();
 
         $credencials = [
-            'email' => $request->customer_email,
+            'email' => $request->email,
             'type' => 'customer',
-            'password' => $request->customer_password,
+            'password' => $request->password,
         ];
 
         if($credencials['type'] !== 'customer'){
@@ -103,7 +104,7 @@ class UserController extends Controller
             'cpf' => $request->get('cpf'),
             'cep' => $request->get('cep'),
             'api_token' => Str::random(60),
-            'password' => Hash::make($request->get('customer_password')),
+            'password' => Hash::make($request->get('password')),
         ]);
 
 
@@ -164,5 +165,28 @@ class UserController extends Controller
         ->get();
 
         return response()->json($loja, 200);
+    }
+
+    public function storeProducts($user_id){
+        $products = User::find($user_id)->products;
+
+        return response()->json($products, 200);
+    }
+
+    public function usrReportDeliveries(){
+        $user_id = Auth::id();
+
+        $deliveries = DB::table('deliveries as d')
+        ->select('d.id', 'd.payment', 'd.status')
+        ->where('customer_id', $user_id)->get();
+
+        $items = DB::table('items as i')
+        ->select('d.id','i.delivery_id', 'i.quantity', 'p.name', 'p.price', DB::raw('p.price * i.quantity as total_parcial'))
+        ->join('deliveries as d', 'd.id','=', 'i.delivery_id')
+        ->join('products as p', 'i.product_id','=', 'p.id')
+        ->where('d.customer_id', $user_id)
+        ->get();
+
+        return response()->json( [$deliveries, $items],200);
     }
 }
