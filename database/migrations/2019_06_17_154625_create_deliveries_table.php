@@ -18,9 +18,9 @@ class CreateDeliveriesTable extends Migration
             $table->enum('status',['open','canceled','delivered'])->default('open');
             $table->enum('payment',['money','debit','credit']);
 
-            $table->unsignedBigInteger('address_id');
+            $table->unsignedBigInteger('address_id')->nullable();
             $table->foreign('address_id')->references('id')->on('adresses');
-            
+
             $table->unsignedBigInteger('store_id');
             $table->foreign('store_id')->references('id')->on('users');
             $table->unsignedBigInteger('customer_id');
