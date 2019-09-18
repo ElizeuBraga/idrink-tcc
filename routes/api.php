@@ -29,6 +29,8 @@ Route::group(['prefix' => 'users'], function(){
 
         Route::get('/all/stores', ['uses' => 'UserController@allStores']);
         Route::get('getstore/{name}', ['uses' => 'UserController@getStoreName']);
+        Route::get('products/{user_id}', ['uses' => 'UserController@storeProducts']);
+        Route::get('deliveries/all', ['uses' => 'UserController@usrReportDeliveries']);
     });
 });
 
