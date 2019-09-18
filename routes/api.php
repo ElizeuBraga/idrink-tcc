@@ -39,6 +39,3 @@ Route::group(['prefix' => 'deliveries'], function(){
         Route::get('/store/{id}', ['uses' => 'DeliveryController@getDeliveriesCustomerStoreId']); //return deliveries of a user log in group by store_id
     });
 });
-
-//Deploy para testar autenticação depois do debug
-Route::get('deliveries', ['uses' => 'DeliveryController@deliveries'])->middleware('auth:api');;
