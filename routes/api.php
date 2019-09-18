@@ -29,13 +29,13 @@ Route::group(['prefix' => 'users'], function(){
         Route::get('/all/stores', ['uses' => 'UserController@allStores']); //return all store
         Route::get('getstore/{name}', ['uses' => 'UserController@getStoreName']); //return a store by name
         Route::get('products/{user_id}', ['uses' => 'UserController@storeProducts']); //return products by store_id
-        Route::get('deliveries/all', ['uses' => 'UserController@usrReportDeliveries']); // return deliveries to the usr login
+        Route::get('deliveries/all', ['uses' => 'UserController@usrReportDeliveries']); // return deliveries to the usr logged
     });
 });
 
 Route::group(['prefix' => 'deliveries'], function(){
     Route::group(['middleware' => 'auth:api'], function(){
-        Route::get('all', ['uses' => 'DeliveryController@getDeliveriesCustomer']); //Return all deliveries of a usr login
-        Route::get('/store/{id}', ['uses' => 'DeliveryController@getDeliveriesCustomerStoreId']); //return deliveries of a user log in group by store_id
+    Route::get('all', ['uses' => 'DeliveryController@getDeliveriesCustomer']); //Return all deliveries of a logged user
+    Route::get('/store/{id}', ['uses' => 'DeliveryController@getDeliveriesCustomerStoreId']); //return deliveries of a logged user group by store_id
     });
 });
