@@ -60,19 +60,6 @@ class UserController extends Controller
     }
 
     /**
-     *
-     */
-    public function index()
-    {
-        return response()->json(["Usuario logado" => Auth::user()->id]);
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Stores a new user in the sistem
      */
     public function store(Request $request)

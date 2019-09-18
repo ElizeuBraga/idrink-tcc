@@ -18,19 +18,18 @@ use Illuminate\Http\Request;
 // });
 
 Route::group(['prefix' => 'users'], function(){
-    Route::post('/new', 'UserController@store');
-    Route::post('/login', ['uses' => 'UserController@login']);
+    Route::post('/new', 'UserController@store'); // New user
+    Route::post('/login', ['uses' => 'UserController@login']); // Login
 
     Route::group(['middleware' => 'auth:api'], function(){
-        Route::get('index', ['uses' => 'UserController@index']);
-        Route::get('logout', ['uses' => 'UserController@logout']);
-        Route::get('{user}', ['uses' => 'UserController@edit']);
-        Route::patch('{user}/update', ['uses' => 'UserController@update']);
+        Route::get('logout', ['uses' => 'UserController@logout']); // Logout
+        Route::get('{user}', ['uses' => 'UserController@edit']); // get user for edit
+        Route::patch('{user}/update', ['uses' => 'UserController@update']); //edit a user
 
-        Route::get('/all/stores', ['uses' => 'UserController@allStores']);
-        Route::get('getstore/{name}', ['uses' => 'UserController@getStoreName']);
-        Route::get('products/{user_id}', ['uses' => 'UserController@storeProducts']);
-        Route::get('deliveries/all', ['uses' => 'UserController@usrReportDeliveries']);
+        Route::get('/all/stores', ['uses' => 'UserController@allStores']); //return all store
+        Route::get('getstore/{name}', ['uses' => 'UserController@getStoreName']); //return a store by name
+        Route::get('products/{user_id}', ['uses' => 'UserController@storeProducts']); //return products by store_id
+        Route::get('deliveries/all', ['uses' => 'UserController@usrReportDeliveries']); // return deliveries to the usr login
     });
 });
 
