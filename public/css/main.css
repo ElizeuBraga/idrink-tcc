@@ -1772,7 +1772,7 @@
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #25383B;
+		color: #f6d365;
 	}
 
 	blockquote {
@@ -1939,7 +1939,7 @@
 			font-family: FontAwesome;
 			font-style: normal;
 			font-weight: normal;
-			text-transform: none !important;
+            text-transform: none !important;
 		}
 
 		.select-wrapper:before {
@@ -2875,7 +2875,7 @@
 			}
 
 			.wrapper.style1 h1, .wrapper.style1 h2, .wrapper.style1 h3, .wrapper.style1 h4, .wrapper.style1 h5, .wrapper.style1 h6 {
-				color: #555;
+				color: #f6d365;
 			}
 
 			.wrapper.style1 blockquote {
@@ -3072,8 +3072,8 @@
 				.wrapper.style1 button.alt,
 				.wrapper.style1 .button.alt {
 					background-color: transparent;
-					box-shadow: inset 0 0 0 2px #51BAA4;
-					color: #51BAA4 !important;
+					box-shadow: inset 0 0 0 2px #f6d365;
+					color: #f6d365 !important;
 				}
 
 					.wrapper.style1 input[type="submit"].alt:hover,
@@ -3331,7 +3331,7 @@
 			background-color: #1E2832;
 			color: rgba(255, 255, 255, 0.75);
 			background-attachment: fixed;
-			background-image: url("images/overlay.png"), url("../../images/pic11.jpg");
+			background-image: url("images/overlay.png"), url("https://images.unsplash.com/photo-1532635241-17e820acc59f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=703&q=80");
 			background-size: cover;
 		}
 
@@ -3901,7 +3901,7 @@
 		}
 
 		#banner h1, #banner h2, #banner h3, #banner h4, #banner h5, #banner h6 {
-			color: #fff;
+			color: #f6d365;
 		}
 
 		#banner blockquote {
@@ -3956,7 +3956,7 @@
 			#banner input[type="button"].special,
 			#banner button.special,
 			#banner .button.special {
-				background-color: #51BAA4;
+				background-color: #f6d365;
 				box-shadow: none;
 				color: #fff !important;
 			}
@@ -3966,7 +3966,7 @@
 				#banner input[type="button"].special:hover,
 				#banner button.special:hover,
 				#banner .button.special:hover {
-					background-color: #63c1ae;
+					background-color: #ffdb6a;
 				}
 
 				#banner input[type="submit"].special:active,

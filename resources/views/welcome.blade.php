@@ -12,7 +12,13 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+
+        <style>
+        .content{
+            background: ;
+        }
+        </style>
 	</head>
 	<body class="landing">
 
@@ -49,10 +55,13 @@
 			<section id="one" class="wrapper style1">
 				<div class="inner">
 					<article class="feature left">
-						{{-- <span class="image"><img src="images/pic01.jpg" alt="" /></span> --}}
+						<span class="image"><img src="https://images.unsplash.com/photo-1556742208-999815fca738?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=387&q=80" alt="" /></span>
 						<div class="content">
 							<h2>Mais vendas para seu negócio</h2>
-							<p>Ao se tornar um parceiro do iDrink você se torna um comerciante moderno, e com isso terá ainda mais vendas no seu comércio.</p>
+                            <p>Ao se tornar um parceiro do iDrink você se torna um comerciante moderno, e com isso terá ainda mais vendas no seu comércio.</p>
+                            <p>
+                                Todas estas questões, devidamente ponderadas, levantam dúvidas sobre se o desafiador cenário globalizado aponta para a melhoria da gestão inovadora da qual fazemos parte. Percebemos, cada vez mais, que a percepção das dificuldades oferece uma interessante oportunidade para verificação das posturas dos órgãos dirigentes com relação às suas atribuições.
+                            </p>
 							<ul class="actions">
 								<li>
 									<a href="#two" class="button alt">Saiba mais</a>
@@ -65,7 +74,10 @@
 						<div class="content">
 							<h2>Deliveries</h2>
 							<p>Seus clientes não precisarão estar na sua loja para que você possa atendelos</p>
-							<p>Nosso aplicativo tem milhares de clientes todos os dias para você.</p>
+                            <p>Nosso aplicativo tem milhares de clientes todos os dias para você.</p>
+                            <p>
+                                A certificação de metodologias que nos auxiliam a lidar com o acompanhamento das preferências de consumo facilita a criação dos métodos utilizados na avaliação de resultados. As experiências acumuladas demonstram que a crescente influência da mídia agrega valor ao estabelecimento dos índices pretendidos.
+                            </p>
 							<ul class="actions">
 								<li>
 									<a href="#" class="button alt">Saiba mais</a>
@@ -84,7 +96,7 @@
 						<p>Você não precisa ter uma loja física, precisa estar apenas disposto a vender.</p>
 					</header>
 					<h3>O que preciso para ser um parceiro?</h3>
-					<p>Ter um cnpj e entender de vender bebidas.</p>
+					<p>Ter um cnpj e entender de vender bebidas. </p>
 					<h3>Como meus clientes me encontrarão?</h3>
 					<p>Ao se cadastrar sua loja estará disponivel para milhares de clientes que estão presentes no nosso aplicativo.</p>
 					{{-- <div class="image-grid">
@@ -107,8 +119,10 @@
 			<section id="three" class="wrapper style3 special">
 				<div class="inner">
 					<header class="major narrow	">
-						<h2>Magna sed consequat tempus</h2>
-						<p>Ipsum dolor tempus commodo turpis adipiscing Tempor placerat sed amet accumsan</p>
+						<h2>iDrink</h2>
+						<p>
+                            Não obstante, a consulta aos diversos militantes nos obriga à análise dos métodos utilizados na avaliação de resultados. O incentivo ao avanço tecnológico, assim como o consenso sobre a necessidade de qualificação cumpre um papel essencial na formulação do retorno esperado a longo prazo. Podemos já vislumbrar o modo pelo qual a complexidade dos estudos efetuados garante a contribuição de um grupo importante na determinação das regras de conduta normativas.
+                        </p>
 					</header>
 					<ul class="actions">
 						{{-- <li><a href="#" class="button big alt">Magna feugiat</a></li> --}}
