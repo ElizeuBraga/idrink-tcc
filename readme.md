@@ -17,4 +17,4 @@ https://unsplash.com/photos/UErWoQEoMrc
 * GET .../users/getstore/{store_name}/           return a store by name
 * GET .../users/products/{user_id}/              return products by store_id
 * GET .../users/deliveries/all/                  return deliveries to the usr logged
-* GET ...users/deliveries/store/{store_id}/      return deliveries of a logged user group by store_id
+* GET ...users/deliveries/store/{store_id}/      return deliveries of a logged user group by store_id 
