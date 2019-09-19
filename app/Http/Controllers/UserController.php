@@ -80,7 +80,7 @@ class UserController extends Controller
         // dd($validator->errors());
 
         if ($validator->fails()) {
-            return response()->json(['errors'=>$validator->errors()]);
+            return response()->json(['errors'=>$validator->errors()], 400);
         }
 
         $user = new User([
@@ -98,7 +98,7 @@ class UserController extends Controller
         $user->save();
 
         $token = $user->createToken('Token de acesso')->accessToken;
-        return response()->json(['token' => $token], 200);
+        return response()->json([$user,'token' => $token], 200);
     }
 
     /**
