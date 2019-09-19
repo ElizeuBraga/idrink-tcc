@@ -70,7 +70,7 @@
 						</div>
 					</article>
 					<article class="feature right">
-						<span class="image"><img src="images/pic02.jpg" alt="" /></span>
+						<span class="image"><img src="https://images.unsplash.com/photo-1567020250037-17e5372676d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="" /></span>
 						<div class="content">
 							<h2>Deliveries</h2>
 							<p>Seus clientes não precisarão estar na sua loja para que você possa atendelos</p>
