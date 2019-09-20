@@ -74,7 +74,8 @@ class UserController extends Controller
         $messages = [
             'email.email' => 'Email inválido',
             'email.required' => 'Preencha o campo email',
-            'unique' => 'Esse email já existe'
+            'unique' => 'Esse email já existe',
+            'password.confirmed' => 'Senhas não conferem'
         ];
 
         $validator = Validator::make($data, $rules, $messages);
