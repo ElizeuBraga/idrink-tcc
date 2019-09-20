@@ -67,7 +67,8 @@ class UserController extends Controller
         $data = $request->all();
         $rules = [
             'name' => 'required',
-            'email' => 'required|unique:users|email'
+            'email' => 'required|unique:users|email',
+            'password' => ['required', 'string', 'min:8', 'confirmed']
         ];
 
         $messages = [
