@@ -14,8 +14,17 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <style>
+            body{
+                background:linear-gradient(120deg, #f6d365 0%, #fda085 100%)
+            }
+
             header > a{
                 color: #ffffff;
+            }
+
+            header{
+                background:linear-gradient(120deg, #f6d365 0%, #fda085 100%)
+                height: 12%!important;
             }
 
             #nav{
@@ -30,7 +39,8 @@
 
             @media only screen and (min-width: 992px) {
                 .container{
-                    margin-top: 5%;
+                    margin-top: 5.5%;
+                    background: white;
                 }
             }
 
@@ -48,6 +58,7 @@
             <ul class="links">
             @auth
                 <li><a href="/home">Home</a></li>
+            <li><a href="{{route('allProducts')}}">Produtos</a></li>
                 <li><a href="/relatorios">Relatórios</a></li>
                 <li>
                     <a href="{{ route('logout') }}"
