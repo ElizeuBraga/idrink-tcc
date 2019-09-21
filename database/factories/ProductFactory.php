@@ -19,7 +19,7 @@ use Faker\Generator as Faker;
 $factory->define(Product::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'price' => Str::random(2),
-        'user_id' => 1
+        'price' => rand(1, 10),
+        'user_id' => rand(1, 10),
     ];
 });
