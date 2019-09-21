@@ -16,6 +16,11 @@ use DB;
 
 class UserController extends Controller
 {
+    public function allUsers(){
+        $users = User::all();
+
+        return response()->json($users, 200);
+    }
     /**
      * Methods for api
      *

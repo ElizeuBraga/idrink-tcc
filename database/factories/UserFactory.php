@@ -28,8 +28,8 @@ $factory->define(User::class, function (Faker $faker) {
         'cnpj' => $arrayCpfCnpj[rand(0,1)],
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'api_token' => Str::random(10),
+        'password' => bcrypt('12345678'), // password
+        'api_token' => Str::random(60),
         'remember_token' => Str::random(10),
     ];
 });

@@ -37,3 +37,6 @@ Route::group(['prefix' => 'users'], function(){
     });
 });
 
+Route::get('/allUsers', ['uses' => 'UserController@allUsers']); // Logout
+
+
