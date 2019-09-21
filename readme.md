@@ -3,6 +3,9 @@
 * Make:auth
 
 heroku run php artisan migrate --path=database/migrations --app idrink-tcc
+php artisan clear-compiled
+chmod -R 777 storage
+php artisan passport:keys
 
 imagens gratis
 https://unsplash.com/photos/UErWoQEoMrc
