@@ -59,8 +59,10 @@ class UserController extends Controller
     /**
      * Logout a user to the sistem
      */
-    public function logout(Request $request){
-        $request->user()->token()->revoke();
+    public function logout(){
+        $user = Auth::user();
+        $user->api_token = Str::random(60);;
+        $user->save();
         return response()->json(['response' => 'Deslogado com sucesso']);
     }
 
