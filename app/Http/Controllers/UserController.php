@@ -46,7 +46,7 @@ class UserController extends Controller
         }
 
         $user = $request->user();
-        $token = $user->createToken('Token de acesso')->accessToken;
+        $token = $user->api_token;
 
         return response()->json([$user,'token' => $token], 200);
     }
@@ -98,8 +98,8 @@ class UserController extends Controller
 
 
         $user->save();
-
-        $token = $user->createToken('Token de acesso')->accessToken;
+        $token = ($user->api_token);
+        // $token = $user->createToken('Token de acesso')->accessToken;
         return response()->json([$user,'token' => $token], 200);
     }
 
