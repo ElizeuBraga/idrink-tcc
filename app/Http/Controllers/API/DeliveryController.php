@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
+use App\Delivery;
+use Auth;
+use App\Http\Controllers\Controller;
 
 class DeliveryController extends Controller
 {
@@ -13,7 +16,9 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        //
+        $deliveries = Delivery::where('customer_id', Auth::user()->id);
+
+        return response()->json($deliveries, 200);
     }
 
     /**
@@ -34,7 +39,13 @@ class DeliveryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            Delivery::create($request->all());
+            return response()->json();
+        } catch (\Throwable $th) {
+            // return response()->json(['response'=>'erro'], 400);
+            return $th;
+        }
     }
 
     /**

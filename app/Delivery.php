@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Delivery extends Model
 {
     protected $table = 'deliveries';
-    protected $fillable = ['customer_id', 'store_id'];
+    protected $fillable = ['status','payment','address_id','customer_id', 'store_id'];
 
     public function items(){
         return $this->hasMany(Item::class);

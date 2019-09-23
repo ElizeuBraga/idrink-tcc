@@ -37,6 +37,7 @@ Route::group(['prefix' => 'users'], function(){
     });
 });
 
+Route::resource('deliveries', 'API\DeliveryController')->middleware('auth:api');
 Route::get('/allUsers', ['uses' => 'UserController@allUsers']); // Logout
 
 

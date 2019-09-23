@@ -14,5 +14,6 @@ $factory->define(Delivery::class, function (Faker $faker) {
         'payment' => $arrayPayment[rand(0,1)],
         'store_id' => rand(1, 10),
         'customer_id' => rand(1, 10),
+        'address_id' => rand(1, 10),
     ];
 });
