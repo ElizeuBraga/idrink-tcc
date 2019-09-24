@@ -22,3 +22,12 @@ https://unsplash.com/photos/UErWoQEoMrc
 * GET .../users/products/{user_id}/              return products by store_id
 * GET .../users/deliveries/all/                  return deliveries to the usr logged
 * GET ...users/deliveries/store/{store_id}/      return deliveries of a logged user group by store_id
+
+
+| POST      | api/deliveries                          | deliveries.store                           
+| GET|HEAD  | api/deliveries                          | deliveries.index
+| GET|HEAD  | api/deliveries/create                   | deliveries.create
+| DELETE    | api/deliveries/{delivery}               | deliveries.destroy
+| PUT|PATCH | api/deliveries/{delivery}               | deliveries.update                        
+| GET|HEAD  | api/deliveries/{delivery}               | deliveries.show
+| GET|HEAD  | api/deliveries/{delivery}/edit          | deliveries.edit

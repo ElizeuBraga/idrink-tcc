@@ -43,8 +43,8 @@ class DeliveryController extends Controller
             Delivery::create($request->all());
             return response()->json();
         } catch (\Throwable $th) {
-            // return response()->json(['response'=>'erro'], 400);
-            return $th;
+            return response()->json(['response'=>'erro'], 400);
+            // return $th;
         }
     }
 
@@ -67,7 +67,8 @@ class DeliveryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $delivery = Delivery::find($id);
+        return response()->json($delivery, 200);
     }
 
     /**
@@ -79,7 +80,20 @@ class DeliveryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $delivery = Delivery::find($id);
+
+            $delivery->update($request->all());
+            $delivery->save();
+
+            $alterado = Delivery::find(1);
+
+            return response()->json($alterado);
+
+        } catch (\Throwable $th) {
+            return $th;
+            // return response()->json(['response'=>'Erro']);
+        }
     }
 
     /**
