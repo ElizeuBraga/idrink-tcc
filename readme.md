@@ -31,3 +31,12 @@ https://unsplash.com/photos/UErWoQEoMrc
 | PUT|PATCH | api/deliveries/{delivery}               | deliveries.update                        
 | GET|HEAD  | api/deliveries/{delivery}               | deliveries.show
 | GET|HEAD  | api/deliveries/{delivery}/edit          | deliveries.edit
+
+
+| POST      | api/items                               | items.store
+| GET|HEAD  | api/items                               | items.index
+| GET|HEAD  | api/items/create                        | items.create
+| PUT|PATCH | api/items/{item}                        | items.update
+| GET|HEAD  | api/items/{item}                        | items.show
+| DELETE    | api/items/{item}                        | items.destroy
+| GET|HEAD  | api/items/{item}/edit                   | items.edit

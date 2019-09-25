@@ -3,15 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
-use App\Delivery;
-use Auth;
+use App\Item;
 use App\Http\Controllers\Controller;
 
-class DeliveryController extends Controller
+class ItemController extends Controller
 {
-    public function meta(){
-
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,9 +15,7 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        $deliveries = Delivery::where('customer_id', Auth::user()->id);
-
-        return response()->json($deliveries, 200);
+        //
     }
 
     /**
@@ -43,11 +37,11 @@ class DeliveryController extends Controller
     public function store(Request $request)
     {
         try {
-            Delivery::create($request->all());
+            Item::create($request->all());
             return response()->json(['response'=>'Salvo com sucesso!']);
         } catch (\Throwable $th) {
-            return response()->json(['response'=>'erro'], 400);
-            // return $th;
+            // return response()->json(['response'=>'erro'], 400);
+            throw $th;
         }
     }
 
@@ -70,8 +64,8 @@ class DeliveryController extends Controller
      */
     public function edit($id)
     {
-        $delivery = Delivery::find($id);
-        return response()->json($delivery, 200);
+        $item = Item::find($id);
+        return response()->json($item, 200);
     }
 
     /**
@@ -84,13 +78,13 @@ class DeliveryController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $delivery = Delivery::find($id);
+            $item = Item::find($id);
 
-            $delivery->update($request->all());
-            $delivery->save();
-            $alterado = Delivery::find(1);
+            $item->update($request->all());
+            $item->save();
+            $changed = Item::find($id);
 
-            return response()->json($alterado);
+            return response()->json($changed);
 
         } catch (\Throwable $th) {
             return $th;

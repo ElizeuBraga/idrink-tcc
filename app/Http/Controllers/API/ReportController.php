@@ -3,15 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
-use App\Delivery;
-use Auth;
 use App\Http\Controllers\Controller;
 
-class DeliveryController extends Controller
+class ReportController extends Controller
 {
-    public function meta(){
-
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,9 +14,7 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        $deliveries = Delivery::where('customer_id', Auth::user()->id);
-
-        return response()->json($deliveries, 200);
+        //
     }
 
     /**
@@ -42,13 +35,7 @@ class DeliveryController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            Delivery::create($request->all());
-            return response()->json(['response'=>'Salvo com sucesso!']);
-        } catch (\Throwable $th) {
-            return response()->json(['response'=>'erro'], 400);
-            // return $th;
-        }
+        //
     }
 
     /**
@@ -70,8 +57,7 @@ class DeliveryController extends Controller
      */
     public function edit($id)
     {
-        $delivery = Delivery::find($id);
-        return response()->json($delivery, 200);
+        //
     }
 
     /**
@@ -83,19 +69,7 @@ class DeliveryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            $delivery = Delivery::find($id);
-
-            $delivery->update($request->all());
-            $delivery->save();
-            $alterado = Delivery::find(1);
-
-            return response()->json($alterado);
-
-        } catch (\Throwable $th) {
-            return $th;
-            // return response()->json(['response'=>'Erro']);
-        }
+        //
     }
 
     /**

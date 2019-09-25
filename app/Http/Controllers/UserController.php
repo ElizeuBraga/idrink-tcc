@@ -106,7 +106,6 @@ class UserController extends Controller
 
         $user->save();
         $token = ($user->api_token);
-        // $token = $user->createToken('Token de acesso')->accessToken;
         return response()->json([$user,'token' => $token], 200);
     }
 
