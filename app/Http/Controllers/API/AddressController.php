@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
+use App\Address;
 use App\Http\Controllers\Controller;
 
 class AddressController extends Controller
@@ -14,17 +15,9 @@ class AddressController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $adresses = Address::where('user_id', Auth::user()->id);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json($adresses, 200);
     }
 
     /**
@@ -37,6 +30,8 @@ class AddressController extends Controller
     {
         try {
             Address::create($request->all());
+
+            return response()->json(['response'=>'Salvo com sucesso!']);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -50,18 +45,9 @@ class AddressController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $address = Address::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json($address, 200);
     }
 
     /**
@@ -73,7 +59,15 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $address  = Address::find($id);
+            $address->update($request->all());
+            $address->save();
+
+            return response()->json(['response'=>'Alterado com sucesso!']);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
