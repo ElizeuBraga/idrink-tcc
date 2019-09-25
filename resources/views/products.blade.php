@@ -7,6 +7,7 @@
 
 @section('content')
     {{-- content --}}
+    <h1>Products</h1>
 @endsection
 
 @section('script')

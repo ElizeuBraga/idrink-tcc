@@ -1,6 +1,17 @@
 @extends('layouts.app')
+@section('style')
+<style>
+    /* style */
+</style>
+@endsection
+
 @section('content')
-<div class="container">
-    <h1>Relatórios</h1>
-</div>
+    {{-- content --}}
+    <h1>Reports</h1>
+@endsection
+
+@section('script')
+<script>
+    // script
+</script>
 @endsection

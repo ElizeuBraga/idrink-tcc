@@ -70,13 +70,14 @@
                     <ul class="links">
                         @auth
                         <li><a href="/home">Home</a></li>
-                        <li><a href="{{route('allProducts')}}">Produtos</a></li>
-                        <li><a href="/relatorios">Relatórios</a></li>
+                        <li><a href="{{route('deliveries.index')}}">Entregas</a></li>
+                        <li><a href="{{route('products.index')}}">Produtos</a></li>
+                        <li><a href="{{route('reports.index')}}">Relatórios</a></li>
                         <li>
                     <a href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     {{ __('Sair') }}
-                </a>
+                    </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
