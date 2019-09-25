@@ -19,16 +19,6 @@ class ItemController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -57,18 +47,6 @@ class ItemController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $item = Item::find($id);
-        return response()->json($item, 200);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -79,12 +57,10 @@ class ItemController extends Controller
     {
         try {
             $item = Item::find($id);
-
             $item->update($request->all());
             $item->save();
-            $changed = Item::find($id);
 
-            return response()->json($changed);
+            return response()->json($item, 200);
 
         } catch (\Throwable $th) {
             return $th;
