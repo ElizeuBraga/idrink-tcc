@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
@@ -12,9 +13,43 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function __contruct(){
-        $this->middleware(['auth:api',['except' => 'store']]);
+    public function __construct(){
+        $this->middleware('auth:api',['except' => ['store', 'update', 'login']]);
     }
+
+      //Sing in the user to the sistem
+
+    public function login(Request $request){
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+
+        $credencials = [
+            'email' => $request->email,
+            'type' => 'customer',
+            'password' => $request->password,
+        ];
+
+        if(!Auth::attempt($credencials)){
+            return response()->json(['response' => 'Acesso negado!'], 401);
+        }
+
+        $user = $request->user();
+
+        return  response()->json([$user, 'token' => $user->api_token], 200);
+    }
+
+    /**
+     * Logout a user of the sistem
+     */
+    public function logout(){
+        $user = Auth::user();
+        $user->api_token = Str::random(60);;
+        $user->save();
+        return response()->json(['response' => 'Deslogado com sucesso']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,17 +57,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-    }
+        // $users = User::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        // return response()->json($users, 200);
     }
 
     /**
@@ -87,18 +114,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $user = User::find(Auth::user()->id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json($user, 200);
     }
 
     /**
@@ -112,8 +130,12 @@ class UserController extends Controller
     {
         try {
             $user = User::find($id);
-            $user->upadate($request->all());
+            $user->update($request->all());
+            $user->api_token = Str::random(60);
+            $user->password = Hash::make($request->password);
             $user->save();
+
+            return response()->json([$user,'token' => $user->api_token], 200);
         } catch (\Throwable $th) {
             throw $th;
         }
