@@ -12,17 +12,6 @@ imagens gratis
 https://unsplash.com/photos/UErWoQEoMrc
 
 # Rotas Api
-* POST .../users/new                             New user
-* POST .../users/login/                          Login
-* GET .../users/logout/                          Logout
-* GET .../users/{user_id}/                       get user for edit
-* PATCH .../users/{user_id}/update/              edit a user
-* GET .../users/all/stores/                      return all store
-* GET .../users/getstore/{store_name}/           return a store by name
-* GET .../users/products/{user_id}/              return products by store_id
-* GET .../users/deliveries/all/                  return deliveries to the usr logged
-* GET ...users/deliveries/store/{store_id}/      return deliveries of a logged user group by store_id
-
 
 | POST      | api/deliveries                          | deliveries.store                           
 | GET|HEAD  | api/deliveries                          | deliveries.index
@@ -40,3 +29,11 @@ https://unsplash.com/photos/UErWoQEoMrc
 | GET|HEAD  | api/items/{item}                        | items.show
 | DELETE    | api/items/{item}                        | items.destroy
 | GET|HEAD  | api/items/{item}/edit                   | items.edit
+
+| POST      | api/users                      | users.store   //register user
+| GET|HEAD  | api/users                      | users.index   // nothing
+| POST      | api/users/login                |               // login user
+| POST      | api/users/logout               |               // logout user
+| PUT|PATCH | api/users/{user}               | users.update  // update user
+| DELETE    | api/users/{user}               | users.destroy // nothing
+| GET|HEAD  | api/users/{user}               | users.show    // return user logged

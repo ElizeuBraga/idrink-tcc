@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth:api',['except' => ['store', 'update', 'login']]);
+        $this->middleware('auth:api',['except' => ['store', 'login']]);
     }
 
       //Sing in the user to the sistem
@@ -129,7 +129,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $user = User::find($id);
+            $user = User::find(Auth::user()->id);
             $user->update($request->all());
             $user->api_token = Str::random(60);
             $user->password = Hash::make($request->password);
