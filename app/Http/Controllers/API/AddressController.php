@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Address;
 use App\Http\Controllers\Controller;
 
 class AddressController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +22,7 @@ class AddressController extends Controller
         $adresses = Address::where('user_id', Auth::user()->id);
 
         return response()->json($adresses, 200);
+        // return response()->json([Auth::user()], 200);
     }
 
     /**
