@@ -20,6 +20,9 @@ class CreateItemsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
 
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('users');
+
             $table->unsignedBigInteger('delivery_id');
             $table->foreign('delivery_id')->references('id')->on('deliveries');
             $table->timestamps();

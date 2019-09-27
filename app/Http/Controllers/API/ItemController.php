@@ -4,10 +4,15 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Item;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 class ItemController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,9 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::where('customer_id', Auth::user()->id)->get();
+
+        return response()->json($items, 200);
     }
 
     /**
@@ -27,8 +34,8 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         try {
-            Item::create($request->all());
-            return response()->json(['response'=>'Salvo com sucesso!']);
+            $item = Item::create($request->all());
+            return response()->json($item, 200);
         } catch (\Throwable $th) {
             // return response()->json(['response'=>'erro'], 400);
             throw $th;
