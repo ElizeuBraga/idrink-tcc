@@ -9,8 +9,8 @@ use App\Http\Controllers\Controller;
 
 class DeliveryController extends Controller
 {
-    public function meta(){
-
+    public function __construct(){
+        $this->middleware('auth:api');
     }
     /**
      * Display a listing of the resource.
@@ -43,8 +43,8 @@ class DeliveryController extends Controller
     public function store(Request $request)
     {
         try {
-            Delivery::create($request->all());
-            return response()->json(['response'=>'Salvo com sucesso!']);
+            $delivery = Delivery::create($request->all());
+            return response()->json($delivery ,200);
         } catch (\Throwable $th) {
             return response()->json(['response'=>'erro'], 400);
             // return $th;
@@ -85,7 +85,6 @@ class DeliveryController extends Controller
     {
         try {
             $delivery = Delivery::find($id);
-
             $delivery->update($request->all());
             $delivery->save();
             $alterado = Delivery::find(1);
