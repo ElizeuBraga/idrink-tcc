@@ -37,3 +37,10 @@ https://unsplash.com/photos/UErWoQEoMrc
 | PUT|PATCH | api/users/{user}               | users.update  // update user
 | DELETE    | api/users/{user}               | users.destroy // nothing
 | GET|HEAD  | api/users/{user}               | users.show    // return user logged
+
+| GET|HEAD  | api/stores                     | stores.index  // return all stores of the sistem
+| POST      | api/stores                     | stores.store  // nothing
+| DELETE    | api/stores/{store}             | stores.destroy// nothing
+| PUT|PATCH | api/stores/{store}             | stores.update // nothing
+| GET|HEAD  | api/stores/{store}             | stores.show   // return stores by name
+| GET|HEAD  | api/stores/{store}/edit        | stores.edit   // nothing

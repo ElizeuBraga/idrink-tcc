@@ -41,9 +41,11 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($store)
     {
-        //
+        $stores = User::where('name', 'like', '%'.$store.'%')->get();
+
+        return response()->json($stores,200);
     }
 
     /**
