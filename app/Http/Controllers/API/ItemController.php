@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
-use App\Item;
+use App\Models\Item;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
@@ -50,7 +50,9 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        //
+        $items = Item::where('id', $id)->get();
+
+        return response()->json($items, 200);
     }
 
     /**
