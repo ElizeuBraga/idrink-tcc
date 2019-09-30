@@ -18,8 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->double('price');
             $table->enum('status',['active','inactive'])->default('active');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('store_id');
+            $table->foreign('store_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

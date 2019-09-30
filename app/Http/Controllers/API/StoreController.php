@@ -3,13 +3,22 @@
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
+use App\Models\Product;
+use DB;
 use App\Http\Controllers\Controller;
 
 class StoreController extends Controller
 {
     public function __construct(){
         $this->middleware('auth:api');
+    }
+
+    public function products($store_id){
+        $products = Product::where('store_id', $store_id)
+        ->get();
+
+        return response()->json($products, 200);
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use App\Address;
+use App\Models\Address;
 
 class User extends Authenticatable
 {
@@ -44,7 +44,7 @@ class User extends Authenticatable
     ];
 
     public function products(){
-        return $this->hasMany(Product::class, 'user_id');
+        return $this->hasMany(Product::class, 'store_id');
     }
 
     public function adresses(){

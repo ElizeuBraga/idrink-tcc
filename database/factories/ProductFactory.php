@@ -20,6 +20,6 @@ $factory->define(Product::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'price' => rand(1, 10),
-        'user_id' => rand(1, 10),
+        'store_id' => rand(1, 10),
     ];
 });
