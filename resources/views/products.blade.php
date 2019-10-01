@@ -51,6 +51,24 @@
     {{-- content --}}
     <h1>Products</h1>
 
+    {{-- Table products --}}
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Produto</th>
+            <th scope="col">valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+          </tr>
+        </tbody>
+      </table>
+
     {{-- new product modal --}}
     <div class="modal fade" id="newProductModal" tabindex="-1" role="dialog" aria-labelledby="newProductModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

@@ -13,7 +13,7 @@
 
 Auth::routes();
 Route::get('/', function () { return view('welcome');});
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'Web\HomeController@index')->name('home');
 
 Route::resource('products', 'Web\ProductController');
 Route::resource('reports', 'Web\ReportController');
