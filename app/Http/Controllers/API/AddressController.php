@@ -19,7 +19,7 @@ class AddressController extends Controller
      */
     public function index()
     {
-        $adresses = Address::where('user_id', Auth::user()->id);
+        $adresses = Address::where('user_id', Auth::user()->id)->get();
 
         return response()->json($adresses, 200);
     }
