@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class DeliveryController extends Controller
 {
     public function __construct(){
-        // $this->middleware('auth:api');
+        $this->middleware('auth:api');
     }
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        $deliveries = Delivery::where('customer_id', 4);
+        $deliveries = Delivery::where('customer_id', Auth::user()->id)->get();
 
         return response()->json($deliveries, 200);
     }

@@ -34,7 +34,6 @@ class AddressController extends Controller
     {
         try {
             $address = Address::create($request->all());
-
             return response()->json($address);
         } catch (\Throwable $th) {
             throw $th;
