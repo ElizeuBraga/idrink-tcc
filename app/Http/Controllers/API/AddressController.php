@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 class AddressController extends Controller
 {
     public function __construct(){
-        // $this->middleware('auth:api');
+        $this->middleware('auth:api');
     }
 
     /**
@@ -19,7 +19,7 @@ class AddressController extends Controller
      */
     public function index()
     {
-        $adresses = Address::where('user_id', 1);
+        $adresses = Address::where('user_id', Auth::user()->id);
 
         return response()->json($adresses, 200);
     }
