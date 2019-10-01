@@ -46,6 +46,7 @@
             @media only screen and (max-width: 600px){
                 .container{
                     margin-top: 15%;
+                    background: white;
                 }
             }
 
