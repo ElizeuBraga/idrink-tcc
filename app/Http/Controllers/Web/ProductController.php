@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Product;
 
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products');
+        $products = Product::where('store_id', Auth::user()->id)->get();
+        return view('products', compact('products'));
     }
 
     /**
@@ -73,7 +75,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $product = Product::find($id);
+            $product->update($request->all());
+            $product->save();
+
+            return redirect()->back()->with('success', 'Alterado com sucesso');
+
+        } catch (\Throwable $th) {
+            return $th;
+            // return response()->json(['response'=>'Erro']);
+        }
     }
 
     /**

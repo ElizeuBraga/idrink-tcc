@@ -2,7 +2,6 @@
 @section('style')
 <style>
     /* style */
-
     .btn-primary{
         color: black!important;
         width: 20px!important;
@@ -49,8 +48,6 @@
 
 @section('content')
     {{-- content --}}
-    <h1>Products</h1>
-
     {{-- Table products --}}
     <table class="table table-hover">
         <thead>
@@ -61,11 +58,42 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-          </tr>
+            @foreach ($products as $product)
+            <tr>
+            <th scope="row">{{$product->id}}</th>
+                <td>{{$product->name}}</td>
+                <td>{{$product->price}}</td>
+
+                {{-- Modal editar --}}
+            <div class="modal fade" id="editProductModal{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="newProductModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="newProductModalLabel">{{$product->id}}</h5>
+                                </div>
+                            <div class="modal-body">
+                            <form action="{{route('products.update', $product->id)}}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="form-group">
+                                    <label for="">Nome do produto</label>
+                                    <input type="hidden" value="{{Auth::user()->id}}" class="form-control" name="store_id" id="" aria-describedby="helpId" placeholder="" required>
+                                    <input type="text" class="form-control" value="{{$product->name}}" name="name" id="" aria-describedby="helpId" placeholder="" required>
+                                    <label for="">Valor</label>
+                                    <input type="text" class="form-control" value="{{$product->price}}" name="price" id="" aria-describedby="helpId" placeholder="" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer align-self-center">
+                                    <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Fechar</button>
+                                </div>
+                            </form>
+                        </div>
+                        </div>
+                        </div>
+                        <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#editProductModal{{$product->id}}">Open Modal</button></td>
+            </tr>
+            @endforeach
         </tbody>
       </table>
 
@@ -75,9 +103,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="newProductModalLabel">Novo produto</h5>
-                    {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button> --}}
                 </div>
             <div class="modal-body">
             <form action="{{route('products.store')}}" method="POST">

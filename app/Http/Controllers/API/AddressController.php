@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Address;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Web\Controller;
 
 class AddressController extends Controller
 {

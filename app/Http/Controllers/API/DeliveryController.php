@@ -5,7 +5,8 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Delivery;
 use Auth;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Web\Controller;
+
 
 class DeliveryController extends Controller
 {

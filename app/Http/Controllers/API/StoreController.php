@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Product;
 use DB;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Web\Controller;
 
 class StoreController extends Controller
 {
