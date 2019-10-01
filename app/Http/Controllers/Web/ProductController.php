@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class ProductController extends Controller
 {
@@ -36,7 +37,7 @@ class ProductController extends Controller
     {
         Product::create($request->all());
 
-        return redirect()->with('success', 'Salvo com sucesso!');
+        return redirect()->back()->with('success', 'Salvo com sucesso!');
     }
 
     /**

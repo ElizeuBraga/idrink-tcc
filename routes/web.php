@@ -15,6 +15,6 @@ Auth::routes();
 Route::get('/', function () { return view('welcome');});
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('products', 'ProductController');
-Route::resource('reports', 'ReportController');
-Route::resource('deliveries', 'DeliveryController');
+Route::resource('products', 'Web\ProductController');
+Route::resource('reports', 'Web\ReportController');
+Route::resource('deliveries', 'Web\DeliveryController');
