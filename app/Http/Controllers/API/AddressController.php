@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 class AddressController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth:api');
+        // $this->middleware('auth:api');
     }
 
     /**
@@ -19,10 +19,9 @@ class AddressController extends Controller
      */
     public function index()
     {
-        $adresses = Address::where('user_id', Auth::user()->id);
+        $adresses = Address::where('user_id', 1);
 
         return response()->json($adresses, 200);
-        // return response()->json([Auth::user()], 200);
     }
 
     /**
@@ -34,9 +33,9 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         try {
-            Address::create($request->all());
+            $address = Address::create($request->all());
 
-            return response()->json(['response'=>'Salvo com sucesso!']);
+            return response()->json($address);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -69,7 +68,7 @@ class AddressController extends Controller
             $address->update($request->all());
             $address->save();
 
-            return response()->json(['response'=>'Alterado com sucesso!']);
+            return response()->json($address);
         } catch (\Throwable $th) {
             throw $th;
         }
