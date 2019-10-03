@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Item;
+use DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Web\Controller;
 
@@ -34,10 +35,11 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         try {
-            $item = Item::create($request->all());
-            return response()->json($item, 200);
+            $items = $request->toArray();
+            DB::table('items')->insert($items);
+
+            return response()->json($items, 200);
         } catch (\Throwable $th) {
-            // return response()->json(['response'=>'erro'], 400);
             throw $th;
         }
     }
