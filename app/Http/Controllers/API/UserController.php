@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth:api',['except' => ['store', 'login']]);
+        $this->middleware('auth:api',['except' => ['store', 'login', 'index']]);
     }
 
       //Sing in the user to the sistem
@@ -57,9 +57,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        // $users = User::all();
+        $users = User::where('type', 'customer')->get();
 
-        // return response()->json($users, 200);
+        return response()->json($users, 200);
     }
 
     /**
