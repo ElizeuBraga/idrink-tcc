@@ -53,6 +53,7 @@
 
             @media only screen and (min-width: 992px) {
                 .container{
+                    min-width: 98%!important;
                     margin-top: 5.5%;
                     background: white;
                 }
