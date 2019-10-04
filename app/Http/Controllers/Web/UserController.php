@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -13,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::where('type', 'store')->get();
+        return dd($users);
     }
 
     /**
