@@ -44,8 +44,9 @@
                 background-image:
                 color: black;
             }
-            @media only screen and (max-width: 600px){
+            @media only screen and (max-width: 992px){
                 .container{
+                    min-width: 98%!important;
                     margin-top: 15%;
                     background: white;
                 }
@@ -53,7 +54,7 @@
 
             @media only screen and (min-width: 992px) {
                 .container{
-                    min-width: 98%!important;
+                    min-width: 95%!important;
                     margin-top: 5.5%;
                     background: white;
                 }
