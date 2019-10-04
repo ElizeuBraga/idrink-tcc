@@ -87,9 +87,9 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Produto</th>
-            <th scope="col">valor</th>
+            <th scope="col">@sortablelink('id')</th>
+            <th scope="col">@sortablelink('name', 'Nome')</th>
+            <th scope="col">@sortablelink('price', 'Preço')</th>
             <th scope="col">Opções</th>
         </tr>
     </thead>
@@ -138,7 +138,9 @@
         @endforeach
     </tbody>
 </table>
-
+<div class="d-flex justify-content-center">
+    {!! $products->appends(\Request::except('page'))->render() !!}
+</div>
 {{-- new product modal --}}
 <div class="modal fade" id="newProductModal" tabindex="-1" role="dialog" aria-labelledby="newProductModalLabel"
     aria-hidden="true">

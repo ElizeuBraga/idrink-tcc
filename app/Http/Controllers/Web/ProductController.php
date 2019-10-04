@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::where('store_id', Auth::user()->id)->get();
+        $products = Product::where('store_id', Auth::user()->id)->sortable()->paginate(5);
         return view('products', compact('products'));
     }
 

@@ -177,6 +177,7 @@ return [
 
         Barryvdh\Cors\ServiceProvider::class,
         LaravelLegends\PtBrValidator\ValidatorProvider::class,
+        Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
     ],
 
     /*
