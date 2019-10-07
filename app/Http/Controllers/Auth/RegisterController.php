@@ -61,7 +61,9 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone' => ['required', 'celular_com_ddd'],
             'cnpj' => ['required', 'cnpj'],
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], $customMessages);
+
     }
 
     /**
@@ -72,8 +74,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // dd(request()->avatar);
+        try {
+            $imageName = time().'.'.request()->avatar->getClientOriginalExtension();
+            request()->avatar->move(public_path('avatar'), $imageName);
+            // dd($imageName);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        // dd($imageName);
         return User::create([
             'name' => $data['name'],
+            'avatar' => $imageName,
             'type' => 'store',
             'email' => $data['email'],
             'phone' => $data['phone'],

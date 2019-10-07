@@ -7,12 +7,20 @@
             <div class="login100-pic js-tilt" data-tilt>
                 <img src="images/img-03.png" alt="IMG">
             </div>
-            
-            <form class="login100-form validate-form" action="{{route('register')}}" method="POST">
+
+            <form class="login100-form validate-form" action="{{route('register')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <span class="login100-form-title">
                         Cadastro de loja
                     </span>
+
+                    <div class="col-md-6">
+
+                        <input type="file" name="avatar" class="form-control">
+
+                    </div>
+
+
                     <div class="wrap-input100 validate-input" data-validate = "Nome da loja">
                         <input class="input100" type="text" name="name" placeholder="Nome da loja" value="{{ old('name') }}">
                         <span class="focus-input100"></span>
@@ -71,7 +79,7 @@
                         <i class="fas fa-unlock-alt"></i>
                     </span>
                 </div>
-                
+
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn" type="submit">
                         Cadastrar
@@ -96,21 +104,21 @@
             $("#fieldphone").mask("(99)9999-9999");
             if($("#erremail").length != 0 ){
                 let erremail = document.getElementById('erremail').innerHTML;
-                let element = document.getElementById('email');                
+                let element = document.getElementById('email');
                 element.dataset.validate = erremail;
                 element.classList.add('alert-validate');
             }
 
             else if($("#errpassword").length != 0 ){
                 let errpassword = document.getElementById('errpassword').innerHTML;
-                let element = document.getElementById('password');                
+                let element = document.getElementById('password');
                 element.dataset.validate = errpassword;
                 element.classList.add('alert-validate');
             }
 
             else if($("#errcnpj").length != 0 ){
                 let errcnpj = document.getElementById('errcnpj').innerHTML;
-                let element = document.getElementById('cnpj');                
+                let element = document.getElementById('cnpj');
                 element.dataset.validate = errcnpj;
                 element.classList.add('alert-validate');
             }
@@ -118,7 +126,7 @@
             else if($("#errphone").length != 0 ){
                 alert('Oi');
                 let errphone = document.getElementById('errphone').innerHTML;
-                let element = document.getElementById('phone');                
+                let element = document.getElementById('phone');
                 element.dataset.validate = errphone;
                 element.classList.add('alert-validate');
             }

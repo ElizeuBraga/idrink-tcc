@@ -8,6 +8,7 @@
 @section('content')
     {{-- content --}}
     <h1>Home</h1>
+{{-- {{Auth::user()->avatar}} - Avatar --}}
 @endsection
 
 @section('script')

@@ -63,11 +63,15 @@
     }
 
     .edit {
-        /* height: 0px!important; */
-        /* width: 0px!important; */
+        text-decoration: none;
+        background-color: none;
     }
 
-    .edit:focus {
+    .trash,.edit:focus {
+        outline: 0;
+    }
+
+    .add:focus {
         outline: 0;
     }
 
@@ -75,15 +79,16 @@
         font-weight: bold;
         font-size: 18px;
     }
+
+    .fas:hover{
+        color: black;
+    }
 </style>
 @endsection
 
 @section('content')
 {{-- content --}}
 {{-- Table products --}}
-<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#newProductModal">
-    Novo produto
-</button>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -131,14 +136,22 @@
                     </div>
                 </div>
             </div>
-            <td><button type="button" class="edit" data-toggle="modal" data-target="#editProductModal{{$product->id}}">
+            <td>
+                <a href="#" class="edit" data-toggle="modal" data-target="#editProductModal{{$product->id}}">
                     <i class="fas fa-pencil-alt"></i>
-                </button></td>
+                </a>
+                <a href="#" class="trash" data-toggle="modal" data-target="#editProductModal{{$product->id}}">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
         </tr>
         @endforeach
     </tbody>
 </table>
 <div class="d-flex justify-content-center">
+    <button type="button" class="add" data-toggle="modal" data-target="#newProductModal">
+        <i class="fas fa-plus-circle fa-3x"></i>
+    </button>
     {!! $products->appends(\Request::except('page'))->render() !!}
 </div>
 {{-- new product modal --}}
