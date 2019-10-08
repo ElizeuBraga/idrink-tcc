@@ -2,13 +2,18 @@
 @section('style')
 <style>
     /* style */
+    .avatar-profile{
+        height: 250px;
+        width: 250px;
+    }
 </style>
 @endsection
 
 @section('content')
     {{-- content --}}
-<img src="/images/avatar/{{$user->avatar}}" class="avatar" alt="">
-<form action="{{route('users.update', $user->id)}}" method="post" enctype="multipart/form-data">
+<div class="row">
+    <img src="/images/avatar/{{$user->avatar}}" class="avatar avatar-profile" alt="">
+    <form action="{{route('users.update', $user->id)}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <label for="">Mudar imagem do perfil</label>
@@ -19,7 +24,7 @@
     <input type="text" name="phone" value="{{$user->phone}}">
     <input type="submit" value="Enviar">
 </form>
-<h2>{{$user->name}}</h2>
+</div>
 @endsection
 
 @section('script')

@@ -64,8 +64,8 @@
 
         .avatar {
             vertical-align: middle;
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
         }
 
@@ -75,6 +75,9 @@
 </head>
 
 <body class="landing">
+    @php
+        $user = Auth::user();
+    @endphp
     <!-- Header -->
     <header id="header" class="alt" style="">
         <h1><a href="/" style="color:black">iDrink</a></h1>
@@ -82,11 +85,14 @@
     </header>
     <!-- Nav -->
     <nav id="nav" style="">
-        {{-- <img src="imgs/icons/canceled.png" alt="Avatar" class="avatar"> --}}
+        <div style="background: white; border-radius: 2%; color:black; font-weight: bold;" class="text-center">
+            <img src="/images/avatar/{{$user->avatar}}" alt="Avatar" class="avatar">
+            <p>{{$user->name}}</p>
+        </div>
         <ul class="links">
             @auth
             <li><a href="/home">Home</a></li>
-            <li><a href="{{route('users.edit', Auth::user()->id)}}">Perfil</a></li>
+            <li><a href="{{route('users.edit', $user->id)}}">Perfil</a></li>
             <li><a href="{{route('deliveries.index')}}">Entregas</a></li>
             <li><a href="{{route('products.index')}}">Produtos</a></li>
             <li><a href="{{route('reports.index')}}">Relatórios</a></li>
