@@ -74,16 +74,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // dd(request()->avatar);
-        try {
-            $imageName = time().'.'.request()->avatar->getClientOriginalExtension();
-            request()->avatar->move(public_path('avatar'), $imageName);
-            // dd($imageName);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        // // dd(request()->avatar);
+        // try {
+        //     $imageName = time().'.'.request()->avatar->getClientOriginalExtension();
+        //     request()->avatar->move(public_path('avatar'), $imageName);
+        //     // dd($imageName);
+        // } catch (\Throwable $th) {
+        //     throw $th;
+        // }
 
-        // dd($imageName);
         return User::create([
             'name' => $data['name'],
             'avatar' => $imageName,

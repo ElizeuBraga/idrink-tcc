@@ -14,13 +14,6 @@
                         Cadastro de loja
                     </span>
 
-                    <div class="col-md-6">
-
-                        <input type="file" name="avatar" class="form-control">
-
-                    </div>
-
-
                     <div class="wrap-input100 validate-input" data-validate = "Nome da loja">
                         <input class="input100" type="text" name="name" placeholder="Nome da loja" value="{{ old('name') }}">
                         <span class="focus-input100"></span>
@@ -35,7 +28,7 @@
                         <p hidden id="erremail" value="">{{$errors->first('email')}}</p>
                         @endif
                         <span class="symbol-input100">
-                            <i class="fas fa-map-marked-alt"></i>
+                            <i class="fas fa-envelope"></i>
                         </span>
                     </div>
                     <div id="phone" class="wrap-input100 validate-input" data-validate = "Telefone para contato">
@@ -55,7 +48,7 @@
                     <p hidden id="errcnpj" value="">{{$errors->first('cnpj')}}</p>
                     @endif
                     <span class="symbol-input100">
-                        <i class="fas fa-user-edit"></i>
+                        <i class="fas fa-id-badge"></i>
                     </span>
                 </div>
                 <div id="password" class="wrap-input100 validate-input" data-validate = "Digite uma senha">
