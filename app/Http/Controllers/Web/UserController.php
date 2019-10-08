@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use Image;
-// use File;
+use File;
 
 
 class UserController extends Controller
@@ -76,7 +76,15 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
+        //insert new image
         if($request->hasFile('avatar')){
+            $oldAvatar = $user->avatar;
+
+            //delete old image
+            $avatar_path = public_path('/images/avatar/'.$oldAvatar);
+            if(File::exists($avatar_path)) {
+                File::delete($avatar_path);
+            }
 
             $avatar = $request->file('avatar');
             $filename = time(). '.' .$avatar->getClientOriginalExtension();
