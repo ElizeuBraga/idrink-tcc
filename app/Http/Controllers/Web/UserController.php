@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use Image;
+// use File;
 
 
 class UserController extends Controller
@@ -73,19 +74,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = Auth::user();
+
         if($request->hasFile('avatar')){
+
             $avatar = $request->file('avatar');
             $filename = time(). '.' .$avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(300,300)->save(public_path('/imgs/avatar/'.$filename));
 
-            $user = Auth::user();
+            Image::make($avatar)->resize(300,300)->save(public_path('/images/avatar/'.$filename));
+
             $user->name = $request->name;
             $user->avatar = $filename;
             $user->save();
         }
 
-        $user = Auth::user();
         $user->name = $request->name;
         $user->phone = $request->phone;
         $user->save();

@@ -7,7 +7,7 @@
 
 @section('content')
     {{-- content --}}
-<img src="/imgs/avatar/{{$user->avatar}}" class="avatar" alt="">
+<img src="/images/avatar/{{$user->avatar}}" class="avatar" alt="">
 <form action="{{route('users.update', $user->id)}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')
