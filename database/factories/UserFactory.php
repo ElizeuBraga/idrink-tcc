@@ -22,7 +22,7 @@ $factory->define(User::class, function (Faker $faker) {
 
     return [
         'name' => $faker->name,
-        'avatar' => null,
+        'avatar' => 'default.svg',
         'type' => $arrayType[rand(0,1)],
         'phone' => Str::random(8),
         'cpf' => $arrayCpfCnpj[rand(0,1)],

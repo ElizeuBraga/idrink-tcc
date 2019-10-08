@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Image;
 use Illuminate\Support\Str;
 
 class RegisterController extends Controller
@@ -61,7 +62,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone' => ['required', 'celular_com_ddd'],
             'cnpj' => ['required', 'cnpj'],
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], $customMessages);
 
     }
@@ -85,7 +86,7 @@ class RegisterController extends Controller
 
         return User::create([
             'name' => $data['name'],
-            'avatar' => $imageName,
+            'avatar' => 'default.svg',
             'type' => 'store',
             'email' => $data['email'],
             'phone' => $data['phone'],
