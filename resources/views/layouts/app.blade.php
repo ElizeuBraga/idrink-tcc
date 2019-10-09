@@ -86,7 +86,9 @@
     <!-- Nav -->
     <nav id="nav" style="">
         <div style="background: white; border-radius: 2%; color:black; font-weight: bold;" class="text-center">
+            @auth
             <img src="/images/avatar/{{$user->avatar}}" alt="Avatar" class="avatar">
+            @endauth
             <p>{{$user->name}}</p>
         </div>
         <ul class="links">
