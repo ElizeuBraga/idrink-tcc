@@ -75,9 +75,11 @@
 </head>
 
 <body class="landing">
+    @auth
     @php
-        $user = Auth::user();
+    $user = Auth::user();
     @endphp
+    @endauth
     <!-- Header -->
     <header id="header" class="alt" style="">
         <h1><a href="/" style="color:black">iDrink</a></h1>
@@ -88,8 +90,8 @@
         <div style="background: white; border-radius: 2%; color:black; font-weight: bold;" class="text-center">
             @auth
             <img src="/images/avatar/{{$user->avatar}}" alt="Avatar" class="avatar">
-            @endauth
             <p>{{$user->name}}</p>
+            @endauth
         </div>
         <ul class="links">
             @auth
