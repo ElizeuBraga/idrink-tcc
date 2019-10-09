@@ -22,6 +22,7 @@ Route::get('stores/products/{store_id}', 'API\StoreController@products');
 Route::resource('stores', 'API\StoreController');//->middleware('auth:api');
 
 
+Route::put('users/pwdReset', 'API\UserController@pwdReset');//->middleware('auth:api');
 Route::post('users/logout', 'API\UserController@logout');//->middleware('auth:api');
 Route::post('users/login', 'API\UserController@login');//->middleware('auth:api');
 Route::resource('users', 'API\UserController');//->middleware('auth:api');

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Input;
+use Mail;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Web\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -14,9 +16,27 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth:api',['except' => ['store', 'login', 'index']]);
+        $this->middleware('auth:api',['except' => ['store', 'login', 'index', 'pwdReset']]);
     }
 
+    public function pwdReset(Request $request){
+        $pwd = Str::random(8);
+        $email = $request->email;
+        $data = ['password' => $pwd, 'email' => $request->email];
+
+        Mail::send('auth.passwords.resetApi', ['pwd' => $data], function($message) use($email){
+            $message->to($email)->subject('Nova Senha');
+            $message->from('idrinktcc@gmail.com');
+        });
+
+        if(User::where('email', '=', Input::get('email'))->exists()){
+            $user = User::where('email', '=', $request->input('email'))->first();
+            $user->password = bcrypt($pwd);
+            $user->save();
+        }
+
+        return response()->json('Nova senha enviada para o email', 200);
+    }
       //Sing in the user to the sistem
 
     public function login(Request $request){
@@ -45,7 +65,7 @@ class UserController extends Controller
      */
     public function logout(){
         $user = Auth::user();
-        $user->api_token = Str::random(60);;
+        $user->api_token = Str::random(60);
         $user->save();
         return response()->json(['response' => 'Deslogado com sucesso']);
     }
