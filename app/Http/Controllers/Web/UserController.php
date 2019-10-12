@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use App\Address;
 use Image;
 use File;
 
@@ -62,7 +63,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('profile', array('user' => Auth::user()));
+        $adresses = Address::where('user_id', Auth::user()->id)->get();
+        return view('profile', array('user' => Auth::user(), 'adressUser' => $adresses));
     }
 
     /**

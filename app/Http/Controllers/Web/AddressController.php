@@ -21,7 +21,7 @@ class AddressController extends Controller
             return view('profile', compact('cepArray'), array('user' => Auth::user()));
         }
 
-        return view('profile', array('user' => Auth::user()))->with('error', 'CEP não encontrado');
+        return view('profile', array('user' => Auth::user()));
     }
 
     public function index()
@@ -34,9 +34,16 @@ class AddressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $adresses = Address::where('user_id', Auth::user()->id)->get();
+        $cep = ZipCode::find($request->cep);
+        if($cep != null){
+            $cepArray = $cep->getArray();
+            return view('profile', compact('cepArray'), array('user' => Auth::user(), 'adressUser' => $adresses));
+        }
 
+        return view('profile', array('user' => Auth::user(), 'adressUser' => $adresses));
     }
 
     /**
