@@ -25,7 +25,7 @@
     <input type="submit" value="Enviar">
 </form>
 
-<form action="{{route('adresses.create')}}" method="GET">
+<form action="{{route('adresses.getcep')}}" method="POST">
 @csrf
 <input type="text" name="cep" id="">
 <button type="submit">Enviar</button>
@@ -46,6 +46,11 @@
     </form>
     @endisset
 </div>
+
+
+@if(Session::has('error'))
+<p class="alert alert-danger">{{ Session::get('error') }}</p>
+@endif
 @endsection
 
 @section('script')

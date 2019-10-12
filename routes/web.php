@@ -19,4 +19,6 @@ Route::resource('users', 'Web\UserController');
 Route::resource('products', 'Web\ProductController')->middleware('auth');
 Route::resource('reports', 'Web\ReportController');
 Route::resource('deliveries', 'Web\DeliveryController');
+
+Route::post('getcep', 'Web\AddressController@getCep')->name('adresses.getcep');
 Route::resource('adresses', 'Web\AddressController');
