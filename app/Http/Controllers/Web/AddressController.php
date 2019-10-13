@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use ZipCode;
 use Auth;
 use App\Address;
+use Redirect;
 class AddressController extends Controller
 {
     /**
@@ -15,13 +16,20 @@ class AddressController extends Controller
      */
     public function getCep(Request $request)
     {
+        $user = Auth::user();
+        $adressUser = Address::where('user_id', $user->id)
+                                ->where('status', 1)
+                                ->get();
         $cep = ZipCode::find($request->cep);
         if($cep != null){
             $cepArray = $cep->getArray();
-            return view('profile', compact('cepArray'), array('user' => Auth::user()));
+            // dd($cepArray);
+            // return view('profile' ,array('cepArray' => $cepArray, 'user' => $user, 'adressUser' => $adressUser));
+            return redirect()->back()->with('cepArray', $cepArray);
         }
 
-        return view('profile', array('user' => Auth::user()));
+        return redirect()->back();
+        // return redirect()->route('users.edit', array('user' => Auth::user()));
     }
 
     public function index()
@@ -36,14 +44,14 @@ class AddressController extends Controller
      */
     public function create(Request $request)
     {
-        $adresses = Address::where('user_id', Auth::user()->id)->get();
+        $adresses = Address::where('user_id', Auth::user()->id)->where('status', 1)->get();
         $cep = ZipCode::find($request->cep);
         if($cep != null){
             $cepArray = $cep->getArray();
-            return view('profile', compact('cepArray'), array('user' => Auth::user(), 'adressUser' => $adresses));
+            return Redirect::route('users.edit', Auth::user()->id)->with(array('user' => Auth::user(), 'adressUser' => $adresses, 'cepArray' => $cepArray));
         }
 
-        return view('profile', array('user' => Auth::user(), 'adressUser' => $adresses));
+        return Redirect::route('users.edit', Auth::user()->id)->with(array('user' => Auth::user(), 'adressUser' => $adresses));
     }
 
     /**
@@ -55,8 +63,9 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         Address::create($request->all());
+        $adresses = Address::where('user_id', Auth::user()->id)->where('status', 1)->get();
 
-        return redirect()->back()->with('success', 'Salvo com sucesso');
+        return redirect()->back();
     }
 
     /**
@@ -90,7 +99,12 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $address = Address::find($id);
+        $address->update($request->all());
+        $address->save();
+
+        $adresses = Address::where('user_id', Auth::user()->id)->where('status', 1)->get();
+        return redirect()->back()->with('success', 'Feito');
     }
 
     /**

@@ -99,7 +99,7 @@
         <ul class="links">
             @auth
             <li><a href="/home">Home</a></li>
-            <li><a href="{{route('users.edit', $user->id)}}">Perfil</a></li>
+            <li><a href="{{route('users.show', $user->id)}}">Perfil</a></li>
             <li><a href="{{route('deliveries.index')}}">Entregas</a></li>
             <li><a href="{{route('products.index')}}">Produtos</a></li>
             <li><a href="{{route('reports.index')}}">Relatórios</a></li>

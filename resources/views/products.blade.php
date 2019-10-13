@@ -67,7 +67,8 @@
         background-color: none;
     }
 
-    .trash,.edit:focus {
+    .trash,
+    .edit:focus {
         outline: 0;
     }
 
@@ -80,7 +81,7 @@
         font-size: 18px;
     }
 
-    .fas:hover{
+    .fas:hover {
         color: black;
     }
 </style>

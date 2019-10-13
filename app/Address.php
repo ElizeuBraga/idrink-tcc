@@ -9,7 +9,7 @@ class Address extends Model
 {
     protected $table = 'adresses';
 
-    protected $fillable = ['cep', 'logradouro', 'complemento', 'bairro', 'localidade', 'uf','numero', 'latitude', 'longitude', 'user_id'];
+    protected $fillable = ['cep','status', 'logradouro', 'complemento', 'bairro', 'localidade', 'uf','numero', 'latitude', 'longitude', 'user_id'];
 
     public function user(){
         return $this->belongsTo(User::class);

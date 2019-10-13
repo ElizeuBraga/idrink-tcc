@@ -20,7 +20,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::where('type', 'store')->get();
-        return dd($users);
+        return $users;
     }
 
     /**
@@ -52,7 +52,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = Auth::user();
+        $address = Address::where('user_id', $user->id)->where('status', 1)->get();
+        // dd($address);
+
+        return view('profile', array('user' => $user, 'adressUser' => $address));
     }
 
     /**
@@ -63,8 +67,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $adresses = Address::where('user_id', Auth::user()->id)->get();
-        return view('profile', array('user' => Auth::user(), 'adressUser' => $adresses));
+
     }
 
     /**
