@@ -138,12 +138,18 @@
                 </div>
             </div>
             <td>
+                <form id="delete-form" action="{{route('products.update', $product->id)}}", method="POST">
+                    @method('PUT')
+                    @csrf
+                    <input type="hidden" value="inactive" name="status">
+                </form>
                 <a href="#" class="edit" data-toggle="modal" data-target="#editProductModal{{$product->id}}">
                     <i class="fas fa-pencil-alt"></i>
                 </a>
-                <a href="#" class="trash" data-toggle="modal" data-target="#editProductModal{{$product->id}}">
+                <a href="{{route('products.update', $product->id)}}" class="trash" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
                     <i class="fas fa-trash-alt"></i>
                 </a>
+
             </td>
         </tr>
         @endforeach

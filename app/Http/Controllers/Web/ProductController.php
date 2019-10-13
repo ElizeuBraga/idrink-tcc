@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::where('store_id', Auth::user()->id)->sortable()->paginate(5);
+        $products = Product::where('store_id', Auth::user()->id)->where('status', 'active')->sortable()->paginate(5);
         return view('products', compact('products'));
     }
 
@@ -75,17 +75,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            $product = Product::find($id);
-            $product->update($request->all());
-            $product->save();
+        $product = Product::find($id);
+        $product->update($request->all());
 
-            return redirect()->back()->with('success', 'Alterado com sucesso');
+        $product->save();
 
-        } catch (\Throwable $th) {
-            return $th;
-            // return response()->json(['response'=>'Erro']);
-        }
+        return redirect()->back()->with('success', 'Alterado com sucesso');
     }
 
     /**
