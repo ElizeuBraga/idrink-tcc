@@ -63,8 +63,11 @@
                         <div class="form-group">
                             @csrf
                             @method('PUT')
+                            <label for="">Foto do perfil</label>
                             <input class="form-control" type="file" name="avatar" id="inputAvatar">
+                            <label for="">Nome:</label>
                             <input class="form-control" type="text" name="name" value="{{$user->name}}">
+                            <label for="">Telefone</label>
                             <input class="form-control" type="text" name="phone" value="{{$user->phone}}">
                             <input type="submit" value="Enviar">
                         </div>
