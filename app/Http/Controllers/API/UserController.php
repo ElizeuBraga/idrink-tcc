@@ -40,24 +40,30 @@ class UserController extends Controller
       //Sing in the user to the sistem
 
     public function login(Request $request){
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
+        // $request->validate([
+        //     'email' => 'required|string|email',
+        //     'password' => 'required|string',
+        // ]);
 
-        $credencials = [
-            'email' => $request->email,
-            // 'type' => 'customer',
-            'password' => $request->password,
-        ];
+        // $credencials = [
+        //     'email' => $request->email,
+        //     // 'type' => 'customer',
+        //     'password' => $request->password,
+        // ];
 
-        if(!Auth::attempt($credencials)){
-            return response()->json(['response' => 'Acesso negado!'], 401);
+        // if(!Auth::attempt($credencials)){
+        //     return response()->json(['response' => 'Acesso negado!'], 401);
+        // }
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            $user = $request->user();
+            return  response()->json([$user, 'token' => $user->api_token], 200);
         }
 
-        $user = $request->user();
-
-        return  response()->json([$user, 'token' => $user->api_token], 200);
+        return response()->json(['response' => 'Acesso negado!'], 401);
     }
 
     /**
