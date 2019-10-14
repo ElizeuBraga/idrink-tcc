@@ -51,9 +51,9 @@ class UserController extends Controller
             'password' => $request->password,
         ];
 
-        if(!Auth::attempt($credencials)){
-            return response()->json(['response' => 'Acesso negado!'], 401);
-        }
+        // if(!Auth::attempt($credencials)){
+        //     return response()->json(['response' => 'Acesso negado!'], 401);
+        // }
 
         $user = $request->user();
 
