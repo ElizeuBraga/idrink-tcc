@@ -47,7 +47,7 @@ class UserController extends Controller
 
         $credencials = [
             'email' => $request->email,
-            'type' => 'customer',
+            // 'type' => 'customer',
             'password' => $request->password,
         ];
 
