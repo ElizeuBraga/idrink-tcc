@@ -40,25 +40,10 @@ class UserController extends Controller
       //Sing in the user to the sistem
 
     public function login(Request $request){
-        // $request->validate([
-        //     'email' => 'required|string|email',
-        //     'password' => 'required|string',
-        // ]);
-
-        // $credencials = [
-        //     'email' => $request->email,
-        //     // 'type' => 'customer',
-        //     'password' => $request->password,
-        // ];
-
-        // if(!Auth::attempt($credencials)){
-        //     return response()->json(['response' => 'Acesso negado!'], 401);
-        // }
 
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Authentication passed...
             $user = $request->user();
             return  response()->json([$user, 'token' => $user->api_token], 200);
         }
@@ -156,8 +141,9 @@ class UserController extends Controller
     {
             $user = User::find($id);
             $user->update($request->all());
-            // $user->api_token = Str::random(60);
-            $user->password = Hash::make($request->password);
+            if (strlen($request->password) > 0) {
+                $user->password = Hash::make($request->password);
+            }
             $user->save();
 
             return response()->json([$user,'token' => $user->api_token], 200);
