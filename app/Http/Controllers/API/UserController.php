@@ -148,17 +148,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            $user = User::find(Auth::user()->id);
+            $user = User::find($id);
             $user->update($request->all());
             $user->api_token = Str::random(60);
             $user->password = Hash::make($request->password);
             $user->save();
 
             return response()->json([$user,'token' => $user->api_token], 200);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
     }
 
     /**
