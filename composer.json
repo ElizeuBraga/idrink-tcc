@@ -19,7 +19,7 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "laravellegends/pt-br-validator": "5.1.*",
-        "ext-gd": "*"
+        "gd": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
