@@ -105,7 +105,7 @@ class UserController extends Controller
         $user->phone = $request->phone;
         $user->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Feito!');
     }
 
     /**

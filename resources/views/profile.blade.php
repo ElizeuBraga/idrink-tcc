@@ -35,10 +35,17 @@
 
 @section('content')
 {{-- content --}}
+
 {{-- card avatar --}}
 <div class="row">
     <div class="col-4">
         <div class="card text-center">
+                @if(Session::has('error'))
+                <p class="alert alert-danger">{{ Session::get('error') }}</p>
+                @endif
+                @if(Session::has('success'))
+                <p class="alert alert-success">{{ Session::get('success') }}</p>
+                @endif
             <div class="card-body">
                 <h4 class="card-title">Perfil</h4>
                 <img class="" src="/images/avatar/{{$user->avatar}}" alt="">
@@ -81,6 +88,12 @@
     {{-- card cep --}}
     <div class="col-4">
         <div class="card text-center">
+            @if(Session::has('erro-cep'))
+            <p class="alert alert-danger">{{ Session::get('erro-cep') }}</p>
+            @endif
+            @if(Session::has('success-address'))
+            <p class="alert alert-success">{{ Session::get('success-address') }}</p>
+            @endif
             <div class="card-body">
                 <h4 class="card-title">Busca cep</h4>
                 <form action="{{route('adresses.getcep')}}" method="POST">
@@ -96,12 +109,7 @@
                 </form>
 
                 <div class="jumbotron text-justify">
-                    @if(Session::has('error'))
-                    <p class="alert alert-danger">{{ Session::get('error') }}</p>
-                    @endif
-                    @if(Session::has('success'))
-                    <p class="alert alert-success">{{ Session::get('success') }}</p>
-                    @endif
+                    @if (count($adressUser) > 0)
                     @foreach ($adressUser as $aU)
                     <form action="{{route('adresses.update', $aU->id)}}" method="POST">
                         @method('PUT')
@@ -118,6 +126,9 @@
                     </form>
                     <hr>
                     @endforeach
+                    @else
+                    <p><b>Nenhum endereço encontrado</b></p>
+                    @endif
                 </div>
             </div>
         </div>

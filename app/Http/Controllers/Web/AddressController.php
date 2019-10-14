@@ -16,20 +16,13 @@ class AddressController extends Controller
      */
     public function getCep(Request $request)
     {
-        $user = Auth::user();
-        $adressUser = Address::where('user_id', $user->id)
-                                ->where('status', 1)
-                                ->get();
         $cep = ZipCode::find($request->cep);
         if($cep != null){
             $cepArray = $cep->getArray();
-            // dd($cepArray);
-            // return view('profile' ,array('cepArray' => $cepArray, 'user' => $user, 'adressUser' => $adressUser));
-            return redirect()->back()->with('cepArray', $cepArray);
+            return redirect()->back()->with(array('cepArray' => $cepArray));
         }
 
-        return redirect()->back();
-        // return redirect()->route('users.edit', array('user' => Auth::user()));
+        return redirect()->back()->with('erro-cep', 'CEP não encontrado!');
     }
 
     public function index()
@@ -44,14 +37,15 @@ class AddressController extends Controller
      */
     public function create(Request $request)
     {
-        $adresses = Address::where('user_id', Auth::user()->id)->where('status', 1)->get();
         $cep = ZipCode::find($request->cep);
         if($cep != null){
             $cepArray = $cep->getArray();
-            return Redirect::route('users.edit', Auth::user()->id)->with(array('user' => Auth::user(), 'adressUser' => $adresses, 'cepArray' => $cepArray));
+            dd($cepArray);
+            return redirect()->back()->with(array('cepArray' => $cepArray));
         }
 
-        return Redirect::route('users.edit', Auth::user()->id)->with(array('user' => Auth::user(), 'adressUser' => $adresses));
+        dd($cep);
+        return redirect()->back()->with('erro-cep', 'CEP não encontrado!');
     }
 
     /**
@@ -65,7 +59,7 @@ class AddressController extends Controller
         Address::create($request->all());
         $adresses = Address::where('user_id', Auth::user()->id)->where('status', 1)->get();
 
-        return redirect()->back();
+        return redirect()->back()->with('success-address', 'Feito!');
     }
 
     /**
@@ -104,7 +98,7 @@ class AddressController extends Controller
         $address->save();
 
         $adresses = Address::where('user_id', Auth::user()->id)->where('status', 1)->get();
-        return redirect()->back()->with('success', 'Feito');
+        return redirect()->back()->with('success-address', 'Feito');
     }
 
     /**
