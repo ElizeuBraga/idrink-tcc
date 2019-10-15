@@ -11,6 +11,5 @@ $factory->define(Item::class, function (Faker $faker) {
         'quantity' => rand(1, 10),
         'product_id' => rand(1, 10),
         'delivery_id' => rand(1, 10),
-        'customer_id' => rand(1, 10),
     ];
 });

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Delivery;
+use DB;
+use Arr;
 
 class DeliveryController extends Controller
 {
@@ -13,7 +17,26 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        return view('deliveries');
+        $user = Auth::user();
+
+        // s = store, c = customer;
+        $deliveries = DB::table('users as s')
+        ->join('deliveries as d', 'd.store_id', '=', 's.id')
+        ->join('users as c', 'c.id', '=', 'd.customer_id')
+        ->select('d.id','s.name as store_name', 'c.name as customer_name', 'd.payment')
+        ->where('s.id', $user->id)
+        ->get();
+
+        $items = DB::table('users as s')
+        ->join('deliveries as d', 'd.store_id', '=', 's.id')
+        ->join('users as c', 'c.id', '=', 'd.customer_id')
+        ->join('items as i', 'i.delivery_id', '=', 'd.id')
+        ->join('products as p', 'i.product_id', '=', 'p.id')
+        ->select('i.delivery_id', 'i.quantity', 'p.name as product_name')
+        ->where('s.id', $user->id)
+        ->get();
+
+        return view('deliveries', compact('deliveries', 'items'));
     }
 
     /**
