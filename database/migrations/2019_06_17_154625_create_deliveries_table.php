@@ -26,6 +26,7 @@ class CreateDeliveriesTable extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

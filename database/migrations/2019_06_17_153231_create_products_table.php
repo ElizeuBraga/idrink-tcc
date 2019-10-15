@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('store_id');
             $table->foreign('store_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

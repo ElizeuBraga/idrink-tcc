@@ -4,7 +4,9 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Delivery;
+use App\Item;
 use Auth;
+use DB;
 use App\Http\Controllers\Web\Controller;
 
 
@@ -107,5 +109,27 @@ class DeliveryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function deliveriesOpen(){
+        $user = Auth::user();
+
+        $deliveries = DB::table('users as s')
+        ->join('deliveries as d', 'd.store_id', '=', 's.id')
+        ->join('users as c', 'c.id', '=', 'd.customer_id')
+        ->select('d.id','s.name as store_name', 'c.name as customer_name', 'd.payment')
+        ->where('c.id', $user->id)
+        ->get();
+
+        $items = DB::table('users as s')
+        ->join('deliveries as d', 'd.store_id', '=', 's.id')
+        ->join('users as c', 'c.id', '=', 'd.customer_id')
+        ->join('items as i', 'i.delivery_id', '=', 'd.id')
+        ->join('products as p', 'i.product_id', '=', 'p.id')
+        ->select('i.delivery_id', 'i.quantity', 'p.name as product_name')
+        ->where('c.id', $user->id)
+        ->get();
+
+        return response()->json(['deliveries' => $deliveries, 'items' => $items], 200);
     }
 }

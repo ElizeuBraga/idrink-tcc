@@ -21,8 +21,9 @@ class CreateItemsTable extends Migration
             $table->foreign('product_id')->references('id')->on('products');
 
             $table->unsignedBigInteger('delivery_id');
-            $table->foreign('delivery_id')->references('id')->on('deliveries');
+            $table->foreign('delivery_id')->references('id')->on('deliveries');            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

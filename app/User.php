@@ -9,10 +9,14 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Address;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Authenticatable
 {
+    use SoftDeletes;
     use Notifiable;
+
 
     /**
      * The attributes that are mass assignable.

@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 */
 
 Route::resource('adresses', 'API\AddressController');//->middleware('auth:api');
+
+Route::get('deliveries/open', 'API\DeliveryController@deliveriesOpen');
 Route::resource('deliveries', 'API\DeliveryController');//->middleware('auth:api');
 Route::resource('items', 'API\ItemController');//->middleware('auth:api');
 Route::resource('reports', 'API\ReportController');//->middleware('auth:api');
