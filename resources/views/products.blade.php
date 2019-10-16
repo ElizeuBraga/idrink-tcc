@@ -88,6 +88,10 @@
     .fas{
         font-size: 18px;
     }
+
+    .red{
+        color: red;
+    }
 </style>
 @endsection
 
@@ -113,8 +117,8 @@
             <center><p class="alert alert-success">{{ Session::get('success') }}</p></center>
             @endif
         </tr>
-        @foreach ($products as $product)
-        <tr>
+    @foreach ($products as $product)
+    <tr class="">
             <th scope="row">{{$product->id}}</th>
             <td>{{$product->name}}</td>
             <td>{{$product->price}}</td>
@@ -156,8 +160,8 @@
                 </div>
             </div>
             <td>
-                <form id="update-form-trash" action="{{route('products.update', $product->id)}}", method="POST">
-                    @method('PUT')
+                <form id="update-form-trash" action="{{route('products.destroy', $product->id)}}", method="POST">
+                    @method('DELETE')
                     @csrf
                 </form>
                 <form id="update-form-inactive" action="{{route('products.update', $product->id)}}", method="POST">

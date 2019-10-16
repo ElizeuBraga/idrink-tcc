@@ -91,12 +91,8 @@ class ProductController extends Controller
                 $product->save();
                 return redirect()->back()->with('success', 'Ativado!');
             }
-        }else{
-            $product->delete();
-            return redirect()->back()->with('success', 'Exlcuido!');
         }
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -105,6 +101,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+        return redirect()->back()->with('success', 'Exlcuido!');
     }
 }
