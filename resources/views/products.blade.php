@@ -84,6 +84,10 @@
     .fas:hover {
         color: black;
     }
+
+    .fas{
+        font-size: 18px;
+    }
 </style>
 @endsection
 
@@ -96,15 +100,29 @@
             <th scope="col">@sortablelink('id')</th>
             <th scope="col">@sortablelink('name', 'Nome')</th>
             <th scope="col">@sortablelink('price', 'Preço')</th>
+            <th scope="col">@sortablelink('status', 'Status')</th>
             <th scope="col">Opções</th>
         </tr>
     </thead>
     <tbody>
+        <tr>
+            @if(Session::has('error'))
+            <center><p class="alert alert-danger">{{ Session::get('error') }}</p></center>
+            @endif
+            @if(Session::has('success'))
+            <center><p class="alert alert-success">{{ Session::get('success') }}</p></center>
+            @endif
+        </tr>
         @foreach ($products as $product)
         <tr>
             <th scope="row">{{$product->id}}</th>
             <td>{{$product->name}}</td>
             <td>{{$product->price}}</td>
+            @if ($product->status == 'active')
+            <td>Ativo</td>
+            @else
+            <td>Inativo</td>
+            @endif
 
             {{-- Modal editar --}}
             <div class="modal fade" id="editProductModal{{$product->id}}" tabindex="-1" role="dialog"
@@ -138,18 +156,36 @@
                 </div>
             </div>
             <td>
-                <form id="delete-form" action="{{route('products.update', $product->id)}}", method="POST">
+                <form id="update-form-trash" action="{{route('products.update', $product->id)}}", method="POST">
+                    @method('PUT')
+                    @csrf
+                </form>
+                <form id="update-form-inactive" action="{{route('products.update', $product->id)}}", method="POST">
                     @method('PUT')
                     @csrf
                     <input type="hidden" value="inactive" name="status">
                 </form>
+                <form id="update-form-active" action="{{route('products.update', $product->id)}}", method="POST">
+                    @method('PUT')
+                    @csrf
+                    <input type="hidden" value="active" name="status">
+                </form>
                 <a href="#" class="edit" data-toggle="modal" data-target="#editProductModal{{$product->id}}">
-                    <i class="fas fa-pencil-alt"></i>
+                    <i class="fas fa-pencil-alt" style="color: blue;"></i>
                 </a>
-                <a href="{{route('products.update', $product->id)}}" class="trash" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
-                    <i class="fas fa-trash-alt"></i>
+                @if ($product->status == 'active')
+                <a href="{{route('products.update', $product->id)}}" class="trash" onclick="event.preventDefault(); document.getElementById('update-form-inactive').submit();">
+                    {{-- <i class="fas fa-trash-alt"></i> --}}
+                    <i class="fas fa-stop" style="color: red;"></i>
                 </a>
-
+                @else
+                <a href="{{route('products.update', $product->id)}}" class="trash" onclick="event.preventDefault(); document.getElementById('update-form-active').submit();">
+                    <i class="fas fa-play" style="color: green;"></i>
+                </a>
+                @endif
+                <a href="{{route('products.update', $product->id)}}" class="trash" onclick="event.preventDefault(); document.getElementById('update-form-trash').submit();">
+                    <i class="fas fa-trash-alt" style="color: black;"></i>
+                </a>
             </td>
         </tr>
         @endforeach
