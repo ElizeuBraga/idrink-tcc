@@ -113,23 +113,47 @@ class DeliveryController extends Controller
 
     public function deliveriesOpen(){
         $user = Auth::user();
-
+        
         $deliveries = DB::table('users as s')
         ->join('deliveries as d', 'd.store_id', '=', 's.id')
         ->join('users as c', 'c.id', '=', 'd.customer_id')
         ->select('d.id','s.name as store_name', 'c.name as customer_name', 'd.payment')
-        ->where('c.id', $user->id)
+        ->where('d.customer_id', $user->id)
+        ->where('d.status', 'open')
         ->get();
+        
+        return response()->json($deliveries, 200);
+    }
 
+    public function deliveriesCanceledDelivered(){
+        $user = Auth::user();
+        
+        $deliveries = DB::table('users as s')
+        ->join('deliveries as d', 'd.store_id', '=', 's.id')
+        ->join('users as c', 'c.id', '=', 'd.customer_id')
+        ->select('d.id','s.name as store_name', 'c.name as customer_name', 'd.payment')
+        ->where('d.customer_id', $user->id)
+        ->where('d.status', 'canceled')
+        ->orWhere('d.status', 'delivered')
+        ->get();
+        
+        
+        return response()->json($deliveries, 200);
+    }
+    
+    public function deliverieItems($delivery_id){
+        $user = Auth::user();
+        
         $items = DB::table('users as s')
         ->join('deliveries as d', 'd.store_id', '=', 's.id')
         ->join('users as c', 'c.id', '=', 'd.customer_id')
         ->join('items as i', 'i.delivery_id', '=', 'd.id')
         ->join('products as p', 'i.product_id', '=', 'p.id')
-        ->select('i.delivery_id', 'i.quantity', 'p.name as product_name')
-        ->where('c.id', $user->id)
+        ->select('i.delivery_id', 'i.quantity', 'p.name as product_name', 'p.price as price', DB::raw('p.price * i.quantity as parcial_price'))
+        ->where('d.customer_id', $user->id)
+        ->where('i.delivery_id', $delivery_id)
         ->get();
-
-        return response()->json(['deliveries' => $deliveries, 'items' => $items], 200);
+                
+        return response()->json($items, 200);
     }
 }

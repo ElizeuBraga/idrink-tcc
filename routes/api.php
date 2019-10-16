@@ -13,23 +13,27 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::resource('adresses', 'API\AddressController');//->middleware('auth:api');
+//Adresses
+Route::resource('adresses', 'API\AddressController');
 
+//deliveries
+Route::get('deliveries/canceled-delivered', 'API\DeliveryController@deliveriesCanceledDelivered');
 Route::get('deliveries/open', 'API\DeliveryController@deliveriesOpen');
-Route::resource('deliveries', 'API\DeliveryController');//->middleware('auth:api');
-Route::resource('items', 'API\ItemController');//->middleware('auth:api');
-Route::resource('reports', 'API\ReportController');//->middleware('auth:api');
+Route::get('deliveries/open/items/{delivery_id}', 'API\DeliveryController@deliverieItems');
+Route::resource('deliveries', 'API\DeliveryController');
 
+//Items
+Route::resource('items', 'API\ItemController');
+
+//Reports
+Route::resource('reports', 'API\ReportController');
+
+//Stores
 Route::get('stores/products/{store_id}', 'API\StoreController@products');
-Route::resource('stores', 'API\StoreController');//->middleware('auth:api');
+Route::resource('stores', 'API\StoreController');
 
-
-Route::put('users/pwdReset', 'API\UserController@pwdReset');//->middleware('auth:api');
-Route::post('users/logout', 'API\UserController@logout');//->middleware('auth:api');
-Route::post('users/login', 'API\UserController@login');//->middleware('auth:api');
-Route::resource('users', 'API\UserController');//->middleware('auth:api');
-
-
-// Route::get('/allUsers', ['uses' => 'UserController@allUsers']); // Logout
-
-
+//Users
+Route::put('users/pwdReset', 'API\UserController@pwdReset');
+Route::post('users/logout', 'API\UserController@logout');
+Route::post('users/login', 'API\UserController@login');
+Route::resource('users', 'API\UserController');
