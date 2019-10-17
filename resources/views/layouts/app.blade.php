@@ -105,13 +105,14 @@
             <li><a href="{{route('products.index')}}">Produtos</a></li>
             <li><a href="{{route('reports.index')}}">Relatórios</a></li>
             <li>
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    {{ __('Sair') }}
-                </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+                        @method('POST')
+                        @csrf
+                    </form>
+                    <a href="/"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        {{ __('Sair') }}
+                    </a>
             </li>
             @endauth
             @guest
