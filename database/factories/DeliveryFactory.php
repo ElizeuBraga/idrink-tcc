@@ -12,6 +12,7 @@ $factory->define(Delivery::class, function (Faker $faker) {
     return [
         'status' => $arrayType[rand(0,1)],
         'payment' => $arrayPayment[rand(0,1)],
+        'change' => rand(1,100),
         'store_id' => rand(1, 10),
         'customer_id' => rand(1, 10),
         'address_id' => rand(1, 10),

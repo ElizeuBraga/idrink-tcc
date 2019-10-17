@@ -23,7 +23,8 @@ class DeliveryController extends Controller
         $deliveries = DB::table('users as s')
         ->join('deliveries as d', 'd.store_id', '=', 's.id')
         ->join('users as c', 'c.id', '=', 'd.customer_id')
-        ->select('d.id','s.name as store_name', 'c.name as customer_name', 'd.payment')
+        ->join('adresses as a', 'a.id', '=', 'd.address_id')
+        ->select('d.id','s.name as store_name', 'c.name as customer_name', 'c.phone', 'd.payment', 'd.status', 'd.change', 'a.localidade', 'a.logradouro', 'a.complemento', 'a.numero', 'a.bairro')
         ->where('s.id', $user->id)
         ->get();
 
@@ -32,7 +33,7 @@ class DeliveryController extends Controller
         ->join('users as c', 'c.id', '=', 'd.customer_id')
         ->join('items as i', 'i.delivery_id', '=', 'd.id')
         ->join('products as p', 'i.product_id', '=', 'p.id')
-        ->select('i.delivery_id', 'i.quantity', 'p.name as product_name')
+        ->select('i.delivery_id','p.price', 'i.quantity', 'p.name as product_name', DB::raw('(p.price * i.quantity) as parcial_price'))
         ->where('s.id', $user->id)
         ->get();
 

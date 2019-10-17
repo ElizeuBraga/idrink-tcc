@@ -10,7 +10,7 @@ class Delivery extends Model
 {
     use SoftDeletes;
     protected $table = 'deliveries';
-    protected $fillable = ['status','payment','address_id','customer_id', 'store_id'];
+    protected $fillable = ['status','payment', 'change', 'address_id','customer_id', 'store_id'];
 
     public function items(){
         return $this->hasMany(Item::class);
