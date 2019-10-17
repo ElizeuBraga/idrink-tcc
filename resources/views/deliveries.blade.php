@@ -25,7 +25,7 @@
         <table class="table">
             <thead class="thead-inverse">
                 <tr>
-                    <th>Id</th>
+                    <th>@sortablelink('Id')</th>
                     <th>Cliente</th>
                     <th>Região</th>
                     <th class="">Pagamento</th>

@@ -24,8 +24,9 @@ class DeliveryController extends Controller
         ->join('deliveries as d', 'd.store_id', '=', 's.id')
         ->join('users as c', 'c.id', '=', 'd.customer_id')
         ->join('adresses as a', 'a.id', '=', 'd.address_id')
-        ->select('d.id','s.name as store_name', 'c.name as customer_name', 'c.phone', 'd.payment', 'd.status', 'd.change', 'a.localidade', 'a.logradouro', 'a.complemento', 'a.numero', 'a.bairro')
+        ->select('d.id','s.name as store_name', 'c.name as customer_name', 'c.phone', 'd.payment', 'd.status', 'd.change', 'a.localidade', 'a.logradouro', 'a.complemento', 'a.numero', 'a.bairro', 'd.created_at')
         ->where('s.id', $user->id)
+        ->orderBy('d.created_at', 'DESC')
         ->get();
 
         $items = DB::table('users as s')
