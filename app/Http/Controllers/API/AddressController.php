@@ -81,6 +81,7 @@ class AddressController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $address = Address::find($id);
+        $address->delete();
     }
 }

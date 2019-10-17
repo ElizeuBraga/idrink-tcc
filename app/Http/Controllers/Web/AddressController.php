@@ -57,7 +57,6 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         Address::create($request->all());
-        $adresses = Address::where('user_id', Auth::user()->id)->where('status', 1)->get();
 
         return redirect()->back()->with('success-address', 'Feito!');
     }
@@ -109,6 +108,8 @@ class AddressController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $address = Address::find($id);
+        $address->delete();
+        return redirect()->back()->with('success-address', 'Feito');
     }
 }

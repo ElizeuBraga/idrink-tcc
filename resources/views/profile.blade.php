@@ -111,10 +111,9 @@
                 <div class="jumbotron text-justify">
                     @if (count($adressUser) > 0)
                     @foreach ($adressUser as $aU)
-                    <form action="{{route('adresses.update', $aU->id)}}" method="POST">
-                        @method('PUT')
+                    <form action="{{route('adresses.destroy', $aU->id)}}" method="POST">
+                        @method('DELETE')
                         @csrf
-                        <input type="hidden" name="status" value="0">
                         <b>CEP:</b> {{$aU->cep}}<br>
                         <b>UF:</b> {{$aU->uf}}<br>
                         <b>Cidade:</b> {{$aU->localidade}}<br>
