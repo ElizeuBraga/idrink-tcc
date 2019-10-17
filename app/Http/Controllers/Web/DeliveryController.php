@@ -92,7 +92,15 @@ class DeliveryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $delivery = Delivery::find($id);
+        $delivery->update($request->all());
+        $delivery->save();
+
+        if ($delivery->status == 'canceled') {
+            return redirect()->back()->with('warning', 'Pedido cancelado!');
+        }elseif($request->status == 'delivered'){
+            return redirect()->back()->with('success', 'Pedido a caminho!');
+        }
     }
 
     /**
