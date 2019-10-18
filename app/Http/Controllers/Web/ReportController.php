@@ -144,7 +144,8 @@ class ReportController extends Controller
     {
         $months = $this->months;
         $report = [];
-        return view('reports', compact('report', 'months'));
+        $deliveries = $this->grafics();
+        return view('reports', compact('report', 'months', 'deliveries'));
     }
 
     /**
