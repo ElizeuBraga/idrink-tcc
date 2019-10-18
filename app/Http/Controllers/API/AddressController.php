@@ -83,5 +83,7 @@ class AddressController extends Controller
     {
         $address = Address::find($id);
         $address->delete();
+
+        return response()->json(200);
     }
 }

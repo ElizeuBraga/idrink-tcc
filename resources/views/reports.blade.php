@@ -2,6 +2,11 @@
 @section('style')
 <style>
     /* style */
+
+    .scrollable {
+  height: 600px;
+  overflow-y: scroll;
+}
 </style>
 @endsection
 
@@ -52,10 +57,10 @@
             </div>
         </form>
         <div id="lava_div">
-            @areachart('grafic', 'lava_div')
+            @areachart('Deliveries', 'lava_div')
         </div>
     </div>
-    <div class="col-9">
+    <div class="col-9 scrollable">
         <table class="table">
             <thead class="thead-light">
                 <tr>

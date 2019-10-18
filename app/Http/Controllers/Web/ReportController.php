@@ -89,18 +89,7 @@ class ReportController extends Controller
          $deliveries = Lava::DataTable();
 
          $deliveries->addStringColumn('Deliveries')
-         ->addNumberColumn('Janeiro')
-         ->addNumberColumn('Fevereiro')
-         ->addNumberColumn('Março')
-         ->addNumberColumn('Abril')
-         ->addNumberColumn('Maio')
-         ->addNumberColumn('JUnho')
-         ->addNumberColumn('Julho')
-         ->addNumberColumn('Agosto')
-         ->addNumberColumn('Setembro')
-         ->addNumberColumn('Outubro')
-         ->addNumberColumn('Novembro')
-         ->addNumberColumn('Dezembro')
+         ->addNumberColumn('Vendas')
          ->addRow(['Janeiro', $january])
          ->addRow(['Fevereiro', $february])
          ->addRow(['Março', $march])
@@ -114,8 +103,7 @@ class ReportController extends Controller
          ->addRow(['Novembro', $november])
          ->addRow(['Dezembro', $december]);
 
-        //  $deliveries->BarChart('Dados', $deliveries);
-        $grafic = Lava::AreaChart('grafic', $deliveries);
+        $grafic = Lava::AreaChart('Deliveries', $deliveries);
         return $grafic;
      }
 

@@ -49,8 +49,8 @@ class DeliveryController extends Controller
             $delivery = Delivery::create($request->all());
             return response()->json($delivery ,200);
         } catch (\Throwable $th) {
-            return response()->json(['response'=>'erro'], 400);
-            // return $th;
+            // return response()->json(['response'=>'erro'], 400);
+            return $th;
         }
     }
 
