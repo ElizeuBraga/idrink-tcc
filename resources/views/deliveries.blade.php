@@ -9,6 +9,39 @@
         margin-left: 5%;
         font-size: 18px;
     }
+
+    .green{
+        color: green;
+    }
+
+    .orange{
+        color: orange;
+    }
+
+    .at-item {
+    animation-name: grauMoto;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+  }
+  @keyframes grauMoto {
+    25%{
+      -webkit-transform: rotate(-15deg);
+      transform: rotate(-15deg);
+    }
+    50%{
+      -webkit-transform: rotate(-35deg);
+      transform: rotate(-35deg);
+    }
+60%{
+        -webkit-transform: rotate(-35deg);
+        transform: rotate(-35deg);
+    } 
+    100%{
+    }
+  }
 </style>
 @endsection
 
@@ -64,8 +97,7 @@
                             <i class="fas fa-search" title="Visualizar pedido"></i>
                         </a>
                         <a href="{{route('deliveries.update', $d->id)}}">
-                            <i class="fas fa-motorcycle {{$d->status == 'delivered' ? 'fa-spin' : ''}}"
-                                style="color: green;" title="{{$d->status == 'delivered' ? 'A caminho' : 'Despachar'}}"
+                            <i class="fas fa-motorcycle {{$d->status == 'delivered' ? 'at-item green' : 'orange'}}" title="{{$d->status == 'delivered' ? 'A caminho' : 'Despachar'}}"
                                 onclick="event.preventDefault(); document.getElementById('update-form-delivered{{$d->id}}').submit();"></i>
                         </a>
                         <a href="{{route('deliveries.update', $d->id)}}">
