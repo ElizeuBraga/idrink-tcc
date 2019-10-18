@@ -7,6 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div class="container">
+
+        <div id="lava_div" style="width: 50%; height: 500px;">
+                @barchart('Deliveries', 'lava_div')
+            </div>
+        </div>
 </body>
 </html>

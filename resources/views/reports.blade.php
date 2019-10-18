@@ -8,34 +8,54 @@
 @section('content')
 {{-- content --}}
 <div class="row">
-    <div class="col-4">
+    <div class="col-3">
         <form id="form-to-from" action="{{route('reports.dates')}}" method="GET">
-            @csrf
-            <label for="">Buscar por data</label>
-        <input type="date" name="startDate" value="{{Carbon\Carbon::now()}}">
-        <input type="date" name="endDate" value = "{{now()}}">
+            {{-- @csrf --}}
 
-            <a href="" onclick="event.preventDefault(); document.getElementById('form-to-from').submit();">
-                <i class="fas fa-search"></i>
-            </a>
+            <div class="form-group row">
+                <label for="" class="col-2 col-form-label">Inicio</label>
+                <div class="col-10">
+                    <input class="form-control" type="date" name="startDate" value="Selecione">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="" class="col-2 col-form-label">Fim</label>
+                <div class="col-10">
+                    <input class="form-control" type="date" name="endDate" value="">
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <a href="" onclick="event.preventDefault(); document.getElementById('form-to-from').submit();">
+                    <i class="fas fa-search"></i>
+                </a>
+            </div>
         </form>
 
         <form action="{{route('reports.dates')}}" method="GET" id="form-month">
-                @csrf
-                <div class="form-group">
-                        <label for="">Buscar por Mes</label>
-              <select class="form-control" name="month" id="">
-                <option>Selecione</option>
-                @foreach ($months as $key => $value)
-              <option value="{{$key}}">{{$value}}</option>
-                @endforeach
-              </select>
+            {{-- @csrf --}}
+            <div class="form-group row">
+                <label for="" class="col-2 col-form-label">Mês</label>
+                <div class="col-10">
+                    <select class="form-control" name="month" id="">
+                        <option>Selecione</option>
+                        @foreach ($months as $key => $value)
+                        <option value="{{$key}}">{{$value}}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
-            <a href="" onclick="event.preventDefault(); document.getElementById('form-month').submit();"><i class="fas fa-search"></i>
-            </a>
+
+            <div class="row justify-content-end">
+                <a href="" onclick="event.preventDefault(); document.getElementById('form-month').submit();"><i
+                        class="fas fa-search"></i>
+                </a>
+            </div>
         </form>
+        <div id="lava_div">
+            @areachart('grafic', 'lava_div')
+        </div>
     </div>
-    <div class="col-8">
+    <div class="col-9">
         <table class="table">
             <thead class="thead-light">
                 <tr>
@@ -48,7 +68,7 @@
                 @php
                 $total = 0;
                 @endphp
-                
+
                 @if (count($report) == 0)
                 <tr>
                     Nada a exibir
@@ -57,21 +77,28 @@
                 @foreach ($report as $r)
                 <tr>
                     @php
-                    $total += $r->parcial_price;
+                    $total += $r->total_price;
                     @endphp
                     <td>{{$r->customer_name}}</td>
                     <td>{{$r->created_at}}</td>
-                    <td>{{number_format($r->parcial_price, 2)}}</td>
+                    <td>{{number_format($r->total_price, 2)}}</td>
                     @endforeach
                 </tr>
                 @endif
             </tbody>
         </table>
-        <div class="row">
-            <div class="col-12">
-                Vendas - {{number_format($total, 2)}}
+
+        @isset($month)
+        <div class="row fixed-bottom"
+            style="background: #e9ecef; margin-left: 2px; padding-bottom: 20px; padding-top: 20px; font-size: 20px; color: green;">
+            <div class="col-10">
+                Vendas em {{$months[$month]}}
+            </div>
+            <div class="col-2">
+                {{number_format($total, 2)}}
             </div>
         </div>
+        @endisset
     </div>
 </div>
 @endsection
