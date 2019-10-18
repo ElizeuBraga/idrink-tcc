@@ -181,6 +181,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Canducci\ZipCode\Providers\ZipCodeServiceProvider::class,
         Canducci\ZipCode\Providers\ZipCodeAddressServiceProvider::class,
+        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
     ],
 
     /*
@@ -236,6 +238,9 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'ZipCode'   => Canducci\ZipCode\Facades\ZipCode::class,
         'Address'   => Canducci\ZipCode\Facades\ZipCodeAddress::class,
+        'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

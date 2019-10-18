@@ -17,6 +17,8 @@ Route::get('/home', 'Web\HomeController@index')->name('home');
 
 Route::resource('users', 'Web\UserController');
 Route::resource('products', 'Web\ProductController')->middleware('auth');
+
+Route::get('reports/dates', 'Web\ReportController@report')->name('reports.dates');
 Route::resource('reports', 'Web\ReportController');
 
 Route::resource('deliveries', 'Web\DeliveryController');
