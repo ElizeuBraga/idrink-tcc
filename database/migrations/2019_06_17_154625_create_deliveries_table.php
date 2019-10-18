@@ -16,7 +16,7 @@ class CreateDeliveriesTable extends Migration
         Schema::create('deliveries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('status',['open','canceled','delivered'])->default('open');
-            $table->enum('payment',['money','debit','credit']);
+            $table->enum('payment',['money','debit','credit'])->default('debit');
             $table->float('change', 8, 2)->nullable();
             $table->double('total_price', 8, 2)->nullable();
 
