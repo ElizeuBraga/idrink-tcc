@@ -20,13 +20,13 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Inicio</label>
                 <div class="col-10">
-                    <input class="form-control" type="date" name="startDate" value="Selecione">
+                    <input required class="form-control" type="date" name="startDate" value="Selecione">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Fim</label>
                 <div class="col-10">
-                    <input class="form-control" type="date" name="endDate" value="">
+                    <input required class="form-control" type="date" name="endDate" value="">
                 </div>
             </div>
             <div class="row justify-content-end">
@@ -41,8 +41,8 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Mês</label>
                 <div class="col-10">
-                    <select class="form-control" name="month" id="">
-                        <option>Selecione</option>
+                    <select required class="form-control" name="month" id="">
+                        <option value="">Selecione</option>
                         @foreach ($months as $key => $value)
                         <option value="{{$key}}">{{$value}}</option>
                         @endforeach
@@ -98,6 +98,18 @@
             style="background: #e9ecef; margin-left: 2px; padding-bottom: 20px; padding-top: 20px; font-size: 20px; color: green;">
             <div class="col-10">
                 Vendas em {{$months[$month]}}
+            </div>
+            <div class="col-2">
+                {{number_format($total, 2)}}
+            </div>
+        </div>
+        @endisset
+
+        @isset($dates)
+        <div class="row fixed-bottom"
+            style="background: #e9ecef; margin-left: 2px; padding-bottom: 20px; padding-top: 20px; font-size: 20px; color: green;">
+            <div class="col-10">
+                Vendas de <span style="color:lawngreen">{{$dates[0]}}</span> a <span style="color:lawngreen">{{$dates[1]}}</span> 
             </div>
             <div class="col-2">
                 {{number_format($total, 2)}}

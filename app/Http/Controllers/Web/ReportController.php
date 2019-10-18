@@ -107,13 +107,15 @@ class ReportController extends Controller
         return $grafic;
      }
 
-    public function report(Request $request){
-        $r = $request->all();
-        $months = $this->months;
+     public function report(Request $request){
+         $r = $request->all();
+         $months = $this->months;
+         $deliveries = $this->grafics();
         
         if(key_exists('startDate', $r)){
             $from_date = $r['startDate'];
             $to_date = $r['endDate'];
+            $dates = [$r['startDate'], $r['endDate']];
             $report = DB::table('deliveries as d')
             ->join('items as i', 'd.id', '=', 'i.delivery_id')
             ->join('users as u', 'd.customer_id', '=', 'u.id')
@@ -121,6 +123,8 @@ class ReportController extends Controller
             ->whereBetween(DB::raw('DATE(d.created_at)'), array($from_date, $to_date))
             ->where('d.store_id', Auth::user()->id)
             ->get();
+
+            return view('reports', compact('report', 'r', 'months', 'deliveries', 'dates'));
         }
         
         if (key_exists('month', $r)) {
@@ -133,11 +137,10 @@ class ReportController extends Controller
             ->where('d.store_id', Auth::user()->id)
             ->get();
             
+            return view('reports', compact('report', 'r', 'months', 'month', 'deliveries'));
         }
 
-        $deliveries = $this->grafics();
 
-        return view('reports', compact('report', 'r', 'months', 'month', 'deliveries'));
     }
     
     public function index()

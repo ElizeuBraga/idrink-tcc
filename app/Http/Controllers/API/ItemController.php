@@ -34,14 +34,12 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $items = $request->toArray();
-            DB::table('items')->insert($items);
-
-            return response()->json($items, 200);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $item = Item::create($request->all());
+        // $items = $request->getContent();
+        // $items->toArray();
+        // dd(json_decode($request->getContent(), true));
+        // DB::table('items')->insert($items);
+        return response()->json($item, 200);
     }
 
     /**
