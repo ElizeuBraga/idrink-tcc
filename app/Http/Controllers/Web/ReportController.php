@@ -108,14 +108,17 @@ class ReportController extends Controller
      }
 
      public function report(Request $request){
-         $r = $request->all();
+
+        $date = $request->all();
+
          $months = $this->months;
          $deliveries = $this->grafics();
         
-        if(key_exists('startDate', $r)){
-            $from_date = $r['startDate'];
-            $to_date = $r['endDate'];
-            $dates = [$r['startDate'], $r['endDate']];
+        if(key_exists('start', $date)){
+            // dd($date);
+            $from_date = $date['start'];
+            $to_date = $date['end'];
+            $dates = [$date['start'], $date['end']];
             $report = DB::table('deliveries as d')
             ->join('items as i', 'd.id', '=', 'i.delivery_id')
             ->join('users as u', 'd.customer_id', '=', 'u.id')
@@ -123,22 +126,22 @@ class ReportController extends Controller
             ->whereBetween(DB::raw('DATE(d.created_at)'), array($from_date, $to_date))
             ->where('d.store_id', Auth::user()->id)
             ->get();
-
+            
             return view('reports', compact('report', 'r', 'months', 'deliveries', 'dates'));
         }
         
-        if (key_exists('month', $r)) {
-            $month = $r['month'];
-            $report = DB::table('deliveries as d')
-            ->join('items as i', 'd.id', '=', 'i.delivery_id')
-            ->join('users as u', 'd.customer_id', '=', 'u.id')
-            ->select('d.total_price', 'd.created_at', 'u.name as customer_name')
-            ->whereMonth(DB::raw('DATE(d.created_at)'), $month)
-            ->where('d.store_id', Auth::user()->id)
-            ->get();
+        // if (key_exists('month', $r)) {
+        //     $month = $r['month'];
+        //     $report = DB::table('deliveries as d')
+        //     ->join('items as i', 'd.id', '=', 'i.delivery_id')
+        //     ->join('users as u', 'd.customer_id', '=', 'u.id')
+        //     ->select('d.total_price', 'd.created_at', 'u.name as customer_name')
+        //     ->whereMonth(DB::raw('DATE(d.created_at)'), $month)
+        //     ->where('d.store_id', Auth::user()->id)
+        //     ->get();
             
-            return view('reports', compact('report', 'r', 'months', 'month', 'deliveries'));
-        }
+        //     return view('reports', compact('report', 'r', 'months', 'month', 'deliveries'));
+        // }
 
 
     }

@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('link')
+<link rel="stylesheet" href="{{asset('vendor/bootstrap-datepicker-1.9.0-dist/css/bootstrap-datepicker.css')}}">
+@endsection
 @section('style')
 <style>
     /* style */
@@ -6,6 +9,10 @@
     .scrollable {
   height: 600px;
   overflow-y: scroll;
+}
+
+input{
+    height: 40px!important;
 }
 </style>
 @endsection
@@ -16,36 +23,30 @@
     <div class="col-3">
         <form id="form-to-from" action="{{route('reports.dates')}}" method="GET">
             {{-- @csrf --}}
-
-            <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Inicio</label>
-                <div class="col-10">
-                    <input required class="form-control" type="date" name="startDate" value="Selecione">
-                </div>
+            <label for="" class="">Pesquisa por data</label>
+            <div class="input-daterange input-group" id="datepicker">
+                <input type="text" class="input-sm form-control" name="start" placeholder="Início" />
+                <span class="input-group-addon">-</span>
+                <input type="text" class="input-sm form-control" name="end" placeholder="Fim" />
             </div>
-            <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Fim</label>
-                <div class="col-10">
-                    <input required class="form-control" type="date" name="endDate" value="">
-                </div>
-            </div>
+            
             <div class="row justify-content-end">
                 <a href="" onclick="event.preventDefault(); document.getElementById('form-to-from').submit();">
-                    <i class="fas fa-search"></i>
-                </a>
-            </div>
-        </form>
-
-        <form action="{{route('reports.dates')}}" method="GET" id="form-month">
-            {{-- @csrf --}}
-            <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Mês</label>
-                <div class="col-10">
-                    <select required class="form-control" name="month" id="">
-                        <option value="">Selecione</option>
-                        @foreach ($months as $key => $value)
-                        <option value="{{$key}}">{{$value}}</option>
-                        @endforeach
+                        <i class="fas fa-search"></i>
+                    </a>
+                </div>
+            </form>
+            
+            <form action="{{route('reports.dates')}}" method="GET" id="form-month">
+                    {{-- @csrf --}}
+                    <label for="" class="">Pesquisa por Mês</label>
+                    <div class="form-group row">
+                        <div class="col-10">
+                            <select required class="form-control" name="month" id="">
+                                <option value="">Selecione</option>
+                                @foreach ($months as $key => $value)
+                                <option value="{{$key}}">{{$value}}</option>
+                                @endforeach
                     </select>
                 </div>
             </div>
@@ -92,7 +93,6 @@
                 @endif
             </tbody>
         </table>
-
         @isset($month)
         <div class="row fixed-bottom"
             style="background: #e9ecef; margin-left: 2px; padding-bottom: 20px; padding-top: 20px; font-size: 20px; color: green;">
@@ -121,7 +121,13 @@
 @endsection
 
 @section('script')
+<script src="{{asset('vendor/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{asset('vendor/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt-BR.min.js')}}"></script>
 <script>
-    // script
+    $('#datepicker').datepicker({
+        format: "dd-mm-yy",
+        language: "pt-BR",
+        autoclose: true,
+    });
 </script>
 @endsection
