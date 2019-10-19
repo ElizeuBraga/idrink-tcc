@@ -34,7 +34,7 @@ class AddressController extends Controller
     {
         try {
             $address = Address::create($request->all());
-            return response()->json($address);
+            return response()->json(200);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -62,15 +62,10 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            $address  = Address::find($id);
-            $address->update($request->all());
-            $address->save();
-
-            return response()->json($address);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $address  = Address::find($id);
+        $address->update($request->all());
+        $address->save();
+        return response()->json(200);
     }
 
     /**
