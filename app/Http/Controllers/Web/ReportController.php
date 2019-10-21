@@ -129,6 +129,8 @@ class ReportController extends Controller
             ->where('d.store_id', Auth::user()->id)
             ->get();
 
+            return view('reports', compact('report', 'months', 'deliveries', 'dates'));
+
         }else{
             $month = Input::get('month');
             $report = DB::table('deliveries as d')
@@ -138,9 +140,10 @@ class ReportController extends Controller
             ->whereMonth('d.created_at', $month)
             ->where('d.store_id', Auth::user()->id)
             ->get();
+
+            return view('reports', compact('report', 'months', 'deliveries', 'month'));
         }
         
-        return view('reports', compact('report', 'months', 'deliveries', 'dates', 'month'));
         
         // if (key_exists('month', $r)) {
         //     $month = $r['month'];
