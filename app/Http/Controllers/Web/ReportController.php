@@ -112,6 +112,7 @@ class ReportController extends Controller
          
          $months = $this->months;
          $deliveries = $this->grafics();
+         $report = [];
          
          if (count(Input::get()) == 2) {
             $startInput = Input::get('start');
