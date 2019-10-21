@@ -112,7 +112,6 @@ class ReportController extends Controller
          
          $months = $this->months;
          $deliveries = $this->grafics();
-         $report = [];
          
          if (count(Input::get()) == 2) {
             $startInput = Input::get('start');
@@ -141,7 +140,7 @@ class ReportController extends Controller
             ->get();
         }
         
-        return view('reports', compact('report', 'r', 'months', 'deliveries', 'dates', 'month'));
+        return view('reports', compact('report', 'months', 'deliveries', 'dates', 'month'));
         
         // if (key_exists('month', $r)) {
         //     $month = $r['month'];
