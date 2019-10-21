@@ -7,13 +7,17 @@
     /* style */
 
     .scrollable {
-  height: 600px;
-  overflow-y: scroll;
-}
+        height: 600px;
+        overflow-y: scroll;
+    }
 
-input{
-    height: 40px!important;
-}
+    input {
+        height: 40px !important;
+    }
+
+    .thead-light, .label{
+        font-size: 18px;
+    }
 </style>
 @endsection
 
@@ -23,30 +27,30 @@ input{
     <div class="col-3">
         <form id="form-to-from" action="{{route('reports.dates')}}" method="GET">
             {{-- @csrf --}}
-            <label for="" class="">Pesquisa por data</label>
+            <label for="" class="label">Pesquisa por data</label>
             <div class="input-daterange input-group" id="datepicker">
-                <input type="text" class="input-sm form-control" name="start" placeholder="Início" autocomplete="off"/>
+                <input type="text" class="input-sm form-control" name="start" placeholder="Início" autocomplete="off" />
                 <span class="input-group-addon">-</span>
-                <input type="text" class="input-sm form-control" name="end" placeholder="Fim" autocomplete="off"/>
+                <input type="text" class="input-sm form-control" name="end" placeholder="Fim" autocomplete="off" />
             </div>
-            
+
             <div class="row justify-content-end">
                 <a href="" onclick="event.preventDefault(); document.getElementById('form-to-from').submit();">
-                        <i class="fas fa-search"></i>
-                    </a>
-                </div>
-            </form>
-            
-            <form action="{{route('reports.dates')}}" method="GET" id="form-month">
-                    {{-- @csrf --}}
-                    <label for="" class="">Pesquisa por Mês</label>
-                    <div class="form-group row">
-                        <div class="col-10">
-                            <select required class="form-control" name="month" id="">
-                                <option value="">Selecione</option>
-                                @foreach ($months as $key => $value)
-                                <option value="{{$key}}">{{$value}}</option>
-                                @endforeach
+                    <i class="fas fa-search"></i>
+                </a>
+            </div>
+        </form>
+
+        <form action="{{route('reports.dates')}}" method="GET" id="form-month">
+            {{-- @csrf --}}
+            <label for="" class="label">Pesquisa por Mês</label>
+            <div class="form-group row">
+                <div class="col-10">
+                    <select required class="form-control" name="month" id="">
+                        <option value="">Selecione</option>
+                        @foreach ($months as $key => $value)
+                        <option value="{{$key}}">{{$value}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -74,30 +78,31 @@ input{
                 @php
                 $total = 0;
                 @endphp
-
-                @if (count($report) == 0)
-                <tr>
-                    Nada a exibir
-                </tr>
-                @else
+                @if (count($report) > 0)
                 @foreach ($report as $r)
                 <tr>
                     @php
                     $total += $r->total_price;
                     @endphp
                     <td>{{$r->customer_name}}</td>
-                    <td>{{$r->created_at}}</td>
+                    <td>{{date('d-m-Y', strtotime($r->created_at))}}</td>
                     <td>{{number_format($r->total_price, 2)}}</td>
                     @endforeach
                 </tr>
+                @else
+                    <tr>
+                        <td></td>
+                        <td>Nenhum dado encontrado</td>
+                        <td></td>
+                    </tr>
                 @endif
             </tbody>
         </table>
         @isset($month)
         <div class="row fixed-bottom"
-            style="background: #e9ecef; margin-left: 2px; padding-bottom: 20px; padding-top: 20px; font-size: 20px; color: green;">
+            style="background: #e9ecef; margin-left: 2px; padding-bottom: 20px; padding-top: 20px; font-size: 20px; font-weight: bold;">
             <div class="col-10">
-                Vendas em {{$months[$month]}}
+                Vendas em <span style="color:#347FFF">{{$months[$month]}}</span>
             </div>
             <div class="col-2">
                 {{number_format($total, 2)}}
@@ -107,9 +112,10 @@ input{
 
         @isset($dates)
         <div class="row fixed-bottom"
-            style="background: #e9ecef; margin-left: 2px; padding-bottom: 20px; padding-top: 20px; font-size: 20px; color: green;">
+            style="background: #e9ecef; margin-left: 2px; padding-bottom: 20px; padding-top: 20px; font-size: 20px; font-weight: bold;">
             <div class="col-10">
-                Vendas de <span style="color:lawngreen">{{$dates[0]}}</span> a <span style="color:lawngreen">{{$dates[1]}}</span> 
+                Vendas de <span style="color:#347FFF">{{$dates[0]}}</span> a <span
+                    style="color:#347FFF">{{$dates[1]}}</span>
             </div>
             <div class="col-2">
                 {{number_format($total, 2)}}
