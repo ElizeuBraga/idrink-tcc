@@ -87,4 +87,19 @@ class ItemController extends Controller
     {
         //
     }
+    
+    public function items($delivery_id){
+        $user = Auth::user();
+        
+        $items = DB::table('users as c')
+        ->select('d.id as delivery_id','i.quantity','p.price', 'i.parcial_price', 'p.name as product_name')
+        ->join('deliveries as d', 'd.customer_id', 'c.id')
+        ->join('items as i', 'i.delivery_id', 'd.id')
+        ->join('products as p', 'i.product_id', 'p.id')
+        ->where('d.id', '=', $delivery_id)
+        ->where('d.customer_id', '=', $user->id)
+        ->get();
+        
+        return response()->json($items, 200);
+    }
 }

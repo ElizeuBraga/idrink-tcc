@@ -12,7 +12,7 @@ class UserSeed extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 100)->create()->each(function ($user) {
+        factory(App\User::class, 10)->create()->each(function ($user) {
             $user->products()->save(factory(App\Product::class)->make());
             $user->adresses()->save(factory(App\Address::class)->make());
         });

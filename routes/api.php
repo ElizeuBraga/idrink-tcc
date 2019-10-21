@@ -23,6 +23,7 @@ Route::get('deliveries/open/items/{delivery_id}', 'API\DeliveryController@delive
 Route::resource('deliveries', 'API\DeliveryController');
 
 //Items
+Route::get('items/{delivery_id}', 'API\ItemController@items');
 Route::resource('items', 'API\ItemController');
 
 //Reports

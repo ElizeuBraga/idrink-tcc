@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 use Lava;
+use Input;
 use Carbon\Carbon;
 use App\Delivery;
 
@@ -108,27 +109,38 @@ class ReportController extends Controller
      }
 
      public function report(Request $request){
-
-        $date = $request->all();
-
+         
          $months = $this->months;
          $deliveries = $this->grafics();
-        
-        if(key_exists('start', $date)){
-            // dd($date);
-            $from_date = $date['start'];
-            $to_date = $date['end'];
-            $dates = [$date['start'], $date['end']];
+         
+         if (count(Input::get()) == 2) {
+            $startInput = Input::get('start');
+            $endInput = Input::get('end');
+            $start = \Carbon\Carbon::createFromFormat('d-m-Y', $startInput);
+            $end = \Carbon\Carbon::createFromFormat('d-m-Y', $endInput);
+            $dates = [$startInput, $endInput];
+
             $report = DB::table('deliveries as d')
             ->join('items as i', 'd.id', '=', 'i.delivery_id')
             ->join('users as u', 'd.customer_id', '=', 'u.id')
             ->select('d.total_price', 'd.created_at', 'u.name as customer_name')
-            ->whereBetween(DB::raw('DATE(d.created_at)'), array($from_date, $to_date))
+            ->whereDate('d.created_at', '>=', $start)
+            ->whereDate('d.created_at', '<=', $end)
             ->where('d.store_id', Auth::user()->id)
             ->get();
-            
-            return view('reports', compact('report', 'r', 'months', 'deliveries', 'dates'));
+
+        }else{
+            $month = Input::get('month');
+            $report = DB::table('deliveries as d')
+            ->join('items as i', 'd.id', '=', 'i.delivery_id')
+            ->join('users as u', 'd.customer_id', '=', 'u.id')
+            ->select('d.total_price', 'd.created_at', 'u.name as customer_name')
+            ->whereMonth('d.created_at', $month)
+            ->where('d.store_id', Auth::user()->id)
+            ->get();
         }
+        
+        return view('reports', compact('report', 'r', 'months', 'deliveries', 'dates', 'month'));
         
         // if (key_exists('month', $r)) {
         //     $month = $r['month'];

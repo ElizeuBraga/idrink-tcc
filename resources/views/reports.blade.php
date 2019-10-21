@@ -125,7 +125,7 @@ input{
 <script src="{{asset('vendor/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt-BR.min.js')}}"></script>
 <script>
     $('#datepicker').datepicker({
-        format: "dd-mm-yy",
+        format: "dd-mm-yyyy",
         language: "pt-BR",
         autoclose: true,
     });

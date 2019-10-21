@@ -11,7 +11,7 @@ class DeliverySeed extends Seeder
      */
     public function run()
     {
-        factory(App\Delivery::class, 100)->create()->each(function ($delivery) {
+        factory(App\Delivery::class, 10)->create()->each(function ($delivery) {
             $delivery->items()->save(factory(App\Item::class)->make());
         });
     }
