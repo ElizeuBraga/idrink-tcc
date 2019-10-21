@@ -25,9 +25,9 @@ input{
             {{-- @csrf --}}
             <label for="" class="">Pesquisa por data</label>
             <div class="input-daterange input-group" id="datepicker">
-                <input type="text" class="input-sm form-control" name="start" placeholder="Início" />
+                <input type="text" class="input-sm form-control" name="start" placeholder="Início" autocomplete="off"/>
                 <span class="input-group-addon">-</span>
-                <input type="text" class="input-sm form-control" name="end" placeholder="Fim" />
+                <input type="text" class="input-sm form-control" name="end" placeholder="Fim" autocomplete="off"/>
             </div>
             
             <div class="row justify-content-end">
