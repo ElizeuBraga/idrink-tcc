@@ -4,9 +4,12 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Example Component</div>
-
+                    <form action="">
+                        <input type="textbox">
+                        <input type="submit" value="Enviar">
+                    </form>
                     <div class="card-body">
-                        I'm an example component.
+                        I'm an example component. Oi
                     </div>
                 </div>
             </div>
@@ -16,8 +19,6 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+        
     }
 </script>

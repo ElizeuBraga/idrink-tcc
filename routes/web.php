@@ -1,5 +1,5 @@
 <?php
-
+use App\Events\SendMessage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,4 +26,19 @@ Route::resource('deliveries', 'Web\DeliveryController');
 
 Route::post('adresses/getcep', 'Web\AddressController@getCep')->name('adresses.getcep');
 Route::resource('adresses', 'Web\AddressController');
+
+
+
+Route::get('/teste', function(){
+    return view('teste');
+});
+
+Route::post('/teste', function(){
+    $message  = request()->all();
+    event(new SendMessage($message));
+    return $message;
+});
+Route::get('send', 'Web\MessageController@messageGet');
+// Route::get('messages', 'Web\MessageController@messageGet')->middleware('auth');
+Route::post('message', 'Web\MessageController@messageSend')->middleware('auth');
 
