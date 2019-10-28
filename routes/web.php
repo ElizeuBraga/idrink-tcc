@@ -29,16 +29,20 @@ Route::resource('adresses', 'Web\AddressController');
 
 
 
-Route::get('/teste', function(){
-    return view('teste');
-});
+// Route::get('/teste', function(){
+//     return view('teste');
+// });
 
 Route::post('/teste', function(){
-    $message  = request()->all();
+    // $message  = request()->all();
+    $message = [
+        'name'=> 'Fulano de tal'
+    ];
     event(new SendMessage($message));
     return $message;
 });
-Route::get('send', 'Web\MessageController@messageGet');
-// Route::get('messages', 'Web\MessageController@messageGet')->middleware('auth');
-Route::post('message', 'Web\MessageController@messageSend')->middleware('auth');
+
+// Route::get('send', 'Web\MessageController@messageGet');
+Route::get('messages', 'Web\MessageController@messageGet')->middleware('auth');
+Route::post('messages', 'Web\MessageController@messageSend')->name('sendMessage')->middleware('auth');
 

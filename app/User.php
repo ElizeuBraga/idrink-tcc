@@ -62,4 +62,8 @@ class User extends Authenticatable
     public function storeDeliveries(){
         return $this->hasMany(Delivery::class, 'store_id');
     }
+
+    public function messages(){
+        return $this->hasMany(Message::class);
+    }
 }

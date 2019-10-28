@@ -1716,6 +1716,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -46864,7 +46865,7 @@ var staticRenderFns = [
               _vm._v("Example Component")
             ]),
             _vm._v(" "),
-            _c("form", { attrs: { action: "" } }, [
+            _c("form", { attrs: { action: "/home", method: "post" } }, [
               _c("input", { attrs: { type: "textbox" } }),
               _vm._v(" "),
               _c("input", { attrs: { type: "submit", value: "Enviar" } })
@@ -59124,7 +59125,9 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: window.Laravel.pusher.key,
   cluster: window.Laravel.pusher.cluster,
-  encrypted: true
+  // encrypted: true
+  wsHost: window.location.hostname,
+  wsPort: 6001
 });
 
 /***/ }),

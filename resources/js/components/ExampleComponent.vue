@@ -4,7 +4,8 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Example Component</div>
-                    <form action="">
+                    <form action="/home" method="post">
+                        
                         <input type="textbox">
                         <input type="submit" value="Enviar">
                     </form>

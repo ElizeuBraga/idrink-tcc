@@ -33,6 +33,7 @@ class SendMessage implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('my-channel');
+        return ['my-channel'];
+        // return new PrivateChannel('private-teste');
     }
 }

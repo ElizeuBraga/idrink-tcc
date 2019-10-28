@@ -8,8 +8,8 @@
 @section('content')
     {{-- content --}}
     <h1>Home</h1>
-    <example-component/>
-    <form action="" method="post">
+    {{-- <example-component/> --}}
+<form action="{{route('sendMessage')}}" method="post">
         @csrf
         <input type="text" name='store_id' value="{{Auth::user()->id}}">
         <input type="text" name='customer_id' value="{{Auth::user()->id}}">
@@ -23,6 +23,8 @@
 
 @section('script')
 <script>
-    // script
+      Echo.channel('my-channel').listen('SendMessage', (e)=>{
+          console.log(e.message);
+      });
 </script>
 @endsection

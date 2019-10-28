@@ -51,5 +51,7 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: window.Laravel.pusher.key,
     cluster: window.Laravel.pusher.cluster,
-    encrypted: true
+    // encrypted: true
+    wsHost:window.location.hostname,
+    wsPort: 6001
 });

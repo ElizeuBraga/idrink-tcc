@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 use \App\Events\SendMessage;
+use App\Message;
 
 use Illuminate\Http\Request;
 
@@ -9,19 +10,14 @@ class MessageController extends Controller
 {
     
     public function messageGet(){
-        broadcast(new SendMessage);
-        return 'done';
-        // return view('teste');
+        // broadcast(new SendMessage);
+        return view('home');
     }
 
     public function messageSend(Request $request){
-        // dd($request->all()); 
         $message = Message::create($request->all());
+        event(new SendMessage($message));
 
-        event(new eventSendMessage($message));
-    }
-
-    public function messages(){
-        return response()->json();
+        return redirect()->back();
     }
 }
