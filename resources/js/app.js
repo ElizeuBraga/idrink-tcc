@@ -33,7 +33,10 @@ const app = new Vue({
     data:{
         name: 'Elizeu',
         itemss: [],
-        deliveries: deliveries
+        deliveries: deliveries,
+        isLoadingD: false,
+        isLoadingC: false,
+        line: null
     },
 
     methods:{
@@ -50,7 +53,27 @@ const app = new Vue({
             }
         },
 
-        update(id, val) {
+        delivered(id, val) {
+            this.isLoadingD = true
+            this.line = id
+            setTimeout(() => {
+                this.isLoadingD = false
+                this.line = null
+              },1000)
+            return axios.put('deliveries/' + id , {status: val}).then((response) => {
+                this.deliveries = response.data[0]
+            }).catch( error => { 
+                console.log('error: ' + error); 
+              });
+        },
+
+        canceled(id, val) {
+            this.isLoadingC = true
+            this.line = id
+            setTimeout(() => {
+                this.isLoadingC = false
+                this.line = null
+              },1000)
             return axios.put('deliveries/' + id , {status: val}).then((response) => {
                 this.deliveries = response.data[0]
             }).catch( error => { 

@@ -5,6 +5,12 @@
             min-width: 25px!important;
             height: 28px!important;
         }
+
+        .btn:focus {
+            border:0;
+            outline:none;
+            box-shadow:none;
+        }
     </style>
 @endsection
 @section('content')
@@ -26,16 +32,20 @@
 
                         <td>@{{delivery.localidade}}</td>
                         <td>@{{delivery.total_price}}</td>
-                        <td>@{{delivery.status}}</td>
+                        <td class="" v-if = "delivery.status == 'open'">Em aberto</td>
+                        <td class="text-success" v-else-if="delivery.status == 'delivered'">Despachado</td>
+                        <td class="text-danger" v-else="delivery.status == 'canceled'">Cancelado</td>
                         <td>
                             <button class="btn" v-on:click = "carregaItems(delivery.id)">
                                 <i class="far fa-eye" style="color: blue"></i>
                             </button>
-                            <button class="btn" v-on:click = "update(delivery.id, 'delivered')">
-                                    <i class="far fa-arrow-alt-circle-right" style="color: green"></i>
-                            </button>
-                            <button class="btn" v-on:click = "update(delivery.id, 'canceled')">
-                                    <i class="fas fa-window-close" style="color: red"></i>
+                            <button class="btn" v-on:click = "delivered(delivery.id, 'delivered')">
+                                <i v-if="isLoadingD && delivery.id == line" class="fas fa-spinner fa-spin" style="color: green"></i>
+                                <i v-else class="far fa-arrow-alt-circle-right" style="color: green"></i>
+                                </button>
+                                <button class="btn" v-on:click = "canceled(delivery.id, 'canceled')">
+                                    <i v-if="isLoadingC && delivery.id == line" class="fas fa-spinner fa-spin" style="color: red"></i>
+                                    <i v-else class="fas fa-window-close" style="color: red"></i>
                             </button>
                         </td>
                     </tr>
@@ -46,11 +56,12 @@
             <div v-if="itemss.length > 0" class="row justify-content-center">
                 <b>@{{itemss[0].customer_name}}</b>
             </div>
-            <div class="row" style="color: black; background: orange;">
+            <div class="row" style="color: black; background: orange; font-weight: bold;">
                 <div class="col-6">Produto</div>
                 <div class="col-2">Qtd</div>
                 <div class="col-4">Valor parcial</div>
             </div>
+            <p v-if="itemss.length <= 0" class="text-center" style="margin-top: 25%;">Clique em um pedido e os items aparecerão aqui</p>
             <div v-for = "item in itemss" class="row">
                 <div  class="col-6">
                     @{{item.product_name}}
