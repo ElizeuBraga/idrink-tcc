@@ -59061,7 +59061,35 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app',
   data: {
-    name: 'Elizeu'
+    name: 'Elizeu',
+    itemss: [],
+    deliveries: deliveries
+  },
+  methods: {
+    carregaItems: function carregaItems(id) {
+      if (this.itemss.length > 0) {
+        this.itemss = [];
+      }
+
+      for (var i = 0; i < items.length; i++) {
+        var element = items[i];
+
+        if (items[i].delivery_id == id) {
+          this.itemss.push(element);
+        }
+      }
+    },
+    update: function update(id, val) {
+      var _this = this;
+
+      return axios.put('deliveries/' + id, {
+        status: val
+      }).then(function (response) {
+        _this.deliveries = response.data[0];
+      })["catch"](function (error) {
+        console.log('error: ' + error);
+      });
+    }
   }
 });
 

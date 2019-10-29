@@ -32,5 +32,30 @@ const app = new Vue({
     el: '#app',
     data:{
         name: 'Elizeu',
+        itemss: [],
+        deliveries: deliveries
+    },
+
+    methods:{
+        carregaItems: function(id){
+            if (this.itemss.length > 0) {
+                this.itemss = [];
+            }
+            for (let i = 0; i < items.length; i++) {
+                const element = items[i];
+                
+                if(items[i].delivery_id == id){
+                    this.itemss.push(element);
+                }
+            }
+        },
+
+        update(id, val) {
+            return axios.put('deliveries/' + id , {status: val}).then((response) => {
+                this.deliveries = response.data[0]
+            }).catch( error => { 
+                console.log('error: ' + error); 
+              });
+        },
     }
 });
