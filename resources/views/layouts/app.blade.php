@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    @yield('link')
+        @yield('link')
     <link rel="stylesheet" href="{{ elixir('css/main.css')}}" />
     <style>
         body {
@@ -94,8 +94,8 @@
         </header>
         <!-- Nav -->
         <nav id="nav" style="">
-            <div style="background: white; border-radius: 2%; color:black; font-weight: bold;" class="text-center">
-                @auth
+                <div style="background: white; border-radius: 2%; color:black; font-weight: bold;" class="text-center">
+                        @auth
                 <img src="/images/avatar/{{$user->avatar}}" alt="Avatar" class="avatar">
                 <p>{{$user->id}}</p>
                 <p>{{$user->name}}</p>
@@ -130,7 +130,6 @@
     </div>
     <!-- One -->
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
     {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script> --}}
@@ -147,12 +146,21 @@
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="https://kit.fontawesome.com/e9e7f80931.js"></script>
     <script>
+        var host = window.location.hostname;
+        var items = {!!json_encode($items)!!};
+        var deliveries = {!!json_encode($deliveries)!!};
+    </script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script>
         // console.log(window.Laravel.user);
+        // var d = null;
         // Echo.private('user.' + window.Laravel.user)
-        //     .listen('PrivateEvent', (data) => {
+        // .listen('PrivateEvent', (data) => {
         //     console.log(data);
         // });
-    </script>
-    @yield('script')
+        
+        // console.log(d);
+        </script>
+    {{-- @yield('script') --}}
 </body>
 </html>

@@ -87,12 +87,13 @@
 @endsection
 @section('script')    
 <script>
-    Echo.channel('message-received').listen('SendMessage', (data)=> {
-        console.log(data);
-    });
     
-    var host = window.location.hostname;
-    var items = {!!json_encode($items)!!};
-    var deliveries = {!!json_encode($deliveries)!!};
+    // var host = window.location.hostname;
+    // var items = {!!json_encode($items)!!};
+    // var deliveries = {!!json_encode($deliveries)!!};
+
+    // Echo.channel('message-received').listen('SendMessage', (data)=> {
+    //     console.log(data);
+    // });
 </script>
 @endsection

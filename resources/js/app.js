@@ -37,8 +37,13 @@ const app = new Vue({
         isLoadingD: false,
         isLoadingC: false,
         line: null,
+    },
 
-        d:null
+    mounted(){
+        Echo.private('user.' + window.Laravel.user)
+        .listen('PrivateEvent', (e) => {
+            this.deliveries.push(e.message)
+        });
     },
 
     methods:{

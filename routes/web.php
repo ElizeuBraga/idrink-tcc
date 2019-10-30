@@ -33,10 +33,14 @@ Route::resource('adresses', 'Web\AddressController');
 // });
 
 Route::get('/send', function(){
-    $message = ['message' => 'Olá'.Auth::user()->name];
-    $user = Auth::user();
-    broadcast(new \App\Events\PrivateEvent(auth()->user(), $message));
-    return 'done';
+    if(Auth::check()){
+        $message = ['customer_name'=>'Fulano de tal', 'status' => 'delivered', 'localidade' => 'Sobradinho'];
+        $user = Auth::user();
+        broadcast(new \App\Events\PrivateEvent(auth()->user(), $message));
+        return 'done';
+    }else{
+        return redirect()->route('login');
+    }
 });
 
 // Route::get('send', 'Web\MessageController@messageGet');

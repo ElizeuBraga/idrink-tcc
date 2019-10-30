@@ -60973,8 +60973,14 @@ var app = new Vue({
     deliveries: deliveries,
     isLoadingD: false,
     isLoadingC: false,
-    line: null,
-    d: null
+    line: null
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    Echo["private"]('user.' + window.Laravel.user).listen('PrivateEvent', function (e) {
+      _this.deliveries.push(e.message);
+    });
   },
   methods: {
     carregaItems: function carregaItems(id) {
@@ -60991,35 +60997,35 @@ var app = new Vue({
       }
     },
     delivered: function delivered(id, val) {
-      var _this = this;
+      var _this2 = this;
 
       this.isLoadingD = true;
       this.line = id;
       setTimeout(function () {
-        _this.isLoadingD = false;
-        _this.line = null;
-      }, 1000);
-      return axios.put('deliveries/' + id, {
-        status: val
-      }).then(function (response) {
-        _this.deliveries = response.data[0];
-      })["catch"](function (error) {
-        console.log('error: ' + error);
-      });
-    },
-    canceled: function canceled(id, val) {
-      var _this2 = this;
-
-      this.isLoadingC = true;
-      this.line = id;
-      setTimeout(function () {
-        _this2.isLoadingC = false;
+        _this2.isLoadingD = false;
         _this2.line = null;
       }, 1000);
       return axios.put('deliveries/' + id, {
         status: val
       }).then(function (response) {
         _this2.deliveries = response.data[0];
+      })["catch"](function (error) {
+        console.log('error: ' + error);
+      });
+    },
+    canceled: function canceled(id, val) {
+      var _this3 = this;
+
+      this.isLoadingC = true;
+      this.line = id;
+      setTimeout(function () {
+        _this3.isLoadingC = false;
+        _this3.line = null;
+      }, 1000);
+      return axios.put('deliveries/' + id, {
+        status: val
+      }).then(function (response) {
+        _this3.deliveries = response.data[0];
       })["catch"](function (error) {
         console.log('error: ' + error);
       });
