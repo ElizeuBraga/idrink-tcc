@@ -40,7 +40,7 @@ const app = new Vue({
     },
 
     mounted(){
-        console.log(this.deliveries);
+        // console.log(this.deliveries);
         Echo.channel('user.' + window.Laravel.user)
         .listen('PrivateEvent', (e) => {
             this.deliveries.unshift(e.message)

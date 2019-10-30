@@ -60978,7 +60978,7 @@ var app = new Vue({
   mounted: function mounted() {
     var _this = this;
 
-    console.log(this.deliveries);
+    // console.log(this.deliveries);
     Echo.channel('user.' + window.Laravel.user).listen('PrivateEvent', function (e) {
       _this.deliveries.unshift(e.message);
 
