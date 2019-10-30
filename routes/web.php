@@ -1,5 +1,4 @@
 <?php
-use App\Events\SendMessage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,13 +32,11 @@ Route::resource('adresses', 'Web\AddressController');
 //     return view('teste');
 // });
 
-Route::post('/teste', function(){
-    // $message  = request()->all();
-    $message = [
-        'name'=> 'Fulano de tal'
-    ];
-    event(new SendMessage($message));
-    return $message;
+Route::get('/send', function(){
+    $message = ['message' => 'Olá'.Auth::user()->name];
+    $user = Auth::user();
+    broadcast(new \App\Events\PrivateEvent(auth()->user(), $message));
+    return 'done';
 });
 
 // Route::get('send', 'Web\MessageController@messageGet');

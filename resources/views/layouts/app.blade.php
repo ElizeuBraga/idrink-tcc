@@ -5,27 +5,23 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html>
-
-<head>
+    
+    <head>
+        <script>
+            window.Laravel = {!! json_encode([
+                'user' => auth()->check() ? auth()->user()->id : null,
+            ]) !!};
+        </script>
     <title>iDrink</title>
     <meta charset="utf-8" />
-    <meta name="csrf-token" content="{{csrf_token()}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     @yield('link')
     <link rel="stylesheet" href="{{ elixir('css/main.css')}}" />
-    <script>
-        window.Laravel = {!! json_encode([
-            'csrf' => csrf_token(),
-            'pusher' => [
-                'key' => config('broadcasting.connections.pusher.key'),
-                'cluster' => config('broadcasting.connections.pusher.options.cluster')
-            ]
-        ]) !!}
-    </script>
     <style>
         body {
             background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
@@ -150,6 +146,13 @@
     <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="https://kit.fontawesome.com/e9e7f80931.js"></script>
+    <script>
+        // console.log(window.Laravel.user);
+        // Echo.private('user.' + window.Laravel.user)
+        //     .listen('PrivateEvent', (data) => {
+        //     console.log(data);
+        // });
+    </script>
     @yield('script')
 </body>
 </html>

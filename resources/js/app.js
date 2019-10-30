@@ -36,7 +36,9 @@ const app = new Vue({
         deliveries: deliveries,
         isLoadingD: false,
         isLoadingC: false,
-        line: null
+        line: null,
+
+        d:null
     },
 
     methods:{

@@ -176,13 +176,9 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Barryvdh\Cors\ServiceProvider::class,
-        LaravelLegends\PtBrValidator\ValidatorProvider::class,
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Canducci\ZipCode\Providers\ZipCodeServiceProvider::class,
-        Canducci\ZipCode\Providers\ZipCodeAddressServiceProvider::class,
         Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
     ],
 
     /*
@@ -236,11 +232,7 @@ return [
 
         'Image' => Intervention\Image\Facades\Image::class,
         'Input' => Illuminate\Support\Facades\Input::class,
-        'ZipCode'   => Canducci\ZipCode\Facades\ZipCode::class,
-        'Address'   => Canducci\ZipCode\Facades\ZipCodeAddress::class,
         'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

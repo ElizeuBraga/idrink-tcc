@@ -3,8 +3,8 @@
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [
 		{
-			"appId": "163b5c256ea2256d",
-			"key": "bb5e26263f7a0fc88967088284a9afb4"
+			"appId": "realtime-son",
+			"key": "da003dc6e48d8efa047216860c268db1"
 		}
 	],
 	"database": "sqlite",
