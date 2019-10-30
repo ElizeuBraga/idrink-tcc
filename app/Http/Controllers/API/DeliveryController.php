@@ -47,6 +47,17 @@ class DeliveryController extends Controller
     {
         try {
             $delivery = Delivery::create($request->all());
+            $deliveries = DB::table('users as s')
+        ->join('deliveries as d', 'd.store_id', '=', 's.id')
+        ->join('users as c', 'c.id', '=', 'd.customer_id')
+        ->join('adresses as a', 'a.id', '=', 'd.address_id')
+        ->select('d.store_id','d.total_price', 'd.id','s.name as store_name', 'c.name as customer_name', 'c.phone', 'd.payment', 'd.status', 'd.change', 'a.localidade', 'a.logradouro', 'a.complemento', 'a.numero', 'a.bairro', 'd.created_at')
+        ->where('s.id', $delivery->store_id)
+        ->orderBy('d.created_at', 'DESC')
+        ->first();
+
+        // dd($deliveries);
+            broadcast(new \App\Events\PrivateEvent($deliveries));
             return response()->json($delivery ,200);
         } catch (\Throwable $th) {
             // return response()->json(['response'=>'erro'], 400);

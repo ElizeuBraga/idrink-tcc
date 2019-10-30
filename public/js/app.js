@@ -60970,7 +60970,7 @@ var app = new Vue({
   data: {
     name: 'Elizeu',
     itemss: [],
-    deliveries: deliveries,
+    deliveries: del,
     isLoadingD: false,
     isLoadingC: false,
     line: null
@@ -60978,8 +60978,11 @@ var app = new Vue({
   mounted: function mounted() {
     var _this = this;
 
-    Echo["private"]('user.' + window.Laravel.user).listen('PrivateEvent', function (e) {
-      _this.deliveries.push(e.message);
+    console.log(this.deliveries);
+    Echo.channel('user.' + window.Laravel.user).listen('PrivateEvent', function (e) {
+      _this.deliveries.unshift(e.message);
+
+      console.log(e.message);
     });
   },
   methods: {

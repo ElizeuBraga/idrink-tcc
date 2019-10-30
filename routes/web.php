@@ -34,9 +34,9 @@ Route::resource('adresses', 'Web\AddressController');
 
 Route::get('/send', function(){
     if(Auth::check()){
-        $message = ['customer_name'=>'Fulano de tal', 'status' => 'delivered', 'localidade' => 'Sobradinho'];
+        $message = ['store_id' => 1, 'customer_name'=>'Fulano de tal', 'status' => 'delivered', 'localidade' => 'Sobradinho'];
         $user = Auth::user();
-        broadcast(new \App\Events\PrivateEvent(auth()->user(), $message));
+        broadcast(new \App\Events\PrivateEvent($message['store_id'], $message));
         return 'done';
     }else{
         return redirect()->route('login');

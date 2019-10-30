@@ -33,16 +33,18 @@ const app = new Vue({
     data:{
         name: 'Elizeu',
         itemss: [],
-        deliveries: deliveries,
+        deliveries: del,
         isLoadingD: false,
         isLoadingC: false,
         line: null,
     },
 
     mounted(){
-        Echo.private('user.' + window.Laravel.user)
+        console.log(this.deliveries);
+        Echo.channel('user.' + window.Laravel.user)
         .listen('PrivateEvent', (e) => {
-            this.deliveries.push(e.message)
+            this.deliveries.unshift(e.message)
+            console.log(e.message);
         });
     },
 

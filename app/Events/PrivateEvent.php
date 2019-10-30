@@ -14,17 +14,16 @@ class PrivateEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user, $message;
+    public $message;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($user, $message)
+    public function __construct($delivery)
     {
         //
-        $this->user = $user;
-        $this->message = $message; 
+        $this->message = $delivery; 
     }
 
     /**
@@ -34,8 +33,9 @@ class PrivateEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        // dd($this->user->id);
+        // dd($this->message->store_id);
         // return new PrivateChannel('channel-name');
-        return new PrivateChannel('user.' . $this->user->id);
+        // dd($this->message->store_id);
+        return new Channel('user.' . $this->message->store_id);
     }
 }

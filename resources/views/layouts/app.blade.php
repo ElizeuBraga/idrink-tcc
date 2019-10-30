@@ -139,7 +139,7 @@
     {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script> --}}
-    {{-- <script src="{{asset('js/jquery.min.js')}}"></script> --}}
+    <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('js/skel.min.js')}}"></script>
     <script src="{{asset('js/util.js')}}"></script>
     <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
@@ -148,7 +148,7 @@
     <script>
         var host = window.location.hostname;
         var items = {!!json_encode($items)!!};
-        var deliveries = {!!json_encode($deliveries)!!};
+        var del = {!!json_encode($deliveries)!!};
     </script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
