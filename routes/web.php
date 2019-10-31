@@ -43,6 +43,7 @@ Route::get('/send', function(){
     }
 });
 
+
 // Route::get('send', 'Web\MessageController@messageGet');
 Route::get('messages', 'Web\MessageController@messageGet')->middleware('auth');
 Route::post('messages', 'Web\MessageController@messageSend')->name('sendMessage')->middleware('auth');
