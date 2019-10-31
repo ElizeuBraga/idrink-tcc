@@ -56,6 +56,7 @@ class DeliveryController extends Controller
         ->orderBy('d.created_at', 'DESC')
         ->first();
 
+        // dd($deliveries);
             broadcast(new \App\Events\PrivateEvent($deliveries));
             return response()->json($delivery ,200);
         } catch (\Throwable $th) {
